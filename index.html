@@ -69,6 +69,11 @@
   .navtoggle{display:none;margin-left:auto;background:none;border:1px solid var(--line);
     border-radius:3px;padding:8px 12px;font-size:13px;cursor:pointer;color:var(--ink);font-family:inherit;}
 
+  /* ---------- logolar (dosyalar yoksa gizlenir) ---------- */
+  .logo-nav{height:30px;width:auto;flex:none;}
+  .logo-hero{height:62px;width:auto;display:block;margin-bottom:22px;align-self:flex-start;flex:none;}
+  .logo-seal{height:110px;width:auto;display:block;align-self:flex-start;flex:none;}
+
   /* ---------- hero ---------- */
   .hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;
     padding:clamp(64px,10vw,120px) 0 0;}
@@ -357,6 +362,7 @@
 
 <header class="nav">
   <div class="nav-in">
+    <img class="logo-nav" src="logo-konferans.png" alt="" onerror="this.style.display='none'">
     <div class="brand">AHDEM <span>·</span> Konferans 2027</div>
     <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">Menü</button>
     <nav class="nav-links" id="navlinks">
@@ -375,6 +381,7 @@
 <div class="hero">
   <div class="grid-bg"></div><div class="glow"></div>
   <div class="wrap hero-in">
+    <img class="logo-hero" src="logo-konferans.png" alt="AHDEM" onerror="this.style.display='none'">
     <div class="tag">Sponsorluk ve İş Birliği Dosyası</div>
     <h1>Ankara Hukuk Demokrasi Müzakereleri Konferansı 2027</h1>
     <div class="sub">1950–1960: Bir Dönemi Anlamak</div>
@@ -468,6 +475,8 @@
 <!-- ================= BİZ KİMİZ ================= -->
 <section class="band alt">
   <div class="wrap">
+    <img class="logo-seal" src="logo-topluluk.png" alt="Ankara Hukuk Demokrasi Müzakereleri Topluluğu"
+         style="float:right;margin:0 0 20px 28px;" onerror="this.style.display='none'">
     <div class="eyebrow">Biz Kimiz</div>
     <h2>AHDEM — Ankara Hukuk<br>Demokrasi Müzakereleri</h2>
     <div class="goldbar"></div>
@@ -962,6 +971,8 @@
 <!-- ================= İLETİŞİM ================= -->
 <section class="band dark" id="iletisim">
   <div class="wrap">
+    <img class="logo-seal" src="logo-topluluk.png" alt="AHDEM Topluluğu"
+         style="margin-bottom:22px;" onerror="this.style.display='none'">
     <div class="eyebrow">Bir Konferansın Ötesinde</div>
     <h2>Gençlerin bir araya geldiği,<br>fikirlerin tartışıldığı,<br>birlikte üretilen bir platform.</h2>
 
