@@ -54,7 +54,7 @@
   /* ---------- nav ---------- */
   header.nav{position:sticky;top:0;z-index:50;background:rgba(250,247,241,.92);
     backdrop-filter:blur(10px);border-bottom:1px solid var(--line-2);}
-  .nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:20px;}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:14px;}
   .brand{font-weight:600;font-size:15px;letter-spacing:.02em;white-space:nowrap;}
   .brand span{color:var(--gold);}
   .nav-links{margin-left:auto;display:flex;gap:24px;align-items:center;}
@@ -70,7 +70,7 @@
     border-radius:3px;padding:8px 12px;font-size:13px;cursor:pointer;color:var(--ink);font-family:inherit;}
 
   /* ---------- logolar (dosyalar yoksa gizlenir) ---------- */
-  .logo-nav{height:30px;width:auto;flex:none;}
+  .logo-nav{height:46px;width:auto;flex:none;}
   .logo-hero{height:62px;width:auto;display:block;margin-bottom:22px;align-self:flex-start;flex:none;}
   .logo-seal{height:110px;width:auto;display:block;align-self:flex-start;flex:none;}
 
@@ -266,6 +266,13 @@
   .ph .cap{font-size:11.5px;color:var(--muted);line-height:1.4;letter-spacing:.05em;}
   .ph.big{grid-row:span 2;}
 
+  /* ---- foto galerisi ---- */
+  .gal{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:34px;}
+  .gal figure{margin:0;overflow:hidden;border-radius:3px;background:var(--paper-2);
+    border:1px solid var(--line);grid-column:span 2;aspect-ratio:4/3;}
+  .gal figure.w{grid-column:span 3;aspect-ratio:3/2;}
+  .gal img{width:100%;height:100%;object-fit:cover;display:block;}
+
   /* ---------- logo mockup ---------- */
   .mock{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:26px;align-items:end;}
   .mock .m{display:flex;flex-direction:column;align-items:center;gap:10px;}
@@ -305,15 +312,15 @@
   .team2 .tc p{font-size:13.5px;line-height:1.55;color:var(--ink-soft);}
 
   /* ---------- video ---------- */
-  .vid{max-width:420px;margin:34px auto 0;}
-  .vidbox{position:relative;aspect-ratio:9/16;background:rgba(255,255,255,.06);
+  .vid{max-width:880px;margin:34px auto 0;}
+  .vidbox{position:relative;aspect-ratio:16/9;background:rgba(255,255,255,.06);
     border:1px dashed rgba(255,255,255,.28);border-radius:6px;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px;}
   .vidbox .play{width:62px;height:62px;border-radius:50%;border:2px solid var(--gold-soft);
     display:flex;align-items:center;justify-content:center;}
   .vidbox .play svg{width:22px;height:22px;fill:var(--gold-soft);margin-left:3px;}
   .vidbox p{font-size:13px;color:#9FB0C6;line-height:1.5;}
-  .vid video,.vid iframe{width:100%;aspect-ratio:9/16;border:0;border-radius:6px;display:block;background:#000;}
+  .vid video,.vid iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:6px;display:block;background:#000;}
 
   /* ---------- responsive ---------- */
   @media (max-width:980px){
@@ -323,6 +330,9 @@
     .exec{grid-template-columns:1fr;gap:26px;}
     .mock{grid-template-columns:repeat(3,1fr);}
     .ph-grid{grid-template-columns:1fr 1fr;grid-auto-rows:150px;}
+    .gal{grid-template-columns:repeat(2,1fr);gap:9px;}
+    .gal figure{grid-column:span 1;}
+    .gal figure.w{grid-column:span 2;}
     .ph.big{grid-column:span 2;grid-row:span 1;}
     .tiers{grid-template-columns:1fr;}
     .profil,.budget{grid-template-columns:1fr;gap:28px;}
@@ -334,6 +344,7 @@
     .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);
       border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 18px;}
     .nav-links.open{display:flex;}
+    .logo-nav{height:38px;}
     .nav-links a{padding:11px 0;border-bottom:1px solid var(--line-2);}
     .nav-links .btn{text-align:center;margin-top:12px;border-bottom:none;}
     header.nav{position:relative;}
@@ -362,7 +373,7 @@
 
 <header class="nav">
   <div class="nav-in">
-    <img class="logo-nav" src="logo-konferans.png" alt="" onerror="this.style.display='none'">
+    <img class="logo-nav" src="logo-konferans-lacivert.png" alt="" onerror="this.style.display='none'">
     <div class="brand">AHDEM <span>·</span> Konferans 2027</div>
     <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">Menü</button>
     <nav class="nav-links" id="navlinks">
@@ -381,7 +392,7 @@
 <div class="hero">
   <div class="grid-bg"></div><div class="glow"></div>
   <div class="wrap hero-in">
-    <img class="logo-hero" src="logo-konferans.png" alt="AHDEM" onerror="this.style.display='none'">
+    <img class="logo-hero" src="logo-konferans-beyaz.png" alt="AHDEM" onerror="this.style.display='none'">
     <div class="tag">Sponsorluk ve İş Birliği Dosyası</div>
     <h1>Ankara Hukuk Demokrasi Müzakereleri Konferansı 2027</h1>
     <div class="sub">1950–1960: Bir Dönemi Anlamak</div>
@@ -587,16 +598,30 @@
     <p class="lede">Her konferans; açılış oturumu, komisyon çalışmaları, genel kurul ve kapanış
     töreninden oluşan tam bir programla tamamlandı.</p>
 
-    <div class="ph-grid">
-      <div class="ph big"><div class="ic">◻</div>
-        <div class="cap">GENEL KURUL / AÇILIŞ OTURUMU</div></div>
-      <div class="ph"><div class="ic">◻</div><div class="cap">KOMİSYON ÇALIŞMASI</div></div>
-      <div class="ph"><div class="ic">◻</div><div class="cap">KATILIMCI SUNUMU</div></div>
-      <div class="ph"><div class="ic">◻</div><div class="cap">FUAYE / MOLA ALANI</div></div>
-      <div class="ph"><div class="ic">◻</div><div class="cap">KAPANIŞ VE SERTİFİKA TÖRENİ</div></div>
+    <div class="gal">
+      <figure class="w"><img src="foto/1.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure class="w"><img src="foto/9.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure><img src="foto/3.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure><img src="foto/6.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure><img src="foto/11.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure><img src="foto/10.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure><img src="foto/7.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure><img src="foto/8.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure><img src="foto/2.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure><img src="foto/5.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
+      <figure><img src="foto/4.jpg" loading="lazy" decoding="async"
+        alt="Geçmiş AHDEM konferanslarından bir kare"></figure>
     </div>
-
-    <div class="note" style="margin-top:24px;">Bu alanlar geçmiş konferansların fotoğraflarıyla doldurulacaktır.</div>
   </div>
 </section>
 
@@ -968,8 +993,26 @@
   </div>
 </section>
 
+<!-- ================= VİDEO ================= -->
+<section class="band dark" id="video">
+  <div class="wrap" style="text-align:center;">
+    <div class="eyebrow">Arşivden</div>
+    <h2>Geçen sene AHDEM nasıldı?</h2>
+    <p style="max-width:560px;margin:16px auto 0;">Bir önceki konferanstan kısa bir özet.</p>
+
+    <div class="vid">
+      <!-- Video GitHub Releases uzerinde barindiriliyor, repo icinde degil.
+           preload="none" -> sayfa acilirken video indirilmez, sadece kapak.jpg gorunur. -->
+      <video controls playsinline preload="none" poster="kapak.jpg">
+        <source src="https://github.com/lizer20/AHDEM/releases/download/v1/ahdem-tanitim.mp4" type="video/mp4">
+        Taray&#305;c&#305;n&#305;z video etiketini desteklemiyor.
+      </video>
+    </div>
+  </div>
+</section>
+
 <!-- ================= İLETİŞİM ================= -->
-<section class="band dark" id="iletisim">
+<section class="band dark" id="iletisim" style="border-top:1px solid rgba(255,255,255,.12);">
   <div class="wrap">
     <img class="logo-seal" src="logo-topluluk.png" alt="AHDEM Topluluğu"
          style="margin-bottom:22px;" onerror="this.style.display='none'">
@@ -998,25 +1041,6 @@
 
     <div style="margin-top:38px;">
       <a class="btn" href="mailto:auhfdemokrasimuzakereleri@gmail.com?subject=AHDEM%20Konferans%C4%B1%202027%20%E2%80%94%20Sponsorluk%20G%C3%B6r%C3%BC%C5%9Fmesi">Görüşme Talep Et</a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= VİDEO ================= -->
-<section class="band dark" id="video" style="border-top:1px solid rgba(255,255,255,.12);">
-  <div class="wrap" style="text-align:center;">
-    <div class="eyebrow">Arşivden</div>
-    <h2>Geçen sene AHDEM nasıldı?</h2>
-    <p style="max-width:560px;margin:16px auto 0;">Bir önceki konferanstan kısa bir özet.</p>
-
-    <div class="vid">
-      <!-- VİDEO BURAYA: mp4 için aşağıdaki <video> etiketini kullanın, kaynağı değiştirin.
-           <video controls playsinline poster="kapak.jpg"><source src="ahdem-tanitim.mp4" type="video/mp4"></video>
-           Instagram gönderisi için: <iframe src="https://www.instagram.com/reel/KOD/embed" allowfullscreen></iframe> -->
-      <div class="vidbox">
-        <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <p>Tanıtım videosu buraya eklenecek.</p>
-      </div>
     </div>
   </div>
 </section>
