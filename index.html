@@ -71,8 +71,8 @@
 
   /* ---------- logolar (dosyalar yoksa gizlenir) ---------- */
   .logo-nav{height:30px;width:auto;flex:none;}
-  .logo-hero{height:62px;width:auto;display:block;margin-bottom:22px;}
-  .logo-seal{height:110px;width:auto;display:block;}
+  .logo-hero{height:62px;width:auto;display:block;margin-bottom:22px;align-self:flex-start;flex:none;}
+  .logo-seal{height:110px;width:auto;display:block;align-self:flex-start;flex:none;}
 
   /* ---------- hero ---------- */
   .hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;
@@ -968,8 +968,23 @@
   </div>
 </section>
 
+<!-- ================= VİDEO ================= -->
+<section class="band dark" id="video">
+  <div class="wrap" style="text-align:center;">
+    <div class="eyebrow">Arşivden</div>
+    <h2>Geçen sene AHDEM nasıldı?</h2>
+    <p style="max-width:560px;margin:16px auto 0;">Bir önceki konferanstan kısa bir özet.</p>
+
+    <div class="vid">
+      <video controls playsinline poster="kapak.jpg">
+        <source src="ahdem-tanitim.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
 <!-- ================= İLETİŞİM ================= -->
-<section class="band dark" id="iletisim">
+<section class="band dark" id="iletisim" style="border-top:1px solid rgba(255,255,255,.12);">
   <div class="wrap">
     <img class="logo-seal" src="logo-topluluk.png" alt="AHDEM Topluluğu"
          style="margin-bottom:22px;" onerror="this.style.display='none'">
@@ -998,25 +1013,6 @@
 
     <div style="margin-top:38px;">
       <a class="btn" href="mailto:auhfdemokrasimuzakereleri@gmail.com?subject=AHDEM%20Konferans%C4%B1%202027%20%E2%80%94%20Sponsorluk%20G%C3%B6r%C3%BC%C5%9Fmesi">Görüşme Talep Et</a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= VİDEO ================= -->
-<section class="band dark" id="video" style="border-top:1px solid rgba(255,255,255,.12);">
-  <div class="wrap" style="text-align:center;">
-    <div class="eyebrow">Arşivden</div>
-    <h2>Geçen sene AHDEM nasıldı?</h2>
-    <p style="max-width:560px;margin:16px auto 0;">Bir önceki konferanstan kısa bir özet.</p>
-
-    <div class="vid">
-      <!-- VİDEO BURAYA: mp4 için aşağıdaki <video> etiketini kullanın, kaynağı değiştirin.
-           <video controls playsinline poster="kapak.jpg"><source src="ahdem-tanitim.mp4" type="video/mp4"></video>
-           Instagram gönderisi için: <iframe src="https://www.instagram.com/reel/KOD/embed" allowfullscreen></iframe> -->
-      <div class="vidbox">
-        <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <p>Tanıtım videosu buraya eklenecek.</p>
-      </div>
     </div>
   </div>
 </section>
