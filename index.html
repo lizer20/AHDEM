@@ -137,6 +137,28 @@
   .sup-card.open .ds{color:#AFBDD0;}
   .sup-card.open .seal{border-color:var(--gold-soft);color:var(--gold-soft);}
 
+  .sup5{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:34px;}
+  .sup5 .sc{background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);
+    border-radius:2px;padding:22px 20px;display:flex;flex-direction:column;min-height:190px;}
+  .sup5 .sc .role{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .sup5 .sc .nm{font-family:'Lora',serif;font-size:19px;line-height:1.25;font-weight:600;
+    color:var(--ink);margin-top:11px;}
+  .sup5 .sc .ds{font-size:12.5px;line-height:1.5;color:var(--muted);margin-top:auto;padding-top:12px;}
+  .sup2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
+  .sup2 .wc{background:#fff;border:1px solid var(--line);border-radius:2px;padding:24px 24px;
+    display:flex;align-items:center;gap:18px;}
+  .sup2 .wc.open{background:var(--ink);border-color:var(--ink);}
+  .sup2 .wc .txt{flex:1;}
+  .sup2 .wc .role{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .sup2 .wc.open .role{color:var(--gold-soft);}
+  .sup2 .wc .nm{font-family:'Lora',serif;font-size:21px;font-weight:600;color:var(--ink);margin-top:6px;}
+  .sup2 .wc.open .nm{color:#fff;}
+  .sup2 .wc .ds{font-size:13px;line-height:1.5;color:var(--muted);margin-top:7px;}
+  .sup2 .wc.open .ds{color:#AFBDD0;}
+  .sup2 .wc .seal{width:36px;height:36px;flex:none;border:2px solid var(--gold);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold);font-weight:600;}
+  .sup2 .wc.open .seal{border-color:var(--gold-soft);color:var(--gold-soft);}
+
   /* ---------- timeline ---------- */
   .tl{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;border-top:1px solid var(--line);
     padding-top:22px;margin-top:8px;}
@@ -253,6 +275,7 @@
   /* ---------- responsive ---------- */
   @media (max-width:980px){
     .g4,.sup,.tl,.steps{grid-template-columns:repeat(2,1fr);}
+    .sup5{grid-template-columns:repeat(3,1fr);}
     .exec{grid-template-columns:1fr;gap:26px;}
     .mock{grid-template-columns:repeat(3,1fr);}
     .ph-grid{grid-template-columns:1fr 1fr;grid-auto-rows:150px;}
@@ -273,6 +296,7 @@
     html{scroll-padding-top:12px;}
     .navtoggle{display:block;}
     .g2,.g3,.g4,.sup,.tl,.steps{grid-template-columns:1fr;}
+    .sup5,.sup2{grid-template-columns:1fr;}
     .mock{grid-template-columns:repeat(2,1fr);}
     .ph-grid{grid-template-columns:1fr;}
     .ph.big{grid-column:span 1;}
@@ -330,9 +354,12 @@
       <div class="org">T.C. Gençlik ve Spor Bakanlığı</div>
       <div class="dot"></div>
       <div class="org">Mamak Belediyesi</div>
-      <div class="sep"></div>
-      <div class="lbl">Ev Sahibi</div>
-      <div class="org">Ankara Üniversitesi Hukuk Fakültesi</div>
+      <div class="dot"></div>
+      <div class="org">Gün + Partners Avukatlık Bürosu</div>
+      <div class="dot"></div>
+      <div class="org">Maya Genç Düşünce Platformu</div>
+      <div class="dot"></div>
+      <div class="org">Ankara Hukuk Mezunu Avukatlar</div>
     </div>
   </div>
 </div>
@@ -368,7 +395,7 @@
         <ul>
           <li>2023'ten bu yana kesintisiz olarak dört konferans</li>
           <li>Ankara Üniversitesi Hukuk Fakültesi ev sahipliği ve akademik danışmanlık</li>
-          <li>Kamu kurumlarıyla yürütülmüş sponsorluk ve iş birliği deneyimi</li>
+          <li>Kamu kurumları, hukuk büroları ve sivil platformlarla yürütülmüş beş sponsorluk</li>
           <li>Siyasi tartışmalardan bağımsız, tarafsız akademik çerçeve</li>
           <li>Belgelenmiş harcama ve etkinlik sonrası raporlama</li>
         </ul>
@@ -393,7 +420,7 @@
       <div class="stat"><b>120<em>+</em></b><span>Farklı üniversitelerden öğrenci katılımcı</span></div>
       <div class="stat"><b>40</b><span>Kişilik akademik ve organizasyon ekibi</span></div>
       <div class="stat"><b>5.</b><span>Kez düzenlenen köklü program</span></div>
-      <div class="stat"><b>2</b><span>Geçmiş konferanslarda sponsor kurum</span></div>
+      <div class="stat"><b>5</b><span>Geçmiş konferanslarda sponsor kurum</span></div>
     </div>
   </div>
 </section>
@@ -428,41 +455,38 @@
     <div class="eyebrow">Geçmiş Sponsorlarımız</div>
     <h2>Bugüne kadar kurumların<br>sponsorluğuyla gerçekleştik.</h2>
     <div class="goldbar"></div>
-    <p class="lede">Önceki konferanslarımız, aşağıdaki kurumların sponsorluk ve iş birliği destekleriyle
-    hayata geçirildi. Bu deneyim, organizasyonun kurumsal iş birliklerini yürütme kapasitesini ve
-    sürdürülebilirliğini gösterir.</p>
+    <p class="lede">Önceki konferanslarımız; kamu kurumları, hukuk büroları, sivil platformlar ve
+    mezun avukatların sponsorluk ve iş birliği destekleriyle hayata geçirildi.</p>
 
-    <div class="sup" style="margin-top:36px;">
-      <div class="sup-card">
-        <div>
-          <div class="role">Geçmiş Sponsor</div>
-          <div class="nm">T.C. Gençlik ve<br>Spor Bakanlığı</div>
-          <div class="ds">Gençlik projeleri kapsamında organizasyon ve katılım süreçlerine sağlanan sponsorluk desteği.</div>
-        </div>
+    <div class="sup5">
+      <div class="sc"><div class="role">Geçmiş Sponsor</div>
+        <div class="nm">T.C. Gençlik ve<br>Spor Bakanlığı</div>
+        <div class="ds">Gençlik projeleri kapsamında organizasyon ve katılım desteği.</div></div>
+      <div class="sc"><div class="role">Geçmiş Sponsor</div>
+        <div class="nm">Mamak<br>Belediyesi</div>
+        <div class="ds">Yerel yönetim iş birliği kapsamında lojistik ve organizasyon desteği.</div></div>
+      <div class="sc"><div class="role">Geçmiş Sponsor</div>
+        <div class="nm">Gün + Partners<br>Avukatlık Bürosu</div>
+        <div class="ds">Hukuk sektöründen kurumsal sponsorluk ve mesleki katkı.</div></div>
+      <div class="sc"><div class="role">Geçmiş Sponsor</div>
+        <div class="nm">Maya Genç<br>Düşünce Platformu</div>
+        <div class="ds">Gençlik ve düşünce alanında program iş birliği.</div></div>
+      <div class="sc"><div class="role">Geçmiş Sponsor</div>
+        <div class="nm">Ankara Hukuk<br>Mezunu Avukatlar</div>
+        <div class="ds">Mezun avukatların bireysel ve kolektif destekleri.</div></div>
+    </div>
+
+    <div class="sup2">
+      <div class="wc">
+        <div class="txt"><div class="role">Ev Sahibi Kurum</div>
+          <div class="nm">Ankara Üniversitesi Hukuk Fakültesi</div>
+          <div class="ds">Sponsor değil; konferansın akademik çerçevesini kuran ve ev sahipliğini yapan kurum. Cebeci Yerleşkesi.</div></div>
         <div class="seal">★</div>
       </div>
-      <div class="sup-card">
-        <div>
-          <div class="role">Geçmiş Sponsor</div>
-          <div class="nm">Mamak<br>Belediyesi</div>
-          <div class="ds">Yerel yönetim iş birliği kapsamında sağlanan lojistik ve organizasyon sponsorluğu.</div>
-        </div>
-        <div class="seal">★</div>
-      </div>
-      <div class="sup-card">
-        <div>
-          <div class="role">Ev Sahibi Kurum</div>
-          <div class="nm">Ankara Üniversitesi<br>Hukuk Fakültesi</div>
-          <div class="ds">Sponsor değil; konferansın akademik çerçevesini kuran ve ev sahipliğini yapan kurum. Cebeci Yerleşkesi.</div>
-        </div>
-        <div class="seal">★</div>
-      </div>
-      <div class="sup-card open">
-        <div>
-          <div class="role">2027 — Ayrılmış Alan</div>
+      <div class="wc open">
+        <div class="txt"><div class="role">2027 — Ayrılmış Alan</div>
           <div class="nm">Ana Sponsor</div>
-          <div class="ds">Bu alan, 2027 konferansının ana sponsoru ve stratejik marka iş ortağı için ayrılmıştır.</div>
-        </div>
+          <div class="ds">Bu alan, 2027 konferansının ana sponsoru ve stratejik marka iş ortağı için ayrılmıştır.</div></div>
         <div class="seal">+</div>
       </div>
     </div>
@@ -909,7 +933,7 @@
 <footer>
   <div class="wrap in">
     <div>Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
-    <div>Geçmiş sponsorlarımız: T.C. Gençlik ve Spor Bakanlığı · Mamak Belediyesi &nbsp;|&nbsp; Ev sahibi: Ankara Üniversitesi Hukuk Fakültesi</div>
+    <div>Ev sahibi: Ankara Üniversitesi Hukuk Fakültesi</div>
   </div>
 </footer>
 
