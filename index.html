@@ -2,735 +2,828 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AHDEM Konferansı 2027 — Sponsorluk ve İş Birliği</title>
-<meta name="description" content="Ankara Hukuk Demokrasi Müzakereleri Konferansı 2027 · 25–28 Mart 2027, Ankara Üniversitesi Cebeci Yerleşkesi. Sponsorluk ve iş birliği dosyası.">
-<meta property="og:title" content="AHDEM Konferansı 2027 — Sponsorluk ve İş Birliği">
-<meta property="og:description" content="4 gün, 120+ üniversite öğrencisi. 1950–1960: Bir Dönemi Anlamak.">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Ankara Hukuk Demokrasi Müzakereleri Konferansı 2027 — Sponsorluk Dosyası</title>
 <style>
+  @page { size: 13.333in 7.5in; margin: 0; }
   :root{
     --ink:#12203A;
-    --ink-2:#1A2C4B;
     --ink-soft:#2E4260;
     --paper:#FAF7F1;
     --paper-2:#F1ECE3;
     --gold:#B8862F;
     --gold-soft:#E8D5AC;
     --line:#D9D1C4;
-    --line-2:#E6E0D5;
     --muted:#6B7A90;
-    --maxw:1160px;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;scroll-padding-top:76px;}
-  body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);background:var(--paper);
-    -webkit-font-smoothing:antialiased;line-height:1.6;}
-  img{max-width:100%;display:block;}
-  a{color:inherit;}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-  .serif{font-family:'Lora',Georgia,serif;}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{font-family:'Poppins','DejaVu Sans',sans-serif;color:var(--ink);background:#555;}
 
-  /* ---------- typography ---------- */
-  h1{font-size:clamp(34px,6vw,62px);line-height:1.06;font-weight:600;letter-spacing:-.02em;}
-  h2{font-size:clamp(26px,3.6vw,40px);line-height:1.14;font-weight:600;letter-spacing:-.01em;}
-  h3{font-size:18px;font-weight:600;line-height:1.35;}
-  p{color:var(--ink-soft);}
-  .eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
-    font-weight:600;margin-bottom:14px;}
-  .goldbar{width:56px;height:3px;background:var(--gold);margin:20px 0 24px;}
-  .lede{font-size:clamp(16px,2vw,19px);line-height:1.62;color:var(--ink-soft);max-width:760px;}
+  .slide{
+    width:1280px;height:720px;position:relative;overflow:hidden;
+    background:var(--paper);page-break-after:always;break-after:page;
+    padding:64px 80px 72px 80px;display:flex;flex-direction:column;
+  }
+  .slide:last-child{page-break-after:auto;}
 
-  section.band{padding:clamp(56px,7vw,92px) 0;border-top:1px solid var(--line-2);}
-  section.band.alt{background:var(--paper-2);}
-  section.band.dark{background:var(--ink);border-top:none;color:#fff;}
-  section.band.dark h2,section.band.dark h3{color:#fff;}
-  section.band.dark p{color:#C6D0DE;}
-  section.band.dark .eyebrow{color:var(--gold-soft);}
+  /* ---- shared chrome ---- */
+  .num{position:absolute;right:44px;bottom:32px;font-size:12px;letter-spacing:.16em;color:var(--muted);}
+  .foot{position:absolute;left:80px;bottom:32px;font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;}
+  .rule{position:absolute;left:80px;right:80px;bottom:60px;height:1px;background:var(--line);}
 
-  /* ---------- nav ---------- */
-  header.nav{position:sticky;top:0;z-index:50;background:rgba(250,247,241,.92);
-    backdrop-filter:blur(10px);border-bottom:1px solid var(--line-2);}
-  .nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:20px;}
-  .brand{font-weight:600;font-size:15px;letter-spacing:.02em;white-space:nowrap;}
-  .brand span{color:var(--gold);}
-  .nav-links{margin-left:auto;display:flex;gap:24px;align-items:center;}
-  .nav-links a{font-size:13.5px;color:var(--ink-soft);text-decoration:none;transition:color .15s;}
-  .nav-links a:hover{color:var(--gold);}
-  .btn{display:inline-block;background:var(--gold);color:#fff;text-decoration:none;
-    font-size:14px;font-weight:500;padding:11px 22px;border-radius:3px;transition:background .15s,transform .15s;
-    border:1px solid var(--gold);}
-  .btn:hover{background:#9E721F;border-color:#9E721F;}
-  .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);}
-  .btn.ghost:hover{background:rgba(255,255,255,.1);border-color:#fff;}
-  .navtoggle{display:none;margin-left:auto;background:none;border:1px solid var(--line);
-    border-radius:3px;padding:8px 12px;font-size:13px;cursor:pointer;color:var(--ink);font-family:inherit;}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;}
+  h1{font-size:52px;line-height:1.08;font-weight:600;letter-spacing:-.015em;}
+  h2{font-size:40px;line-height:1.12;font-weight:600;letter-spacing:-.01em;}
+  h3{font-size:19px;font-weight:600;line-height:1.3;}
+  p{font-size:16px;line-height:1.62;color:var(--ink-soft);}
+  .lede{font-size:19px;line-height:1.6;color:var(--ink-soft);max-width:900px;}
+  .serif{font-family:'Lora',serif;}
+  .goldbar{width:56px;height:3px;background:var(--gold);margin:22px 0 26px;}
 
-  /* ---------- hero ---------- */
-  .hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;
-    padding:clamp(64px,10vw,120px) 0 0;}
-  .hero .grid-bg{position:absolute;inset:0;
+  /* ---- cover ---- */
+  .cover{background:var(--ink);color:#fff;padding:0;}
+  .cover .grid-bg{position:absolute;inset:0;
     background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
                      linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
     background-size:64px 64px;}
-  .hero .glow{position:absolute;width:760px;height:760px;right:-240px;top:-280px;border-radius:50%;
-    background:radial-gradient(circle,rgba(184,134,47,.30),rgba(184,134,47,0) 62%);pointer-events:none;}
-  .hero-in{position:relative;padding-bottom:clamp(48px,7vw,80px);}
-  .hero .tag{display:inline-block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--gold-soft);border:1px solid rgba(232,213,172,.35);padding:7px 14px;border-radius:2px;margin-bottom:26px;}
-  .hero h1{color:#fff;max-width:16ch;}
-  .hero .sub{font-family:'Lora',serif;font-style:italic;font-size:clamp(18px,2.6vw,25px);
-    color:#D8DFEA;margin-top:20px;}
-  .hero .meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px 40px;}
-  .hero .meta div{border-left:2px solid var(--gold);padding-left:16px;}
-  .hero .meta span{display:block;font-size:10px;letter-spacing:.2em;color:#9FB0C6;
-    text-transform:uppercase;margin-bottom:4px;}
-  .hero .meta strong{font-size:15.5px;font-weight:500;color:#fff;}
-  .hero .cta{margin-top:38px;display:flex;flex-wrap:wrap;gap:12px;}
-  .hero-band{position:relative;background:rgba(255,255,255,.055);border-top:1px solid rgba(255,255,255,.1);
-    padding:18px 0;}
-  .hero-band .in{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;}
-  .hero-band .lbl{font-size:10px;letter-spacing:.2em;color:#9FB0C6;text-transform:uppercase;}
-  .hero-band .org{font-size:14px;color:#fff;font-weight:500;}
-  .hero-band .dot{width:4px;height:4px;border-radius:50%;background:var(--gold);}
-  .hero-band .sep{width:1px;height:20px;background:rgba(255,255,255,.18);}
+  .cover .glow{position:absolute;width:760px;height:760px;right:-220px;top:-260px;border-radius:50%;
+    background:radial-gradient(circle,rgba(184,134,47,.28),rgba(184,134,47,0) 62%);}
+  .cover-inner{position:relative;padding:66px 80px 0 80px;flex:1;display:flex;flex-direction:column;}
+  .cover h1{font-size:66px;color:#fff;max-width:900px;}
+  .cover .eyebrow{color:var(--gold-soft);}
+  .cover .sub{font-size:24px;color:#D8DFEA;margin-top:22px;font-family:'Lora',serif;font-style:italic;}
+  .cover .meta{margin-top:34px;display:flex;gap:44px;}
+  .cover .meta div{border-left:2px solid var(--gold);padding-left:16px;}
+  .cover .meta span{display:block;font-size:10px;letter-spacing:.22em;color:#9FB0C6;text-transform:uppercase;margin-bottom:5px;}
+  .cover .meta strong{font-size:16px;font-weight:500;color:#fff;}
+  .cover-band{position:absolute;left:0;right:0;bottom:0;background:rgba(255,255,255,.055);
+    border-top:1px solid rgba(255,255,255,.13);padding:20px 80px;display:flex;align-items:center;gap:30px;}
+  .cover-band .lbl{font-size:10px;letter-spacing:.22em;color:#9FB0C6;text-transform:uppercase;white-space:nowrap;}
+  .cover-band .orgs{display:flex;gap:26px;align-items:center;font-size:14px;color:#fff;font-weight:500;}
+  .cover-band .dot{width:4px;height:4px;border-radius:50%;background:var(--gold);}
+  .tag-tl{position:absolute;right:80px;top:70px;font-size:10px;letter-spacing:.22em;color:#9FB0C6;
+    border:1px solid rgba(255,255,255,.22);padding:9px 15px;border-radius:2px;text-transform:uppercase;}
 
-  /* ---------- stats ---------- */
-  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
-  .stat{padding:0 22px;border-left:1px solid var(--line);}
-  .stat:first-child{padding-left:0;border-left:none;}
-  .stat b{display:block;font-size:clamp(32px,4.6vw,50px);font-weight:600;line-height:1;letter-spacing:-.02em;}
-  .stat b em{font-style:normal;color:var(--gold);font-size:.55em;}
-  .stat span{display:block;font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.45;}
+  /* ---- stat row ---- */
+  .stats{display:flex;gap:0;margin-top:8px;}
+  .stat{flex:1;border-left:1px solid var(--line);padding:4px 24px 4px 24px;}
+  .stat:first-child{border-left:none;padding-left:0;}
+  .stat b{display:block;font-size:52px;font-weight:600;line-height:1;letter-spacing:-.03em;color:var(--ink);}
+  .stat b em{font-size:26px;font-style:normal;color:var(--gold);}
+  .stat span{display:block;font-size:12.5px;line-height:1.45;color:var(--muted);margin-top:12px;letter-spacing:.02em;}
 
-  /* ---------- generic cards ---------- */
-  .grid{display:grid;gap:18px;}
-  .g2{grid-template-columns:repeat(2,1fr);}
-  .g3{grid-template-columns:repeat(3,1fr);}
-  .g4{grid-template-columns:repeat(4,1fr);}
-  .card{background:#fff;border:1px solid var(--line);border-radius:3px;padding:26px 24px;}
-  .card p{font-size:14px;line-height:1.6;margin-top:9px;color:var(--muted);}
-  .card .idx{font-size:11px;letter-spacing:.2em;color:var(--gold);font-weight:600;margin-bottom:14px;}
-  .card.left{border-left:3px solid var(--gold);}
-  .card.dark{background:var(--ink);border-color:var(--ink);color:#fff;}
-  .card.dark h3{color:#fff;}
-  .card.dark p{color:#AFBDD0;}
-  .note{background:var(--paper-2);border-left:3px solid var(--gold);padding:18px 22px;
-    font-size:14.5px;line-height:1.6;color:var(--ink-soft);border-radius:0 3px 3px 0;}
-  section.band.alt .note{background:#fff;}
+  /* ---- cards ---- */
+  .cards{display:flex;gap:18px;}
+  .card{flex:1;background:#fff;border:1px solid var(--line);border-radius:3px;padding:24px 22px;position:relative;}
+  .card .idx{font-size:11px;letter-spacing:.2em;color:var(--gold);font-weight:600;margin-bottom:12px;}
+  .card p{font-size:13.5px;line-height:1.55;margin-top:9px;}
+  .card h3{font-size:17px;}
 
-  /* ---------- sponsor kartları ---------- */
-  .sup{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-  .sup-card{background:#fff;border:1px solid var(--line);border-radius:3px;padding:26px 24px;
-    display:flex;flex-direction:column;justify-content:space-between;min-height:250px;}
-  .sup-card .role{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;}
-  .sup-card .nm{font-family:'Lora',serif;font-size:24px;line-height:1.2;font-weight:600;margin-top:12px;}
-  .sup-card .ds{font-size:12.6px;line-height:1.5;color:var(--muted);margin-top:10px;}
-  .sup-card .seal{width:34px;height:34px;border:2px solid var(--gold);border-radius:50%;
-    display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gold);
-    font-weight:600;margin-top:18px;}
-  .sup-card.open{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .g6 {background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:2px;padding:18px 20px;}
+  .g6 h3{font-size:16px;}
+  .g6 p{font-size:12.8px;line-height:1.5;margin-top:7px;}
+
+  /* ---- supporters ---- */
+  .sup{display:flex;gap:20px;margin-top:6px;}
+  .sup-card{flex:1;background:#fff;border:1px solid var(--line);border-radius:3px;padding:30px 26px;
+    display:flex;flex-direction:column;justify-content:space-between;min-height:270px;}
+  .sup-card .role{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .sup-card .nm{font-family:'Lora',serif;font-size:27px;line-height:1.22;font-weight:600;color:var(--ink);margin-top:16px;}
+  .sup-card .ds{font-size:12.8px;line-height:1.55;color:var(--muted);margin-top:12px;}
+  .sup-card.open{background:var(--ink);border-color:var(--ink);}
   .sup-card.open .role{color:var(--gold-soft);}
+  .sup-card.open .nm{color:#fff;}
   .sup-card.open .ds{color:#AFBDD0;}
-  .sup-card.open .seal{border-color:var(--gold-soft);color:var(--gold-soft);}
+  .sup-card .seal{width:38px;height:38px;border:2px solid var(--gold);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold);font-weight:600;}
 
-  /* ---------- timeline ---------- */
-  .tl{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;border-top:1px solid var(--line);
-    padding-top:22px;margin-top:8px;}
-  .tl-i .dot{width:11px;height:11px;border-radius:50%;border:2px solid var(--line);
-    background:var(--paper);margin-top:-28px;margin-bottom:20px;}
-  .tl-i.on .dot{background:var(--gold);border-color:var(--gold);}
-  .tl-i b{display:block;font-size:27px;font-weight:600;letter-spacing:-.01em;}
-  .tl-i .per{font-size:12.5px;color:var(--gold);font-weight:600;margin:6px 0 8px;letter-spacing:.02em;}
-  .tl-i p{font-size:13.5px;line-height:1.5;color:var(--muted);}
+  /* ---- timeline ---- */
+  .tl{display:flex;gap:0;margin-top:14px;}
+  .tl-item{flex:1;padding-right:24px;position:relative;}
+  .tl-item:before{content:"";position:absolute;left:0;top:8px;width:11px;height:11px;border-radius:50%;
+    background:var(--paper);border:2.5px solid var(--line);}
+  .tl-item.now:before{background:var(--gold);border-color:var(--gold);}
+  .tl-line{position:absolute;left:0;right:0;top:13px;height:2px;background:var(--line);}
+  .tl-item .yr{font-size:26px;font-weight:600;margin-top:34px;letter-spacing:-.02em;color:var(--ink-soft);}
+  .tl-item.now .yr{color:var(--ink);}
+  .tl-item .pr{font-size:13px;color:var(--gold);font-weight:600;margin-top:3px;letter-spacing:.04em;}
+  .tl-item p{font-size:12.5px;line-height:1.5;margin-top:9px;}
 
-  /* ---------- steps ---------- */
-  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
-  .step{background:#fff;border:1px solid var(--line);border-radius:3px;padding:22px 20px;}
-  .step .n{width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;margin-bottom:14px;}
-  .step h3{font-size:16px;}
-  .step p{font-size:13px;line-height:1.5;color:var(--muted);margin-top:7px;}
-  .step .when{font-size:11.5px;letter-spacing:.1em;color:var(--gold);font-weight:600;
-    text-transform:uppercase;margin-top:12px;}
+  /* ---- table ---- */
+  table{width:100%;border-collapse:collapse;}
+  th,td{text-align:left;padding:9.5px 12px;font-size:13px;border-bottom:1px solid var(--line);}
+  th{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;
+     border-bottom:1.5px solid var(--ink);padding-bottom:10px;}
+  td.c{text-align:center;width:120px;}
+  th.c{text-align:center;width:120px;}
+  .hl{background:#FFFDF7;}
+  th.hl{color:var(--gold);}
+  .chk{display:inline-block;vertical-align:middle;}
+  .dash{color:var(--line);font-weight:600;}
+  .fill{color:var(--gold);font-weight:600;letter-spacing:.06em;}
 
-  /* ---------- profil ---------- */
-  .profil{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
-  .bar-row{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:18px;margin-bottom:14px;}
-  .bar-row span{font-size:14px;color:var(--ink-soft);}
-  .bar{height:8px;background:var(--line-2);border-radius:99px;overflow:hidden;}
-  .bar i{display:block;height:100%;background:var(--ink);border-radius:99px;}
-  .bar-row:first-child i{background:var(--gold);}
+  .tight th,.tight td{padding:5.4px 12px;font-size:12.3px;}
+  .tight th{padding-bottom:8px;}
+  .tight2 th,.tight2 td{padding:6px 12px;font-size:12.6px;}
+  .tight2 th{padding-bottom:8px;}
 
-  /* ---------- seviyeler ---------- */
-  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;}
-  .tier{background:#fff;border:1px solid var(--line);border-radius:3px;padding:30px 26px;
-    display:flex;flex-direction:column;}
-  .tier.main{background:var(--ink);border-color:var(--ink);color:#fff;position:relative;}
-  .tier .kicker{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;}
-  .tier.main .kicker{color:var(--gold-soft);}
-  .tier h3{font-size:24px;margin-top:10px;margin-bottom:18px;}
-  .tier ul{list-style:none;}
-  .tier li{font-size:14px;line-height:1.5;color:var(--muted);padding-left:18px;position:relative;margin-bottom:11px;}
-  .tier li:before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
-  .tier.main li{color:#C6D0DE;}
-  .tier .foot{margin-top:auto;padding-top:18px;border-top:1px solid var(--line-2);
-    font-size:13px;color:var(--gold);line-height:1.5;}
-  .tier.main .foot{border-top-color:rgba(255,255,255,.15);color:var(--gold-soft);}
+  /* ---- flow ---- */
+  .flow{display:flex;align-items:stretch;gap:10px;margin-top:10px;}
+  .flow-step{flex:1;background:#fff;border:1px solid var(--line);border-radius:3px;padding:20px 18px;position:relative;}
+  .flow-step .n{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;
+    display:flex;align-items:center;justify-content:center;font-weight:600;margin-bottom:13px;}
+  .flow-step h3{font-size:15px;}
+  .flow-step p{font-size:12.2px;line-height:1.5;margin-top:7px;}
+  .arrow{align-self:center;color:var(--gold);font-size:18px;font-weight:600;}
 
-  /* ---------- tablo ---------- */
-  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  table{width:100%;border-collapse:collapse;min-width:640px;background:#fff;}
-  th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line-2);font-size:14px;}
-  thead th{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
-    font-weight:600;border-bottom:1px solid var(--line);white-space:nowrap;}
-  tbody th{font-weight:400;color:var(--ink-soft);}
-  td{text-align:center;width:130px;color:var(--ink);}
-  .yes{color:var(--gold);font-weight:600;}
-  .no{color:#C4CBD6;}
-  tbody tr:nth-child(even){background:#FDFBF7;}
-  .col-main{background:rgba(184,134,47,.07);}
+  /* ---- pricing ---- */
+  .tiers{display:flex;gap:18px;margin-top:6px;}
+  .tier{flex:1;border:1px solid var(--line);border-radius:3px;background:#fff;padding:26px 24px;display:flex;flex-direction:column;}
+  .tier.main{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 10px 30px rgba(18,32,58,.16);}
+  .tier .tname{font-size:21px;font-weight:600;}
+  .tier.main .tname{color:#fff;}
+  .tier .tsub{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;}
+  .tier ul{list-style:none;margin-top:16px;}
+  .tier li{font-size:12.8px;line-height:1.45;color:var(--ink-soft);padding-left:18px;position:relative;margin-bottom:9px;}
+  .tier li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;background:var(--gold);border-radius:50%;}
+  .tier.main li{color:#C9D4E3;}
+  .tier .amt{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);}
+  .tier.main .amt{border-top-color:rgba(255,255,255,.18);color:#9FB0C6;}
 
-  /* ---------- bütçe ---------- */
-  .budget{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:start;}
-  .items{list-style:none;}
-  .items li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
-    padding:11px 4px;border-bottom:1px solid var(--line-2);font-size:14.5px;color:var(--ink-soft);}
-  .items li em{font-style:normal;color:var(--gold);letter-spacing:.12em;font-size:13px;}
-  .items li.total{border-bottom:none;border-top:2px solid var(--ink);margin-top:6px;
-    font-weight:600;color:var(--ink);}
+  /* ---- quote slide ---- */
+  .quote{background:var(--ink);color:#fff;}
+  .quote .grid-bg{position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:64px 64px;}
+  .quote blockquote{font-family:'Lora',serif;font-size:38px;line-height:1.34;font-weight:500;max-width:1000px;position:relative;}
+  .quote .foot,.quote .num{color:#7C8DA6;}
+  .quote .rule{background:rgba(255,255,255,.13);}
 
-  /* ---------- iletişim ---------- */
-  .contact{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:34px;}
-  .contact .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#9FB0C6;margin-bottom:10px;}
-  .contact strong{display:block;font-size:18px;font-weight:600;color:#fff;}
-  .contact .role{font-size:13px;color:#9FB0C6;margin:2px 0 6px;}
-  .contact a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);}
-  .contact a:hover{border-bottom-color:var(--gold);}
-  footer{background:var(--ink);color:#8C9BB0;font-size:12.5px;padding:22px 0;
-    border-top:1px solid rgba(255,255,255,.1);}
-  footer .in{display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;}
+  /* ---- contact ---- */
+  .contact{display:flex;gap:56px;margin-top:6px;}
+  .contact .blk span{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  .contact .blk strong{font-size:16px;font-weight:500;}
 
-  /* ---------- responsive ---------- */
-  @media (max-width:980px){
-    .g4,.sup,.tl,.steps{grid-template-columns:repeat(2,1fr);}
-    .tiers{grid-template-columns:1fr;}
-    .profil,.budget{grid-template-columns:1fr;gap:28px;}
-    .stats{grid-template-columns:repeat(3,1fr);row-gap:26px;}
-    .stat{border-left:none;padding-left:0;}
-    .contact{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:720px){
-    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);
-      border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 18px;}
-    .nav-links.open{display:flex;}
-    .nav-links a{padding:11px 0;border-bottom:1px solid var(--line-2);}
-    .nav-links .btn{text-align:center;margin-top:12px;border-bottom:none;}
-    header.nav{position:relative;}
-    html{scroll-padding-top:12px;}
-    .navtoggle{display:block;}
-    .g2,.g3,.g4,.sup,.tl,.steps{grid-template-columns:1fr;}
-    .stats{grid-template-columns:repeat(2,1fr);}
-    .contact{grid-template-columns:1fr;}
-    .tl{border-top:none;padding-top:0;}
-    .tl-i .dot{margin-top:0;}
-    .hero-band .in{flex-direction:column;align-items:flex-start;gap:3px;}
-    .hero-band .dot,.hero-band .sep{display:none;}
-    .hero-band .lbl{margin-top:12px;}
-    .hero-band .in > .lbl:first-child{margin-top:0;}
-  }
+  /* ---- email annex ---- */
+  .mail{display:flex;gap:36px;margin-top:4px;}
+  .mail .col{flex:1;}
+  .mail p{font-size:10.8px;line-height:1.55;margin-bottom:6.5px;}
+  .mail .subj{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);
+    padding:11px 14px;margin-bottom:14px;font-size:11.6px;line-height:1.5;}
+  .subj b{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+  .note{background:var(--paper-2);border-left:3px solid var(--gold);padding:13px 16px;font-size:12.2px;
+    line-height:1.55;color:var(--ink-soft);margin-top:16px;}
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="nav-in">
-    <div class="brand">AHDEM <span>·</span> Konferans 2027</div>
-    <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">Menü</button>
-    <nav class="nav-links" id="navlinks">
-      <a href="#konferans">Konferans</a>
-      <a href="#sponsorlar">Geçmiş Sponsorlar</a>
-      <a href="#neden">Neden İş Birliği</a>
-      <a href="#seviyeler">Sponsorluk</a>
-      <a href="#surec">Süreç</a>
-      <a class="btn" href="#iletisim">İletişime Geç</a>
-    </nav>
-  </div>
-</header>
-
-<!-- ================= HERO ================= -->
-<div class="hero">
+<!-- ============ 01 KAPAK ============ -->
+<section class="slide cover">
   <div class="grid-bg"></div><div class="glow"></div>
-  <div class="wrap hero-in">
-    <div class="tag">Sponsorluk ve İş Birliği Dosyası</div>
-    <h1>Ankara Hukuk Demokrasi Müzakereleri Konferansı 2027</h1>
+  <div class="cover-inner">
+    <div class="eyebrow">AHDEM · Ankara Üniversitesi Hukuk Fakültesi</div>
+    <div class="tag-tl">Sponsorluk ve İş Birliği Dosyası</div>
+    <h1 style="font-size:58px;">Ankara Hukuk<br>Demokrasi Müzakereleri<br>Konferansı 2027</h1>
     <div class="sub">1950–1960: Bir Dönemi Anlamak</div>
     <div class="meta">
       <div><span>Tarih</span><strong>25–28 Mart 2027</strong></div>
       <div><span>Yer</span><strong>Ankara Üniversitesi Cebeci Yerleşkesi</strong></div>
       <div><span>Ölçek</span><strong>4 gün · 120+ üniversite öğrencisi</strong></div>
     </div>
-    <div class="cta">
-      <a class="btn" href="#seviyeler">Sponsorluk Modelleri</a>
-      <a class="btn ghost" href="#iletisim">Görüşme Talep Et</a>
-    </div>
   </div>
-  <div class="hero-band">
-    <div class="wrap in">
-      <div class="lbl">Geçmiş Sponsorlarımız</div>
-      <div class="org">T.C. Gençlik ve Spor Bakanlığı</div>
-      <div class="dot"></div>
-      <div class="org">Mamak Belediyesi</div>
-      <div class="sep"></div>
-      <div class="lbl">Ev Sahibi</div>
-      <div class="org">Ankara Üniversitesi Hukuk Fakültesi</div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= BİR BAKIŞTA ================= -->
-<section class="band" id="konferans">
-  <div class="wrap">
-    <div class="eyebrow">Bir Bakışta</div>
-    <h2>Türkiye'nin dört bir yanından gençleri<br>bir araya getiren dört günlük bir gençlik programı.</h2>
-    <div class="goldbar"></div>
-    <p class="lede">Ankara Hukuk Demokrasi Müzakereleri (AHDEM) Konferansı; üniversite öğrencilerinin
-    araştırma, müzakere, hitabet ve takım çalışması becerilerini deneyimleyerek geliştirdiği,
-    Ankara Üniversitesi Hukuk Fakültesi çatısı altında yürütülen akademik bir gençlik organizasyonudur.</p>
-
-    <div class="stats" style="margin-top:52px;">
-      <div class="stat"><b>4</b><span>Gün süren kesintisiz program</span></div>
-      <div class="stat"><b>120<em>+</em></b><span>Farklı üniversitelerden öğrenci katılımcı</span></div>
-      <div class="stat"><b>40</b><span>Kişilik akademik ve organizasyon ekibi</span></div>
-      <div class="stat"><b>5.</b><span>Kez düzenlenen köklü program</span></div>
-      <div class="stat"><b>2</b><span>Geçmiş konferanslarda sponsor kurum</span></div>
+  <div class="cover-band">
+    <div class="lbl">Geçmiş Sponsorlarımız Arasında</div>
+    <div class="orgs">
+      <span>T.C. Gençlik ve Spor Bakanlığı</span>
+      <span class="dot"></span>
+      <span>Mamak Belediyesi</span>
+      <span class="dot"></span>
+      <span>Gün + Partners Avukatlık Bürosu</span>
     </div>
   </div>
 </section>
 
-<!-- ================= BİZ KİMİZ ================= -->
-<section class="band alt">
-  <div class="wrap">
-    <div class="eyebrow">Biz Kimiz</div>
-    <h2>AHDEM — Ankara Hukuk<br>Demokrasi Müzakereleri</h2>
-    <div class="goldbar"></div>
-    <p class="lede">2022 yılında Ankara Üniversitesi Hukuk Fakültesi öğrencileri tarafından kurulan AHDEM;
-    yasama, yürütme ve yargı organlarının kurgusal toplantılarını düzenleyerek katılımcılarını hukuki ve
-    toplumsal meseleler üzerinde araştırma yapmaya, müzakere etmeye ve ortak çözüm üretmeye teşvik eder.</p>
-    <p class="lede" style="margin-top:16px;"><strong style="color:var(--ink)">Amacımız yalnızca bilgi aktarmak değil;</strong>
-    öğrencilerin iş hayatında ve toplumsal yaşamda ihtiyaç duyacağı temel becerileri uygulayarak
-    kazanabilecekleri bir alan kurmaktır.</p>
+<!-- ============ 02 BİR BAKIŞTA ============ -->
+<section class="slide">
+  <div class="eyebrow">Bir Bakışta</div>
+  <h2>Türkiye'nin dört bir yanından<br>gençleri bir araya getiren<br>dört günlük bir gençlik programı.</h2>
+  <div class="goldbar"></div>
+  <p class="lede">Ankara Hukuk Demokrasi Müzakereleri (AHDEM) Konferansı; üniversite öğrencilerinin araştırma, müzakere,
+  hitabet ve takım çalışması becerilerini deneyimleyerek geliştirdiği, kamu kurumlarının desteğiyle
+  yürütülen akademik bir gençlik organizasyonudur.</p>
 
-    <div class="grid g3" style="margin-top:36px;">
-      <div class="card left"><h3>Araştırma</h3><p>Kaynak tarama, veri değerlendirme ve rapor hazırlama.</p></div>
-      <div class="card left"><h3>Müzakere</h3><p>Farklı görüşler arasında uzlaşı arama ve ortak metin üretme.</p></div>
-      <div class="card left"><h3>Hitabet</h3><p>Topluluk önünde etkili ve yapılandırılmış konuşma.</p></div>
-      <div class="card left"><h3>Liderlik</h3><p>Sorumluluk alma, ekip yönetimi ve karar süreçlerini yürütme.</p></div>
-      <div class="card left"><h3>Takım Çalışması</h3><p>Ortak hedef etrafında rol paylaşımı ve iş birliği.</p></div>
-      <div class="card left"><h3>Eleştirel Düşünme</h3><p>Bilgiyi sorgulama, argüman kurma ve değerlendirme.</p></div>
-    </div>
+  <div style="margin-top:auto;padding-bottom:26px;">
+  <div class="stats">
+    <div class="stat"><b>4</b><span>Gün süren kesintisiz<br>program</span></div>
+    <div class="stat"><b>120<em>+</em></b><span>Farklı üniversitelerden<br>öğrenci katılımcı</span></div>
+    <div class="stat"><b>40</b><span>Kişilik akademik ve<br>organizasyon ekibi</span></div>
+    <div class="stat"><b>4.</b><span>Kez düzenlenen<br>köklü program</span></div>
+    <div class="stat"><b>5</b><span>Geçmiş dönem<br>sponsoru ve destekçisi</span></div>
   </div>
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">02</div>
 </section>
 
-<!-- ================= GEÇMİŞ SPONSORLAR ================= -->
-<section class="band" id="sponsorlar">
-  <div class="wrap">
-    <div class="eyebrow">Geçmiş Sponsorlarımız</div>
-    <h2>Bugüne kadar kurumların<br>sponsorluğuyla gerçekleştik.</h2>
-    <div class="goldbar"></div>
-    <p class="lede">Önceki konferanslarımız, aşağıdaki kurumların sponsorluk ve iş birliği destekleriyle
-    hayata geçirildi. Bu deneyim, organizasyonun kurumsal iş birliklerini yürütme kapasitesini ve
-    sürdürülebilirliğini gösterir.</p>
+<!-- ============ 03 BİZ KİMİZ ============ -->
+<section class="slide">
+  <div class="eyebrow">Biz Kimiz</div>
+  <h2>AHDEM — Ankara Hukuk<br>Demokrasi Müzakereleri</h2>
+  <div class="goldbar"></div>
+  <p class="lede">2022 yılında Ankara Üniversitesi Hukuk Fakültesi öğrencileri tarafından kurulan Ankara Hukuk Demokrasi Müzakereleri (AHDEM);
+  yasama, yürütme ve yargı organlarının kurgusal toplantılarını düzenleyerek katılımcılarını
+  hukuki ve toplumsal meseleler üzerinde araştırma yapmaya, müzakere etmeye ve ortak çözüm
+  üretmeye teşvik eder.</p>
 
-    <div class="sup" style="margin-top:36px;">
-      <div class="sup-card">
-        <div>
-          <div class="role">Geçmiş Sponsor</div>
-          <div class="nm">T.C. Gençlik ve<br>Spor Bakanlığı</div>
-          <div class="ds">Gençlik projeleri kapsamında organizasyon ve katılım süreçlerine sağlanan sponsorluk desteği.</div>
-        </div>
-        <div class="seal">★</div>
-      </div>
-      <div class="sup-card">
-        <div>
-          <div class="role">Geçmiş Sponsor</div>
-          <div class="nm">Mamak<br>Belediyesi</div>
-          <div class="ds">Yerel yönetim iş birliği kapsamında sağlanan lojistik ve organizasyon sponsorluğu.</div>
-        </div>
-        <div class="seal">★</div>
-      </div>
-      <div class="sup-card">
-        <div>
-          <div class="role">Ev Sahibi Kurum</div>
-          <div class="nm">Ankara Üniversitesi<br>Hukuk Fakültesi</div>
-          <div class="ds">Sponsor değil; konferansın akademik çerçevesini kuran ve ev sahipliğini yapan kurum. Cebeci Yerleşkesi.</div>
-        </div>
-        <div class="seal">★</div>
-      </div>
-      <div class="sup-card open">
-        <div>
-          <div class="role">2027 — Ayrılmış Alan</div>
-          <div class="nm">Ana Sponsor</div>
-          <div class="ds">Bu alan, 2027 konferansının ana sponsoru ve stratejik marka iş ortağı için ayrılmıştır.</div>
-        </div>
-        <div class="seal">+</div>
-      </div>
-    </div>
+  <p style="margin-top:22px;font-size:15px;"><strong style="color:var(--ink)">Amacımız yalnızca bilgi aktarmak değil;</strong>
+  öğrencilerin iş hayatında ve toplumsal yaşamda ihtiyaç duyacağı temel becerileri
+  uygulayarak kazanabilecekleri bir alan kurmaktır.</p>
+
+  <div class="grid6" style="margin-top:26px;">
+    <div class="g6"><h3>Araştırma</h3><p>Kaynak tarama, veri değerlendirme ve rapor hazırlama.</p></div>
+    <div class="g6"><h3>Müzakere</h3><p>Farklı görüşler arasında uzlaşı arama ve ortak metin üretme.</p></div>
+    <div class="g6"><h3>Hitabet</h3><p>Topluluk önünde etkili ve yapılandırılmış konuşma.</p></div>
+    <div class="g6"><h3>Liderlik</h3><p>Sorumluluk alma, ekip yönetimi ve karar süreçlerini yürütme.</p></div>
+    <div class="g6"><h3>Takım Çalışması</h3><p>Ortak hedef etrafında rol paylaşımı ve iş birliği.</p></div>
+    <div class="g6"><h3>Eleştirel Düşünme</h3><p>Bilgiyi sorgulama, argüman kurma ve değerlendirme.</p></div>
   </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">03</div>
 </section>
 
-<!-- ================= BİRİKİM ================= -->
-<section class="band alt">
-  <div class="wrap">
-    <div class="eyebrow">Dört Konferanslık Birikim</div>
-    <h2>Her yıl, geçmişin bir dönemini<br>yeniden okuyoruz.</h2>
-    <div class="goldbar"></div>
-    <p class="lede">2023'ten bu yana düzenlediğimiz konferanslarda katılımcılar, Türkiye'nin farklı
-    dönemlerini tarihsel kaynaklar üzerinden inceliyor ve dönemin kurumlarını temsil ederek karar
-    süreçlerini deneyimliyor.</p>
+<!-- ============ 04 GEÇMİŞ SPONSORLAR ============ -->
+<section class="slide">
+  <div class="eyebrow">Geçmiş Sponsorlarımız</div>
+  <h2>Bize daha önce destek<br>veren kurumlar.</h2>
+  <div class="goldbar"></div>
+  <p class="lede" style="margin-bottom:24px;">AHDEM konferansları bugüne kadar kamu kurumlarının,
+  hukuk bürolarının ve gençlik platformlarının sponsorluğuyla gerçekleşti. Bu kurumlarla kurduğumuz
+  iş birliği, konferansın kurumsal ciddiyetinin ve sürdürülebilirliğinin göstergesidir.</p>
 
-    <div class="tl" style="margin-top:44px;">
-      <div class="tl-i"><div class="dot"></div><b>2023</b><div class="per">1969 – 1973</div>
+  <div class="sup" style="gap:14px;">
+    <div class="sup-card" style="min-height:215px;padding:24px 20px;">
+      <div><div class="role">Kamu Kurumu</div>
+      <div class="nm" style="font-size:20px;line-height:1.24;">T.C. Gençlik ve<br>Spor Bakanlığı</div></div>
+      <div class="seal" style="width:30px;height:30px;font-size:11px;">★</div>
+    </div>
+    <div class="sup-card" style="min-height:215px;padding:24px 20px;">
+      <div><div class="role">Yerel Yönetim</div>
+      <div class="nm" style="font-size:20px;line-height:1.24;">Mamak<br>Belediyesi</div></div>
+      <div class="seal" style="width:30px;height:30px;font-size:11px;">★</div>
+    </div>
+    <div class="sup-card" style="min-height:215px;padding:24px 20px;">
+      <div><div class="role">Hukuk Bürosu</div>
+      <div class="nm" style="font-size:20px;line-height:1.24;">Gün + Partners<br>Avukatlık Bürosu</div></div>
+      <div class="seal" style="width:30px;height:30px;font-size:11px;">★</div>
+    </div>
+    <div class="sup-card" style="min-height:215px;padding:24px 20px;">
+      <div><div class="role">Gençlik Platformu</div>
+      <div class="nm" style="font-size:20px;line-height:1.24;">Maya Genç<br>Düşünce Platformu</div></div>
+      <div class="seal" style="width:30px;height:30px;font-size:11px;">★</div>
+    </div>
+    <div class="sup-card" style="min-height:215px;padding:24px 20px;">
+      <div><div class="role">Mezun Desteği</div>
+      <div class="nm" style="font-size:20px;line-height:1.24;">Ankara Hukuk<br>Mezunu Avukatlar</div></div>
+      <div class="seal" style="width:30px;height:30px;font-size:11px;">★</div>
+    </div>
+  </div>
+
+  <div style="margin-top:18px;background:var(--ink);border-radius:3px;padding:20px 26px;
+    display:flex;align-items:center;gap:26px;">
+    <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);
+      font-weight:600;white-space:nowrap;">Ayrılmış Alan</div>
+    <div style="font-family:'Lora',serif;font-size:21px;font-weight:600;color:#fff;white-space:nowrap;">Ana Sponsor</div>
+    <div style="font-size:12.8px;line-height:1.5;color:#AFBDD0;">Bu alan, 2027 konferansının ana sponsoru
+    ve stratejik marka iş ortağı için ayrılmıştır.</div>
+  </div>
+
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">04</div>
+</section>
+
+<!-- ============ 05 SERÜVEN ============ -->
+<section class="slide">
+  <div class="eyebrow">Dört Yıllık Birikim</div>
+  <h2>Her yıl, geçmişin bir dönemini<br>yeniden okuyoruz.</h2>
+  <div class="goldbar"></div>
+  <p class="lede">2024'ten bu yana düzenlediğimiz konferanslarda katılımcılar, Türkiye'nin farklı
+  dönemlerini tarihsel kaynaklar üzerinden inceliyor ve dönemin kurumlarını temsil ederek
+  karar süreçlerini deneyimliyor.</p>
+
+  <div style="position:relative;margin-top:40px;">
+    <div class="tl-line"></div>
+    <div class="tl">
+      <div class="tl-item"><div class="yr">2024</div><div class="pr">1969 – 1973</div>
         <p>Dönemin kurumsal yapısı, hukuki düzenlemeleri ve toplumsal dönüşümü.</p></div>
-      <div class="tl-i"><div class="dot"></div><b>2024</b><div class="per">1923 – 1927</div>
+      <div class="tl-item"><div class="yr">2025</div><div class="pr">1923 – 1927</div>
         <p>Cumhuriyetin kuruluşu, hukuk devletinin inşası ve temsil kurumları.</p></div>
-      <div class="tl-i"><div class="dot"></div><b>2025</b><div class="per">1978 – 1982</div>
+      <div class="tl-item"><div class="yr">2026</div><div class="pr">1978 – 1982</div>
         <p>Hukuk düzeni, kurumların işleyişi ve toplumsal değişim.</p></div>
-      <div class="tl-i"><div class="dot"></div><b>2026</b><div class="per">1993 – 1997</div>
-        <p>Ekonomik kriz ve hükümet kurulamama krizi; koalisyon süreçleri ve kurumsal istikrar.</p></div>
-      <div class="tl-i on"><div class="dot"></div><b>2027</b><div class="per">1950 – 1960</div>
+      <div class="tl-item now"><div class="yr">2027</div><div class="pr">1950 – 1960</div>
         <p>Çok partili hayatın ilk on yılı; ekonomik kalkınma, şehirleşme ve kurumsal dönüşüm.</p></div>
     </div>
-
-    <div class="note" style="margin-top:34px;">Her konferans; akademik danışmanlık, kaynak dosyası hazırlığı ve
-    katılımcı eğitimi süreçlerini içeren yaklaşık altı aylık bir hazırlık dönemiyle yürütülür.</div>
   </div>
+
+  <div class="note" style="margin-top:auto;margin-bottom:26px;">
+    Her konferans; akademik danışmanlık, kaynak dosyası hazırlığı ve katılımcı eğitimi
+    süreçlerini içeren yaklaşık altı aylık bir hazırlık dönemiyle yürütülür.
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">05</div>
 </section>
 
-<!-- ================= 2027 TEMASI ================= -->
-<section class="band">
-  <div class="wrap">
-    <div class="eyebrow">2027 Teması</div>
-    <h2>1950 – 1960<br><span class="serif" style="font-weight:500;font-style:italic;color:var(--ink-soft);">Bir Dönemi Anlamak</span></h2>
-    <div class="goldbar"></div>
-    <p class="lede">1950'ler, Türkiye'nin ekonomik, hukuki ve toplumsal olarak hızla dönüştüğü bir on yıldır.
-    Tarımda makineleşme, sanayileşme ve altyapı yatırımları; köyden şehre göç; basının ve üniversitelerin
-    genişlemesi; hukuk kurumlarının gelişimi bu dönemin başlıca konularıdır.</p>
-    <p class="lede" style="margin-top:16px;">Konferans; bu on yılı akademik kaynaklar üzerinden, dönemin kendi
-    koşulları içinde ve <strong style="color:var(--ink)">güncel siyasi tartışmalardan bağımsız</strong> bir
-    çerçevede ele alır. Amaç herhangi bir görüşü savunmak ya da yargılamak değil; öğrencilerin tarihsel analiz,
-    hukuki muhakeme ve müzakere becerilerini geliştirmesidir.</p>
+<!-- ============ 06 2027 TEMASI ============ -->
+<section class="slide">
+  <div class="eyebrow">2027 Teması</div>
+  <h2>1950 – 1960<br><span style="font-family:'Lora',serif;font-style:italic;font-weight:500;color:var(--ink-soft);font-size:34px;">Bir Dönemi Anlamak</span></h2>
+  <div class="goldbar"></div>
+  <p class="lede">1950'ler, Türkiye'nin ekonomik, hukuki ve toplumsal olarak hızla dönüştüğü bir on yıldır.
+  Tarımda makineleşme, sanayileşme ve altyapı yatırımları; köyden şehre göç; basının ve
+  üniversitelerin genişlemesi; hukuk kurumlarının gelişimi bu dönemin başlıca konularıdır.</p>
 
-    <div class="note" style="margin-top:28px;"><strong style="color:var(--ink)">Tarafsızlık ilkesi.</strong>
-    AHDEM konferansları siyasi parti, hareket veya görüşten bağımsızdır. Program içeriği akademik danışmanlar
-    gözetiminde hazırlanır; sponsor kurumlar içerik üzerinde taraf konumunda yer almaz.</div>
+  <p style="margin-top:18px;font-size:16px;max-width:900px;">Konferans; bu on yılı akademik kaynaklar
+  üzerinden, dönemin kendi koşulları içinde ve <strong style="color:var(--ink)">güncel siyasi tartışmalardan
+  bağımsız</strong> bir çerçevede ele alır. Amaç herhangi bir görüşü savunmak ya da yargılamak değil;
+  öğrencilerin tarihsel analiz, hukuki muhakeme ve müzakere becerilerini geliştirmesidir.</p>
 
-    <h3 style="margin-top:52px;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);">Altı Temada, Altı Ayrı Komisyon</h3>
-    <div class="grid g3" style="margin-top:20px;">
-      <div class="card left"><h3>Hukuk ve Kurumlar</h3><p>Hukuk devleti ilkesi, yargı bağımsızlığı ve kurumların işleyişi.</p></div>
-      <div class="card left"><h3>Ekonomi ve Kalkınma</h3><p>Sanayileşme, tarımda makineleşme, altyapı yatırımları ve dış ticaret.</p></div>
-      <div class="card left"><h3>Şehirleşme ve Toplum</h3><p>Göç, kentleşme, konut ve değişen gündelik hayat.</p></div>
-      <div class="card left"><h3>Basın ve İletişim</h3><p>Gazeteciliğin gelişimi, radyo ve kamuoyu oluşumu.</p></div>
-      <div class="card left"><h3>Üniversiteler ve Gençlik</h3><p>Yükseköğretimin yaygınlaşması ve gençliğin toplumsal rolü.</p></div>
-      <div class="card left"><h3>Dış Politika</h3><p>Dönemin uluslararası ilişkileri ve Türkiye'nin dış bağlantıları.</p></div>
-    </div>
+  <div class="note" style="margin-top:28px;max-width:1000px;">
+    <strong style="color:var(--ink)">Tarafsızlık ilkesi.</strong> AHDEM konferansları siyasi parti,
+    hareket veya görüşten bağımsızdır. Program içeriği akademik danışmanlar gözetiminde hazırlanır;
+    sponsor kurumlar içerik üzerinde taraf konumunda yer almaz.
   </div>
+
+  <div style="margin-top:auto;margin-bottom:26px;border-top:1px solid var(--line);padding-top:22px;">
+    <p class="serif" style="font-size:22px;line-height:1.45;color:var(--ink);font-style:italic;max-width:1010px;">
+      Bu konferansta gençler; bir dönemi anlamanın, farklı görüşleri dinlemenin ve ortak bir metin
+      üretebilmenin ancak birlikte çalışarak öğrenilebileceğini deneyimleyecek.</p>
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">06</div>
 </section>
 
-<!-- ================= MODEL ================= -->
-<section class="band alt">
-  <div class="wrap">
-    <div class="eyebrow">Konferans Modeli</div>
-    <h2>Bu bir konferans değil,<br>bir deneyim.</h2>
-    <div class="goldbar"></div>
-    <p class="lede">Katılımcılar dinleyici değil, sürecin aktörüdür. Kendilerine verilen kurum ve rolleri
-    temsil ederek araştırır, müzakere eder, karar alır ve sonuçlarını değerlendirir.</p>
+<!-- ============ 07 BAŞLIKLAR ============ -->
+<section class="slide">
+  <div class="eyebrow">Ele Alınan Başlıklar</div>
+  <h2>Altı temada, altı ayrı komite.</h2>
+  <div class="goldbar"></div>
+  <p class="lede" style="margin-bottom:26px;">Katılımcılar ilgi alanlarına göre komitelere ayrılır ve
+  dört gün boyunca kendi başlıkları üzerinde çalışır.</p>
 
-    <div class="steps" style="margin-top:36px;">
-      <div class="step"><div class="n">1</div><h3>Hazırlık</h3><p>Katılımcılara kaynak dosyası ve rol bilgilendirmesi gönderilir.</p></div>
-      <div class="step"><div class="n">2</div><h3>Açılış</h3><p>Akademisyen sunumlarıyla dönemin çerçevesi ortaya konur.</p></div>
-      <div class="step"><div class="n">3</div><h3>Komisyonlar</h3><p>Altı komisyonda araştırma, tartışma ve metin çalışması yapılır.</p></div>
-      <div class="step"><div class="n">4</div><h3>Genel Kurul</h3><p>Komisyon çıktıları genel oturumda müzakere edilir ve oylanır.</p></div>
-      <div class="step"><div class="n">5</div><h3>Değerlendirme</h3><p>Kapanış oturumu, geri bildirim ve katılım belgeleri.</p></div>
-    </div>
-
-    <div class="note" style="margin-top:28px;">Dört günlük program; oturumlar, atölyeler, sosyal program ve
-    kapanış töreninden oluşur. Katılımcılar konferans boyunca yerleşke içinde bir arada bulunur.</div>
+  <div class="grid6" style="grid-template-columns:repeat(3,1fr);gap:18px;">
+    <div class="g6" style="padding:22px 22px;"><h3>Hukuk ve Kurumlar</h3>
+      <p>Hukuk devleti ilkesi, yargı bağımsızlığı ve kurumların işleyişi.</p></div>
+    <div class="g6" style="padding:22px 22px;"><h3>Ekonomi ve Kalkınma</h3>
+      <p>Sanayileşme, tarımda makineleşme, altyapı yatırımları ve dış ticaret.</p></div>
+    <div class="g6" style="padding:22px 22px;"><h3>Şehirleşme ve Toplum</h3>
+      <p>Göç, kentleşme, konut ve değişen gündelik hayat.</p></div>
+    <div class="g6" style="padding:22px 22px;"><h3>Basın ve İletişim</h3>
+      <p>Gazeteciliğin gelişimi, radyo ve kamuoyu oluşumu.</p></div>
+    <div class="g6" style="padding:22px 22px;"><h3>Üniversiteler ve Gençlik</h3>
+      <p>Yükseköğretimin yaygınlaşması ve gençliğin toplumsal rolü.</p></div>
+    <div class="g6" style="padding:22px 22px;"><h3>Dış Politika</h3>
+      <p>Dönemin uluslararası ilişkileri ve Türkiye'nin dış bağlantıları.</p></div>
   </div>
+
+  <div class="note" style="margin-top:auto;margin-bottom:26px;">
+    Her komite için akademik danışmanlar gözetiminde hazırlanan bir kaynak dosyası, konferans
+    öncesinde katılımcılara gönderilir. Böylece dört gün, bilgi aktarımına değil doğrudan
+    çalışmaya ayrılır.
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">07</div>
 </section>
 
-<!-- ================= KATILIMCI PROFİLİ ================= -->
-<section class="band">
-  <div class="wrap">
-    <div class="eyebrow">Katılımcı Profili</div>
-    <h2>18–25 yaş aralığında,<br>Türkiye genelinden üniversite öğrencileri.</h2>
-    <div class="goldbar"></div>
+<!-- ============ 08 MODEL ============ -->
+<section class="slide">
+  <div class="eyebrow">Konferans Modeli</div>
+  <h2>Bu bir konferans değil,<br>bir deneyim.</h2>
+  <div class="goldbar"></div>
+  <p class="lede" style="margin-bottom:24px;">Katılımcılar dinleyici değil, sürecin aktörüdür.
+  Kendilerine verilen kurum ve rolleri temsil ederek araştırır, müzakere eder, karar alır
+  ve sonuçlarını değerlendirir.</p>
 
-    <div class="profil" style="margin-top:34px;">
-      <div>
-        <p style="margin-bottom:26px;">Başta hukuk fakültesi öğrencileri olmak üzere; farklı fakültelerden ve
-        Türkiye'nin farklı şehirlerinden öğrencilerin katılımı hedeflenmektedir.</p>
-        <div class="bar-row"><span>Hukuk</span><div class="bar"><i style="width:78%"></i></div></div>
-        <div class="bar-row"><span>Siyaset Bilimi ve Kamu Yönetimi</span><div class="bar"><i style="width:57%"></i></div></div>
-        <div class="bar-row"><span>Uluslararası İlişkiler</span><div class="bar"><i style="width:48%"></i></div></div>
-        <div class="bar-row"><span>İktisat ve İşletme</span><div class="bar"><i style="width:34%"></i></div></div>
-        <div class="bar-row"><span>Tarih ve Sosyal Bilimler</span><div class="bar"><i style="width:27%"></i></div></div>
-        <p style="font-size:12.5px;color:var(--muted);margin-top:16px;">Hedeflenen dağılım. Kesin oranlar başvuru sonrası netleşecektir.</p>
-      </div>
-      <div class="grid" style="gap:18px;">
-        <div class="card">
-          <div class="idx">Temas Süresi</div>
-          <h3>4 gün boyunca kesintisiz birliktelik</h3>
-          <p>Katılımcılar sabah oturumlarından akşam sosyal programına kadar etkinlik alanında bulunur.
-          Bu, marka için kısa süreli bir stant değil, dört güne yayılan doğal bir temas anlamına gelir.</p>
-        </div>
-        <div class="card">
-          <div class="idx">Dijital Yansıma</div>
-          <h3>Etkinlik öncesi, sırası ve sonrası iletişim</h3>
-          <p>Topluluk sosyal medya hesapları, katılımcıların kendi paylaşımları, fotoğraf ve video arşivi ile
-          üniversite topluluk ağları üzerinden yaygın bir dijital görünürlük oluşur.</p>
-        </div>
-      </div>
-    </div>
+  <div class="flow">
+    <div class="flow-step"><div class="n">1</div><h3>Hazırlık</h3>
+      <p>Katılımcılara kaynak dosyası ve rol bilgilendirmesi gönderilir.</p></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">2</div><h3>Açılış</h3>
+      <p>Akademisyen sunumlarıyla dönemin çerçevesi ortaya konur.</p></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">3</div><h3>Komiteler</h3>
+      <p>Altı komitede araştırma, tartışma ve metin çalışması yapılır.</p></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">4</div><h3>Genel Kurul</h3>
+      <p>Komite çıktıları genel oturumda müzakere edilir ve oylanır.</p></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">5</div><h3>Değerlendirme</h3>
+      <p>Kapanış oturumu, geri bildirim ve katılım belgeleri.</p></div>
   </div>
+
+  <div class="note" style="margin-top:auto;margin-bottom:26px;">
+    Dört günlük program; oturumlar, atölyeler, sosyal program ve kapanış töreninden oluşur.
+    Katılımcılar konferans boyunca yerleşke içinde bir arada bulunur.
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">08</div>
 </section>
 
-<!-- ================= ANA FİKİR ================= -->
-<section class="band dark">
-  <div class="wrap">
-    <div class="eyebrow">Dosyanın Ana Fikri</div>
-    <p class="serif" style="font-size:clamp(21px,3.2vw,34px);line-height:1.42;color:#fff;max-width:24ch;max-width:900px;">
-      Bu konferansta gençler; araştırmayı, dinlemeyi, ikna etmeyi ve uzlaşmayı deneyimleyerek öğreniyor.
-      <span style="color:var(--gold-soft);display:block;margin-top:10px;">Biz bu deneyimi kuruyoruz — sizi de bu deneyimin bir parçası olmaya davet ediyoruz.</span>
-    </p>
-  </div>
-</section>
+<!-- ============ 09 KATILIMCI PROFİLİ ============ -->
+<section class="slide">
+  <div class="eyebrow">Katılımcı Profili</div>
+  <h2>18–25 yaş aralığında,<br>Türkiye genelinden üniversite öğrencileri.</h2>
+  <div class="goldbar"></div>
 
-<!-- ================= NEDEN ================= -->
-<section class="band" id="neden">
-  <div class="wrap">
-    <div class="eyebrow">Neden Bu İş Birliği</div>
-    <h2>Marka için dört günlük,<br>doğrudan bir gençlik teması.</h2>
-    <div class="goldbar"></div>
-
-    <div class="grid g4" style="margin-top:34px;">
-      <div class="card"><div class="idx">01</div><h3>Doğrudan Erişim</h3>
-        <p>Türkiye'nin farklı üniversitelerinden 120'yi aşkın öğrenciyle dört gün boyunca fiziksel ve kesintisiz temas.</p></div>
-      <div class="card"><div class="idx">02</div><h3>Ürün Deneyimi</h3>
-        <p>Reklam kurgusu içinde değil; molada, fuayede, sosyal programda doğal bir kullanım anında ürünle buluşma.</p></div>
-      <div class="card"><div class="idx">03</div><h3>Marka Görünürlüğü</h3>
-        <p>Etkinlik alanı, sahne, basılı materyal, dijital iletişim ve etkinlik sonrası görsel arşivde öncelikli konumlandırma.</p></div>
-      <div class="card"><div class="idx">04</div><h3>Kurumsal İtibar</h3>
-        <p>Kurumsal sponsorluklarla bugüne taşınmış, üniversite çatısı altında yürüyen bir gençlik programında ana ortak olarak yer alma.</p></div>
-    </div>
-
-    <div class="note" style="margin-top:28px;"><strong style="color:var(--ink)">Marka konumu net.</strong>
-    Sponsor kurumun rolü konferansın içeriğini yönlendirmek değil; gençlerin bir araya gelmesini mümkün kılan
-    kurumsal iş ortağı olmaktır. Marka hiçbir tartışmanın tarafı olarak konumlandırılmaz.</div>
-
-    <h3 style="margin-top:52px;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);">Marka Temas Noktaları</h3>
-    <div class="steps" style="margin-top:20px;">
-      <div class="step"><div class="n">1</div><h3>Karşılama</h3><p>Kayıt masası, katılımcı seti ve ilk ikram.</p></div>
-      <div class="step"><div class="n">2</div><h3>Oturum Araları</h3><p>Günde birkaç kez tekrarlanan mola ve ikram anları.</p></div>
-      <div class="step"><div class="n">3</div><h3>Fuaye</h3><p>Marka mola alanı, deneyim noktası ve fotoğraf alanı.</p></div>
-      <div class="step"><div class="n">4</div><h3>Sosyal Program</h3><p>Akşam etkinlikleri ve gençlerle buluşma oturumu.</p></div>
-      <div class="step"><div class="n">5</div><h3>Kapanış</h3><p>Sertifika töreni, anons ve toplu fotoğraf.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SEVİYELER ================= -->
-<section class="band alt" id="seviyeler">
-  <div class="wrap">
-    <div class="eyebrow">Sponsorluk Modelleri</div>
-    <h2>Üç farklı iş birliği seviyesi.</h2>
-    <div class="goldbar"></div>
-    <p class="lede">Önceliğimiz, konferansın bütününü kapsayan bir <strong style="color:var(--ink)">ana
-    sponsorluk</strong> modelidir. Kurumunuzun tercihine göre daha sınırlı kapsamlı modeller de değerlendirilebilir.</p>
-
-    <div class="tiers" style="margin-top:36px;">
-      <div class="tier main">
-        <div class="kicker">Önerimiz</div>
-        <h3>Ana Sponsor</h3>
-        <ul>
-          <li>Tüm iletişimde "Ana Sponsor" unvanı</li>
-          <li>Öncelikli ve en büyük logo kullanımı</li>
-          <li>Sahne, afiş, kitapçık ve dijital mecralarda yer alma</li>
-          <li>Etkinlik alanında marka aktivasyonu ve stant</li>
-          <li>Dört gün boyunca ürün / ikram sunumu</li>
-          <li>Açılış ve kapanışta anons</li>
-          <li>Etkinlik sonrası raporlama ve görsel arşiv</li>
-        </ul>
-        <div class="foot">Organizasyon bütçesinin tamamı veya önemli bir bölümü + ürün desteği</div>
-      </div>
-      <div class="tier">
-        <div class="kicker">Alternatif</div>
-        <h3>Destek Sponsoru</h3>
-        <ul>
-          <li>"Destek Sponsoru" unvanı</li>
-          <li>Afiş, kitapçık ve dijital mecralarda logo</li>
-          <li>Etkinlik alanında görünürlük</li>
-          <li>Sosyal medya paylaşımları</li>
-          <li>Etkinlik sonrası raporlama</li>
-        </ul>
-        <div class="foot">Belirlenen bütçe kalemlerine kısmi destek</div>
-      </div>
-      <div class="tier">
-        <div class="kicker">Alternatif</div>
-        <h3>İkram Sponsoru</h3>
-        <ul>
-          <li>"İkram Sponsoru" unvanı</li>
-          <li>Fuaye ve mola alanlarında görünürlük</li>
-          <li>Ürünün katılımcılarla buluşması</li>
-          <li>Sosyal medya paylaşımları</li>
-        </ul>
-        <div class="foot">Dört gün boyunca ürün / ikram desteği</div>
-      </div>
-    </div>
-
-    <h3 style="margin-top:56px;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);">Karşılaştırmalı Hak Tablosu</h3>
-    <div class="tablewrap" style="margin-top:18px;border:1px solid var(--line);border-radius:3px;">
+  <div style="display:flex;gap:44px;margin-top:8px;">
+    <div style="flex:1.15;">
+      <p style="font-size:15px;margin-bottom:18px;">Başta hukuk fakültesi öğrencileri olmak üzere;
+      farklı fakültelerden ve Türkiye'nin farklı şehirlerinden öğrencilerin katılımı hedeflenmektedir.</p>
       <table>
-        <thead>
-          <tr>
-            <th style="width:auto;text-align:left;">Hak / İmkân</th>
-            <th class="col-main" style="text-align:center;">Ana Sponsor</th>
-            <th style="text-align:center;">Destek Sponsoru</th>
-            <th style="text-align:center;">İkram Sponsoru</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th>Sponsorluk unvanının kullanımı</th><td class="col-main yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><th>Öncelikli / en büyük logo kullanımı</th><td class="col-main yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-          <tr><th>Etkinlik afişleri ve tanıtım materyalleri</th><td class="col-main yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
-          <tr><th>Program kitapçığı</th><td class="col-main yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><th>Sahne ve arka plan görünürlüğü</th><td class="col-main yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
-          <tr><th>Fuaye ve mola alanı görünürlüğü</th><td class="col-main yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><th>Sponsor standı / deneyim noktası</th><td class="col-main yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
-          <tr><th>Marka aktivasyonu ve fotoğraf alanı</th><td class="col-main yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-          <tr><th>Ürün dağıtımı ve ikram</th><td class="col-main yes">✓</td><td class="no">—</td><td class="yes">✓</td></tr>
-          <tr><th>Açılış ve kapanış anonsu</th><td class="col-main yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-          <tr><th>Sosyal medya iletişimi</th><td class="col-main yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><th>Kurum temsilcisinin konuşma yapması</th><td class="col-main yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-          <tr><th>Etkinlik sonrası raporlama ve görsel arşiv</th><td class="col-main yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
-          <tr><th>Markaya özel gençlik oturumu</th><td class="col-main" style="font-size:12.5px;color:var(--gold);font-weight:600;">Birlikte geliştirilir</td><td class="no">—</td><td class="no">—</td></tr>
-        </tbody>
+        <tr><td style="border:none;padding-left:0;font-size:13.5px;">Hukuk</td>
+            <td style="border:none;text-align:right;padding-right:0;"><div style="display:inline-block;width:220px;height:8px;background:var(--paper-2);position:relative;vertical-align:middle;"><div style="position:absolute;left:0;top:0;bottom:0;width:70%;background:var(--gold)"></div></div></td></tr>
+        <tr><td style="border:none;padding-left:0;font-size:13.5px;">Siyaset Bilimi ve Kamu Yönetimi</td>
+            <td style="border:none;text-align:right;padding-right:0;"><div style="display:inline-block;width:220px;height:8px;background:var(--paper-2);position:relative;vertical-align:middle;"><div style="position:absolute;left:0;top:0;bottom:0;width:52%;background:var(--ink)"></div></div></td></tr>
+        <tr><td style="border:none;padding-left:0;font-size:13.5px;">Uluslararası İlişkiler</td>
+            <td style="border:none;text-align:right;padding-right:0;"><div style="display:inline-block;width:220px;height:8px;background:var(--paper-2);position:relative;vertical-align:middle;"><div style="position:absolute;left:0;top:0;bottom:0;width:44%;background:var(--ink)"></div></div></td></tr>
+        <tr><td style="border:none;padding-left:0;font-size:13.5px;">İktisat ve İşletme</td>
+            <td style="border:none;text-align:right;padding-right:0;"><div style="display:inline-block;width:220px;height:8px;background:var(--paper-2);position:relative;vertical-align:middle;"><div style="position:absolute;left:0;top:0;bottom:0;width:34%;background:var(--ink)"></div></div></td></tr>
+        <tr><td style="border:none;padding-left:0;font-size:13.5px;">Tarih ve Sosyal Bilimler</td>
+            <td style="border:none;text-align:right;padding-right:0;"><div style="display:inline-block;width:220px;height:8px;background:var(--paper-2);position:relative;vertical-align:middle;"><div style="position:absolute;left:0;top:0;bottom:0;width:28%;background:var(--ink)"></div></div></td></tr>
+      </table>
+      <p style="font-size:11.5px;color:var(--muted);margin-top:12px;">Hedeflenen dağılım. Kesin oranlar başvuru sonrası netleşecektir.</p>
+    </div>
+
+    <div style="flex:1;">
+      <div class="card" style="margin-bottom:14px;">
+        <div class="idx">TEMAS SÜRESİ</div>
+        <h3>4 gün boyunca kesintisiz birliktelik</h3>
+        <p>Katılımcılar sabah oturumlarından akşam sosyal programına kadar etkinlik alanında bulunur.
+        Bu, marka için kısa süreli bir stant değil, dört güne yayılan doğal bir temas anlamına gelir.</p>
+      </div>
+      <div class="card">
+        <div class="idx">DİJİTAL YANSIMA</div>
+        <h3>Etkinlik öncesi, sırası ve sonrası iletişim</h3>
+        <p>Topluluk sosyal medya hesapları, katılımcıların kendi paylaşımları, fotoğraf ve video
+        arşivi ile üniversite topluluk ağları üzerinden yaygın bir dijital görünürlük oluşur.</p>
+      </div>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">09</div>
+</section>
+
+<!-- ============ 10 QUOTE ============ -->
+<section class="slide quote">
+  <div class="grid-bg"></div>
+  <div style="position:relative;margin-top:auto;margin-bottom:auto;">
+    <div class="eyebrow" style="color:var(--gold-soft)">Dosyanın Ana Fikri</div>
+    <blockquote>Bu konferansta gençler; araştırmayı, dinlemeyi,
+    ikna etmeyi ve uzlaşmayı deneyimleyerek öğreniyor.<br>
+    <span style="color:var(--gold-soft)">Biz bu deneyimi kuruyoruz —
+    sizi de bu deneyimin bir parçası olmaya davet ediyoruz.</span></blockquote>
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">10</div>
+</section>
+
+<!-- ============ 11 NEDEN ORTAK OLMALI ============ -->
+<section class="slide">
+  <div class="eyebrow">Neden Bu İş Birliği</div>
+  <h2>Marka için dört günlük,<br>doğrudan bir gençlik teması.</h2>
+  <div class="goldbar"></div>
+
+  <div class="cards" style="margin-top:10px;">
+    <div class="card"><div class="idx">01</div><h3>Doğrudan Erişim</h3>
+      <p>Türkiye'nin farklı üniversitelerinden 120'yi aşkın öğrenciyle dört gün boyunca
+      fiziksel ve kesintisiz temas.</p></div>
+    <div class="card"><div class="idx">02</div><h3>Ürün Deneyimi</h3>
+      <p>Reklam kurgusu içinde değil; molada, fuayede, sosyal programda doğal bir kullanım
+      anında ürünle buluşma.</p></div>
+    <div class="card"><div class="idx">03</div><h3>Marka Görünürlüğü</h3>
+      <p>Etkinlik alanı, sahne, basılı materyal, dijital iletişim ve etkinlik sonrası
+      görsel arşivde öncelikli konumlandırma.</p></div>
+    <div class="card"><div class="idx">04</div><h3>Kurumsal İtibar</h3>
+      <p>Kamu kurumlarının desteklediği, üniversite çatısı altında yürüyen bir gençlik
+      programında ana ortak olarak yer alma.</p></div>
+  </div>
+
+  <div class="note" style="margin-top:auto;margin-bottom:26px;">
+    <strong style="color:var(--ink)">Marka konumu net.</strong> Sponsor kurumun rolü konferansın
+    içeriğini yönlendirmek değil; gençlerin bir araya gelmesini mümkün kılan kurumsal iş ortağı olmaktır.
+    Marka hiçbir tartışmanın tarafı olarak konumlandırılmaz.
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">11</div>
+</section>
+
+<!-- ============ 12 PAKETLER ============ -->
+<section class="slide">
+  <div class="eyebrow">Sponsorluk Modelleri</div>
+  <h2>Üç farklı iş birliği seviyesi.</h2>
+  <div class="goldbar"></div>
+  <p class="lede" style="margin-bottom:22px;">Önceliğimiz, konferansın bütününü kapsayan bir
+  <strong style="color:var(--ink)">ana sponsorluk</strong> modelidir. Kurumunuzun tercihine göre
+  daha sınırlı kapsamlı modeller de değerlendirilebilir.</p>
+
+  <div class="tiers">
+    <div class="tier main">
+      <div class="tsub">Önerimiz</div>
+      <div class="tname">Ana Sponsor</div>
+      <ul>
+        <li>Tüm iletişimde "Ana Sponsor" unvanı</li>
+        <li>Öncelikli ve en büyük logo kullanımı</li>
+        <li>Sahne, afiş, kitapçık ve dijital mecralarda yer alma</li>
+        <li>Etkinlik alanında marka aktivasyonu ve stant</li>
+        <li>Dört gün boyunca ürün/ikram sunumu</li>
+        <li>Açılış ve kapanışta anons</li>
+        <li>Etkinlik sonrası raporlama ve görsel arşiv</li>
+      </ul>
+      <div class="amt">Organizasyon bütçesinin tamamı veya önemli bir bölümü + ürün desteği</div>
+    </div>
+    <div class="tier">
+      <div class="tsub">Alternatif</div>
+      <div class="tname">Destek Sponsoru</div>
+      <ul>
+        <li>"Destek Sponsoru" unvanı</li>
+        <li>Afiş, kitapçık ve dijital mecralarda logo</li>
+        <li>Etkinlik alanında görünürlük</li>
+        <li>Sosyal medya paylaşımları</li>
+        <li>Etkinlik sonrası raporlama</li>
+      </ul>
+      <div class="amt">Belirlenen bütçe kalemlerine kısmi destek</div>
+    </div>
+    <div class="tier">
+      <div class="tsub">Alternatif</div>
+      <div class="tname">İkram Sponsoru</div>
+      <ul>
+        <li>"İkram Sponsoru" unvanı</li>
+        <li>Fuaye ve mola alanlarında görünürlük</li>
+        <li>Ürünün katılımcılarla buluşması</li>
+        <li>Sosyal medya paylaşımları</li>
+      </ul>
+      <div class="amt">Dört gün boyunca ürün / ikram desteği</div>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">12</div>
+</section>
+
+<!-- ============ 13 HAKLAR TABLOSU ============ -->
+<section class="slide">
+  <div class="eyebrow">Sunulan Haklar</div>
+  <h2 style="font-size:34px;">Karşılaştırmalı hak tablosu.</h2>
+  <div class="goldbar" style="margin:16px 0 16px;"></div>
+
+  <table class="tight">
+    <tr>
+      <th style="width:auto;">Hak / İmkân</th>
+      <th class="c hl">Ana Sponsor</th>
+      <th class="c">Destek Sponsoru</th>
+      <th class="c">İkram Sponsoru</th>
+    </tr>
+    <tr><td>Sponsorluk unvanının kullanımı</td><td class="c hl">✓</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td>Öncelikli / en büyük logo kullanımı</td><td class="c hl">✓</td><td class="c dash">—</td><td class="c dash">—</td></tr>
+    <tr><td>Etkinlik afişleri ve tanıtım materyalleri</td><td class="c hl">✓</td><td class="c">✓</td><td class="c dash">—</td></tr>
+    <tr><td>Program kitapçığı</td><td class="c hl">✓</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td>Sahne ve arka plan görünürlüğü</td><td class="c hl">✓</td><td class="c">✓</td><td class="c dash">—</td></tr>
+    <tr><td>Fuaye ve mola alanı görünürlüğü</td><td class="c hl">✓</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td>Sponsor standı / deneyim noktası</td><td class="c hl">✓</td><td class="c">✓</td><td class="c dash">—</td></tr>
+    <tr><td>Marka aktivasyonu ve fotoğraf alanı</td><td class="c hl">✓</td><td class="c dash">—</td><td class="c dash">—</td></tr>
+    <tr><td>Ürün dağıtımı ve ikram</td><td class="c hl">✓</td><td class="c dash">—</td><td class="c">✓</td></tr>
+    <tr><td>Açılış ve kapanış anonsu</td><td class="c hl">✓</td><td class="c dash">—</td><td class="c dash">—</td></tr>
+    <tr><td>Sosyal medya iletişimi</td><td class="c hl">✓</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td>Kurum temsilcisinin konuşma yapması</td><td class="c hl">✓</td><td class="c dash">—</td><td class="c dash">—</td></tr>
+    <tr><td>Etkinlik sonrası raporlama ve görsel arşiv</td><td class="c hl">✓</td><td class="c">✓</td><td class="c dash">—</td></tr>
+    <tr><td>Markaya özel gençlik oturumu</td><td class="c hl" style="font-size:11.5px;">Birlikte geliştirilir</td><td class="c dash">—</td><td class="c dash">—</td></tr>
+  </table>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">13</div>
+</section>
+
+<!-- ============ 14 TEMAS NOKTALARI ============ -->
+<section class="slide">
+  <div class="eyebrow">Marka Temas Noktaları</div>
+  <h2>Etkinliğin her anında.</h2>
+  <div class="goldbar"></div>
+  <p class="lede" style="margin-bottom:24px;">Dört günlük program boyunca markanın katılımcıyla
+  buluştuğu doğal anlar:</p>
+
+  <div class="flow" style="gap:8px;">
+    <div class="flow-step"><div class="n">01</div><h3>Karşılama</h3>
+      <p>Kayıt masası, katılımcı seti ve ilk ikram.</p></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">02</div><h3>Oturum Araları</h3>
+      <p>Günde birkaç kez tekrarlanan mola ve ikram anları.</p></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">03</div><h3>Fuaye</h3>
+      <p>Marka mola alanı, deneyim noktası ve fotoğraf alanı.</p></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">04</div><h3>Sosyal Program</h3>
+      <p>Akşam etkinlikleri ve gençlerle buluşma oturumu.</p></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">05</div><h3>Kapanış</h3>
+      <p>Sertifika töreni, anons ve toplu fotoğraf.</p></div>
+  </div>
+
+  <div class="cards" style="margin-top:26px;">
+    <div class="card" style="padding:20px;"><h3 style="font-size:16px;">Mola Alanı</h3>
+      <p>Katılımcıların dinlendiği, marka kimliğiyle düzenlenen özel alan.</p></div>
+    <div class="card" style="padding:20px;"><h3 style="font-size:16px;">Deneyim Noktası</h3>
+      <p>Ürün deneyimi ve marka etkileşimi için ayrılan stant.</p></div>
+    <div class="card" style="padding:20px;"><h3 style="font-size:16px;">Fotoğraf Alanı</h3>
+      <p>Etkinlik görsellerinde ve katılımcı paylaşımlarında görünürlük.</p></div>
+    <div class="card" style="padding:20px;"><h3 style="font-size:16px;">Gençlerle Buluşma</h3>
+      <p>Kurum temsilcilerinin öğrencilerle bir araya geldiği oturum.</p></div>
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">14</div>
+</section>
+
+<!-- ============ 15 BÜTÇE ============ -->
+<section class="slide">
+  <div class="eyebrow">Şeffaf Bütçe</div>
+  <h2 style="font-size:34px;">Desteğin nereye gittiği açık.</h2>
+  <div class="goldbar" style="margin-bottom:18px;"></div>
+
+  <div style="display:flex;gap:40px;">
+    <div style="flex:1.3;">
+      <table class="tight2">
+        <tr><th>Organizasyon Kalemi</th><th style="text-align:right;width:180px;">Tutar</th></tr>
+        <tr><td>Konaklama</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Ulaşım</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Yemek</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>İçecek / ikram</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Teknik ekipman ve ses sistemi</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Konuşmacı giderleri</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Baskı ve materyal</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Katılımcı setleri</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Etkinlik alanı düzenlemesi</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Sosyal program</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Görsel ve video prodüksiyon</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr><td>Diğer</td><td style="text-align:right;" class="fill">__________ TL</td></tr>
+        <tr style="background:var(--paper-2);"><td style="font-weight:600;color:var(--ink);">TOPLAM</td>
+            <td style="text-align:right;font-weight:600;color:var(--ink);">__________ TL</td></tr>
       </table>
     </div>
-  </div>
-</section>
-
-<!-- ================= BÜTÇE ================= -->
-<section class="band">
-  <div class="wrap">
-    <div class="eyebrow">Şeffaf Bütçe</div>
-    <h2>Desteğin nereye gittiği açık.</h2>
-    <div class="goldbar"></div>
-
-    <div class="budget" style="margin-top:30px;">
-      <div>
-        <ul class="items">
-          <li>Konaklama <em>__________ TL</em></li>
-          <li>Ulaşım <em>__________ TL</em></li>
-          <li>Yemek <em>__________ TL</em></li>
-          <li>İçecek / ikram <em>__________ TL</em></li>
-          <li>Teknik ekipman ve ses sistemi <em>__________ TL</em></li>
-          <li>Konuşmacı giderleri <em>__________ TL</em></li>
-          <li>Baskı ve materyal <em>__________ TL</em></li>
-          <li>Katılımcı setleri <em>__________ TL</em></li>
-          <li>Etkinlik alanı düzenlemesi <em>__________ TL</em></li>
-          <li>Sosyal program <em>__________ TL</em></li>
-          <li>Görsel ve video prodüksiyon <em>__________ TL</em></li>
-          <li>Diğer <em>__________ TL</em></li>
-          <li class="total">TOPLAM <em style="color:var(--ink)">__________ TL</em></li>
-        </ul>
+    <div style="flex:1;">
+      <div class="card" style="background:var(--ink);border-color:var(--ink);">
+        <div class="idx" style="color:var(--gold-soft)">TALEBİMİZ</div>
+        <h3 style="color:#fff;font-size:19px;line-height:1.35;">Organizasyon bütçesinin tamamının veya
+        önemli bir bölümünün karşılanması ve dört gün boyunca ürün / ikram desteği.</h3>
+        <p style="color:#AFBDD0;margin-top:14px;">Bunun karşılığında Ana Sponsor unvanı, öncelikli
+        marka görünürlüğü, aktivasyon imkânları ve etkinlik sonrası raporlama sunulur.</p>
       </div>
-      <div>
-        <div class="card dark">
-          <div class="idx" style="color:var(--gold-soft)">Talebimiz</div>
-          <h3 style="font-size:20px;line-height:1.35;">Organizasyon bütçesinin tamamının veya önemli bir bölümünün karşılanması ve dört gün boyunca ürün / ikram desteği.</h3>
-          <p>Bunun karşılığında Ana Sponsor unvanı, öncelikli marka görünürlüğü, aktivasyon imkânları ve
-          etkinlik sonrası raporlama sunulur.</p>
-        </div>
-        <div class="note" style="margin-top:18px;">Tüm harcamalar belgelenir ve etkinlik sonrasında sponsor
-        kuruma detaylı bir <strong style="color:var(--ink)">harcama ve etki raporu</strong> sunulur.</div>
+      <div class="note" style="margin-top:16px;">
+        Tüm harcamalar belgelenir ve etkinlik sonrasında sponsor kuruma detaylı bir
+        <strong style="color:var(--ink)">harcama ve etki raporu</strong> sunulur.
       </div>
     </div>
   </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">15</div>
 </section>
 
-<!-- ================= SÜREÇ ================= -->
-<section class="band alt" id="surec">
-  <div class="wrap">
-    <div class="eyebrow">Süreç ve Takvim</div>
-    <h2>İş birliğinin beş adımı.</h2>
-    <div class="goldbar"></div>
+<!-- ============ 16 SÜREÇ ============ -->
+<section class="slide">
+  <div class="eyebrow">Süreç ve Takvim</div>
+  <h2>İş birliğinin beş adımı.</h2>
+  <div class="goldbar"></div>
 
-    <div class="steps" style="margin-top:34px;">
-      <div class="step"><div class="n">1</div><h3>Ön Görüşme</h3><p>Konferansın ve iş birliği modelinin kurum yetkililerine sunulması.</p><div class="when">2026 Sonbahar</div></div>
-      <div class="step"><div class="n">2</div><h3>Protokol</h3><p>Kapsam, haklar ve destek koşullarının yazılı olarak belirlenmesi.</p><div class="when">2026 Kış</div></div>
-      <div class="step"><div class="n">3</div><h3>Duyuru</h3><p>Sponsorluğun tüm tanıtım ve dijital mecralarda ilanı.</p><div class="when">Ocak 2027</div></div>
-      <div class="step"><div class="n">4</div><h3>Konferans</h3><p>Dört günlük program ve marka aktivasyonlarının uygulanması.</p><div class="when">25–28 Mart 2027</div></div>
-      <div class="step"><div class="n">5</div><h3>Raporlama</h3><p>Katılım, görünürlük ve harcama raporunun kuruma sunulması.</p><div class="when">Nisan 2027</div></div>
-    </div>
-
-    <div class="note" style="margin-top:28px;">Kurumunuzun iletişim hedeflerine göre hakların kapsamı ve
-    aktivasyon içerikleri birlikte yeniden düzenlenebilir. Esnek bir iş birliği modeline açığız.</div>
+  <div class="flow" style="margin-top:16px;">
+    <div class="flow-step"><div class="n">1</div><h3>Ön Görüşme</h3>
+      <p>Konferansın ve iş birliği modelinin kurum yetkililerine sunulması.</p>
+      <div style="font-size:11px;color:var(--gold);margin-top:11px;font-weight:600;">2026 SONBAHAR</div></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">2</div><h3>Protokol</h3>
+      <p>Kapsam, haklar ve destek koşullarının yazılı olarak belirlenmesi.</p>
+      <div style="font-size:11px;color:var(--gold);margin-top:11px;font-weight:600;">2026 KIŞ</div></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">3</div><h3>Duyuru</h3>
+      <p>Sponsorluğun tüm tanıtım ve dijital mecralarda ilanı.</p>
+      <div style="font-size:11px;color:var(--gold);margin-top:11px;font-weight:600;">OCAK 2027</div></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">4</div><h3>Konferans</h3>
+      <p>Dört günlük program ve marka aktivasyonlarının uygulanması.</p>
+      <div style="font-size:11px;color:var(--gold);margin-top:11px;font-weight:600;">25–28 MART 2027</div></div>
+    <div class="arrow">›</div>
+    <div class="flow-step"><div class="n">5</div><h3>Raporlama</h3>
+      <p>Katılım, görünürlük ve harcama raporunun kuruma sunulması.</p>
+      <div style="font-size:11px;color:var(--gold);margin-top:11px;font-weight:600;">NİSAN 2027</div></div>
   </div>
+
+  <div class="note" style="margin-top:auto;margin-bottom:26px;">
+    Kurumunuzun iletişim hedeflerine göre hakların kapsamı ve aktivasyon içerikleri
+    birlikte yeniden düzenlenebilir. Esnek bir iş birliği modeline açığız.
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">16</div>
 </section>
 
-<!-- ================= İLETİŞİM ================= -->
-<section class="band dark" id="iletisim">
-  <div class="wrap">
+<!-- ============ 17 KAPANIŞ ============ -->
+<section class="slide cover">
+  <div class="grid-bg"></div><div class="glow"></div>
+  <div class="cover-inner" style="justify-content:center;padding-bottom:120px;">
     <div class="eyebrow">Bir Konferansın Ötesinde</div>
-    <h2>Gençlerin bir araya geldiği,<br>fikirlerin tartışıldığı,<br>birlikte üretilen bir platform.</h2>
+    <h1 style="font-size:42px;max-width:760px;line-height:1.14;">Gençlerin bir araya geldiği,<br>fikirlerin tartışıldığı,<br>birlikte üretilen bir platform.</h1>
+    <div style="margin-top:30px;display:flex;gap:56px;align-items:flex-start;">
+      <div><span style="display:block;font-size:10px;letter-spacing:.22em;color:#9FB0C6;text-transform:uppercase;margin-bottom:9px;">İletişim</span>
+        <strong style="font-size:19px;font-weight:600;color:#fff;display:block;">Rüveyda Cam</strong>
+        <span style="display:block;font-size:12.5px;color:#AFBDD0;margin-top:3px;">Ankara Hukuk Demokrasi Müzakereleri Başkanı</span>
+        <span style="display:block;font-size:14px;color:#fff;margin-top:7px;">0545 252 75 37</span>
 
-    <div class="contact">
-      <div>
-        <div class="lbl">İletişim</div>
-        <strong>Rüveyda Cam</strong>
-        <div class="role">AHDEM Başkanı</div>
-        <a href="tel:+905452527537">0545 252 75 37</a>
+        <strong style="font-size:19px;font-weight:600;color:#fff;display:block;margin-top:20px;">Pelin Yükselin</strong>
+        <span style="display:block;font-size:12.5px;color:#AFBDD0;margin-top:3px;">Ankara Hukuk Demokrasi Müzakereleri Başkan Yardımcısı</span>
+        <span style="display:block;font-size:14px;color:#fff;margin-top:7px;">0___ ___ __ __</span>
       </div>
-      <div>
-        <div class="lbl">İletişim</div>
-        <strong>Pelin Yüksel</strong>
-        <div class="role">AHDEM Başkan Yardımcısı</div>
-        <a href="tel:+905378288448">0537 828 84 48</a>
-      </div>
-      <div>
-        <div class="lbl">E-posta &amp; Sosyal Medya</div>
-        <a href="mailto:auhfdemokrasimuzakereleri@gmail.com" style="font-size:15px;">auhfdemokrasimuzakereleri@gmail.com</a>
-        <div style="margin-top:12px;"><a href="https://instagram.com/demokrasimuzakereleri" target="_blank" rel="noopener">@demokrasimuzakereleri</a></div>
-      </div>
+      <div><span style="display:block;font-size:10px;letter-spacing:.22em;color:#9FB0C6;text-transform:uppercase;margin-bottom:9px;">E-posta</span>
+        <strong style="font-size:16px;font-weight:500;color:#fff;">auhfdemokrasimuzakereleri@gmail.com</strong></div>
+      <div><span style="display:block;font-size:10px;letter-spacing:.22em;color:#9FB0C6;text-transform:uppercase;margin-bottom:9px;">Sosyal Medya</span>
+        <strong style="font-size:16px;font-weight:500;color:#fff;">@demokrasimuzakereleri</strong></div>
     </div>
-
-    <div style="margin-top:38px;">
-      <a class="btn" href="mailto:auhfdemokrasimuzakereleri@gmail.com?subject=AHDEM%20Konferans%C4%B1%202027%20%E2%80%94%20Sponsorluk%20G%C3%B6r%C3%BC%C5%9Fmesi">Görüşme Talep Et</a>
+  </div>
+  <div class="cover-band">
+    <div class="lbl">Geçmiş Sponsorlarımız Arasında</div>
+    <div class="orgs">
+      <span>T.C. Gençlik ve Spor Bakanlığı</span>
+      <span class="dot"></span>
+      <span>Mamak Belediyesi</span>
+      <span class="dot"></span>
+      <span>Gün + Partners Avukatlık Bürosu</span>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap in">
-    <div>Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
-    <div>Geçmiş sponsorlarımız: T.C. Gençlik ve Spor Bakanlığı · Mamak Belediyesi &nbsp;|&nbsp; Ev sahibi: Ankara Üniversitesi Hukuk Fakültesi</div>
-  </div>
-</footer>
+<!-- ============ 18 EK: E-POSTA ============ -->
+<section class="slide">
+  <div class="eyebrow">Ek — Kuruma Gönderilecek E-posta Taslağı</div>
+  <h2 style="font-size:30px;">Başvuru metni.</h2>
+  <div class="goldbar" style="margin:14px 0 16px;"></div>
 
-<script>
-  var t = document.getElementById('navtoggle');
-  var l = document.getElementById('navlinks');
-  t.addEventListener('click', function(){
-    var open = l.classList.toggle('open');
-    t.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  l.addEventListener('click', function(e){
-    if (e.target.tagName === 'A') { l.classList.remove('open'); t.setAttribute('aria-expanded','false'); }
-  });
-</script>
+  <div class="subj" style="max-width:100%;">
+    <b>Konu</b>Ankara Hukuk Demokrasi Müzakereleri Konferansı 2027 — Sponsorluk ve İş Birliği Teklifi
+  </div>
+
+  <div class="mail">
+    <div class="col">
+      <p>Merhabalar,</p>
+      <p>Ben Rüveyda Cam. Ankara Üniversitesi Hukuk Fakültesi bünyesinde faaliyet gösteren
+      Ankara Hukuk Demokrasi Müzakereleri (AHDEM) Başkanı olarak sizlere ulaşıyorum.</p>
+      <p>AHDEM olarak 25–28 Mart 2027 tarihlerinde Ankara Üniversitesi Cebeci Yerleşkesi'nde,
+      Türkiye'nin farklı üniversitelerinden 120'yi aşkın öğrencinin katılımıyla dört günlük
+      Ankara Hukuk Demokrasi Müzakereleri Konferansı'nı gerçekleştireceğiz.</p>
+      <p>2024 yılından bu yana düzenlediğimiz konferanslarda öğrenciler, Türkiye'nin farklı
+      dönemlerini akademik kaynaklar üzerinden inceliyor; dönemin kurumlarını temsil ederek
+      araştırma yapıyor, müzakere ediyor ve karar süreçlerini deneyimliyor. Programımızın
+      temel amacı katılımcıların araştırma, hitabet, müzakere, liderlik ve takım çalışması
+      becerilerini geliştirmesidir.</p>
+      <p>2027 konferansımızın teması 1950–1960 dönemidir. Konferans; güncel siyasi tartışmalardan
+      bağımsız, akademik danışmanlar gözetiminde hazırlanan tarafsız bir çerçevede yürütülmektedir.</p>
+    </div>
+    <div class="col">
+      <p>Geçmiş konferanslarımıza <strong style="color:var(--ink)">T.C. Gençlik ve Spor Bakanlığı</strong>,
+      <strong style="color:var(--ink)">Mamak Belediyesi</strong>, Gün + Partners Avukatlık Bürosu,
+      Maya Genç Düşünce Platformu ve Ankara Hukuk mezunu avukatlar sponsor olarak destek verdi.
+      2027 konferansımız da Ankara Üniversitesi Hukuk Fakültesi ev sahipliğinde gerçekleştirilecektir.</p>
+      <p>Bu yıl konferansımızı daha kapsamlı bir organizasyon olarak hayata geçirmeyi hedefliyoruz.
+      Bu doğrultuda kurumunuzu konferansımızın <strong style="color:var(--ink)">Ana Sponsoru ve
+      stratejik iş ortağı</strong> olarak görmek istiyoruz.</p>
+      <p>Ana sponsorluk kapsamında organizasyon bütçesinin tamamının veya önemli bir bölümünün
+      karşılanmasını, buna ek olarak etkinlik boyunca ürün ve ikram desteği sağlanmasını arzu ediyoruz.
+      Bunun karşılığında Ana Sponsor unvanı, öncelikli logo ve marka görünürlüğü, etkinlik alanında
+      marka aktivasyonu, ürün deneyimi, sosyal medya iletişimi, açılış ve kapanış görünürlüğü ile
+      etkinlik sonrası detaylı raporlama sunmayı planlıyoruz.</p>
+      <p>Geçmiş çalışmalarımızı, 2027 konferansının içeriğini ve sunabileceğimiz imkânları ayrıntılı
+      şekilde içeren sponsorluk dosyamızı ekte bilgilerinize sunuyoruz.</p>
+      <p>Uygun görmeniz halinde iş birliği modelini detaylı aktarmak üzere kısa bir toplantı
+      gerçekleştirmekten memnuniyet duyarız.</p>
+      <p>İlginiz ve değerlendirmeniz için teşekkür ederiz.</p>
+      <p style="margin-top:14px;"><strong style="color:var(--ink)">Saygılarımla,<br>Rüveyda Cam</strong><br>
+      Ankara Üniversitesi Hukuk Fakültesi — Ankara Hukuk Demokrasi Müzakereleri Başkanı<br>
+      0545 252 75 37 · auhfdemokrasimuzakereleri@gmail.com · @demokrasimuzakereleri</p>
+      <p style="margin-top:8px;"><strong style="color:var(--ink)">Pelin Yükselin</strong><br>
+      Ankara Hukuk Demokrasi Müzakereleri Başkan Yardımcısı<br>
+      0___ ___ __ __</p>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
+  <div class="num">18</div>
+</section>
+
 </body>
 </html>
