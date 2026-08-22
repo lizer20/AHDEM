@@ -42,8 +42,10 @@
     backdrop-filter:blur(10px);border-bottom:1px solid var(--line-2);}
   .nav-in{max-width:var(--maxw);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:14px;}
   .brand{font-weight:600;font-size:15px;letter-spacing:.02em;white-space:nowrap;}
-  .brand span{color:var(--gold);}
-  .nav-links{margin-left:auto;display:flex;gap:24px;align-items:center;}
+  .brand .sep{color:var(--gold);}
+  .brand .uzun{color:inherit;}
+  .nav-links{margin-left:auto;display:flex;gap:26px;align-items:center;}
+  .nav-links .btn{margin-left:8px;}
   .nav-links a{font-size:13.5px;color:var(--ink-soft);text-decoration:none;transition:color .15s;}
   .nav-links a:hover{color:var(--gold);}
   .btn{display:inline-block;background:var(--gold);color:#fff;text-decoration:none;
@@ -337,6 +339,9 @@
     header.nav{position:relative;}
     html{scroll-padding-top:12px;}
     .navtoggle{display:block;}
+    .brand .sep,.brand .uzun{display:none;}
+    .brand{font-size:16px;}
+    .nav-in{gap:12px;}
     .g2,.g3,.g4,.sup,.tl,.steps{grid-template-columns:1fr;}
     .erk,.link3,.spend,.team2{grid-template-columns:1fr;}
     .sup5,.sup2{grid-template-columns:1fr;}
