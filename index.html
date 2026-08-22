@@ -22,7 +22,24 @@
     </a>
     <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">Menü</button>
     <nav class="nav-links" id="navlinks">
-      <a class="aktif" href="index.html">Ana Sayfa</a>
+      <div class="menu-item">
+        <a class="aktif" href="index.html">Ana Sayfa</a>
+        <button class="caret" type="button" aria-expanded="false" aria-label="Sayfa bölümleri">
+          <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.5l4 4 4-4"/></svg>
+        </button>
+        <div class="submenu">
+          <a href="#hakkimizda">Hakkımızda</a>
+          <a href="#konferans">Bir Bakışta</a>
+          <a href="#tema">2027 Teması</a>
+          <a href="#yapi">Konferansın Yapısı</a>
+          <a href="#model">Konferans Modeli</a>
+          <a href="#katilimci">Katılımcı Profili</a>
+          <a href="#birikim">Dört Konferanslık Birikim</a>
+          <a href="#arsiv">Fotoğraf Arşivi</a>
+          <a href="#video">Video</a>
+          <a href="#ekip">Ekip</a>
+        </div>
+      </div>
       <a href="sss.html">SSS</a>
       <a href="iletisim.html">İletişim</a>
       <a class="btn" href="sponsorluk.html">Sponsorluk</a>
@@ -109,7 +126,7 @@
 </section>
 
 <!-- ================= 2027 TEMASI ================= -->
-<section class="band">
+<section class="band" id="tema">
   <div class="wrap">
     <div class="eyebrow">2027 Teması</div>
     <h2>1950 – 1960<br><span class="serif" style="font-weight:500;font-style:italic;color:var(--ink-soft);">Bir Dönemi Anlamak</span></h2>
@@ -130,7 +147,7 @@
 </section>
 
 <!-- ================= ERKLER ================= -->
-<section class="band alt">
+<section class="band alt" id="yapi">
   <div class="wrap">
     <div class="eyebrow">Konferansın Yapısı</div>
     <h2>Yasama, yürütme ve yargı<br>aynı masada.</h2>
@@ -162,7 +179,7 @@
 </section>
 
 <!-- ================= MODEL ================= -->
-<section class="band">
+<section class="band" id="model">
   <div class="wrap">
     <div class="eyebrow">Konferans Modeli</div>
     <h2>Bu bir konferans değil,<br>bir deneyim.</h2>
@@ -193,7 +210,7 @@
 </section>
 
 <!-- ================= KATILIMCI PROFİLİ ================= -->
-<section class="band">
+<section class="band" id="katilimci">
   <div class="wrap">
     <div class="eyebrow">Katılımcı Profili</div>
     <h2>18–25 yaş aralığında,<br>Türkiye genelinden üniversite öğrencileri.</h2>
@@ -215,7 +232,7 @@
 </section>
 
 <!-- ================= BİRİKİM ================= -->
-<section class="band alt">
+<section class="band alt" id="birikim">
   <div class="wrap">
     <div class="eyebrow">Dört Konferanslık Birikim</div>
     <h2>Her yıl, geçmişin bir dönemini<br>yeniden okuyoruz.</h2>
@@ -373,8 +390,31 @@
     var open = l.classList.toggle('open');
     t.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
+
+  // "Ana Sayfa" yanındaki üçgen: yalnızca kendi alanına basınca alt menüyü açar
+  var mi = l.querySelector('.menu-item');
+  if (mi) {
+    var cr = mi.querySelector('.caret');
+    cr.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      var acik = mi.classList.toggle('acik');
+      cr.setAttribute('aria-expanded', acik ? 'true' : 'false');
+    });
+    document.addEventListener('click', function(e){
+      if (!mi.contains(e.target)) { mi.classList.remove('acik'); cr.setAttribute('aria-expanded','false'); }
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') { mi.classList.remove('acik'); cr.setAttribute('aria-expanded','false'); }
+    });
+  }
+
+  // bir bağlantıya basılınca mobil menüyü kapat
   l.addEventListener('click', function(e){
-    if (e.target.tagName === 'A') { l.classList.remove('open'); t.setAttribute('aria-expanded','false'); }
+    if (e.target.tagName === 'A') {
+      l.classList.remove('open');
+      t.setAttribute('aria-expanded','false');
+      if (mi) { mi.classList.remove('acik'); mi.querySelector('.caret').setAttribute('aria-expanded','false'); }
+    }
   });
 </script>
 </body>

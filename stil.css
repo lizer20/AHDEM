@@ -414,3 +414,44 @@
   /* ---------- iletişim sayfası yardımcı kutular ---------- */
   .info2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px;}
   @media (max-width:720px){ .info2{grid-template-columns:1fr;} }
+
+  /* ---------- ANA SAYFA AÇILIR ALT MENÜSÜ ---------- */
+  .menu-item{position:relative;display:flex;align-items:center;gap:2px;}
+  .menu-item > a{white-space:nowrap;}
+
+  .caret{background:none;border:0;padding:4px 6px;margin:0;cursor:pointer;line-height:0;
+    color:var(--ink-soft);border-radius:3px;display:flex;align-items:center;justify-content:center;}
+  .caret svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:1.8;
+    stroke-linecap:round;stroke-linejoin:round;transition:transform .18s;}
+  .caret:hover{color:var(--gold);}
+  .menu-item.acik > .caret svg{transform:rotate(180deg);}
+
+  .submenu{position:absolute;top:100%;left:-14px;min-width:236px;z-index:60;
+    background:var(--paper);border:1px solid var(--line);border-radius:4px;
+    box-shadow:0 14px 34px rgba(18,32,58,.14);padding:8px 0;margin-top:12px;
+    opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .16s,transform .16s,visibility .16s;}
+  /* fare boşluktan geçerken menü kapanmasın */
+  .submenu:before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px;}
+  .menu-item:hover .submenu,
+  .menu-item.acik .submenu{opacity:1;visibility:visible;transform:translateY(0);}
+  .submenu a{display:block;padding:9px 18px;font-size:13.5px;color:var(--ink-soft);
+    text-decoration:none;border:0;}
+  .submenu a:hover{background:var(--paper-2);color:var(--ink);}
+
+  @media (max-width:720px){
+    .menu-item{display:flex;align-items:stretch;justify-content:space-between;gap:0;
+      border-bottom:1px solid var(--line-2);flex-wrap:wrap;}
+    .menu-item > a{flex:1 1 auto;border-bottom:0;padding:11px 0;}
+    /* üçgenin hitbox'ı yalnızca sağ tarafı kaplar */
+    .caret{flex:0 0 58px;align-self:stretch;justify-content:center;padding:0;
+      border-left:1px solid var(--line-2);color:var(--ink);}
+    .caret svg{width:13px;height:13px;}
+    .submenu{position:static;flex:1 0 100%;order:3;min-width:0;margin:0 0 10px;
+      background:var(--paper-2);border:0;border-left:2px solid var(--gold);border-radius:0;
+      box-shadow:none;padding:2px 0 2px 14px;transform:none;
+      display:none;opacity:1;visibility:visible;}
+    .submenu:before{display:none;}
+    .menu-item:hover .submenu{display:none;}
+    .menu-item.acik .submenu{display:block;}
+    .submenu a{padding:10px 0;border-bottom:0;font-size:14px;}
+  }
