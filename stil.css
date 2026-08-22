@@ -41,7 +41,10 @@
   header.nav{position:sticky;top:0;z-index:50;background:rgba(241,236,227,.94);
     backdrop-filter:blur(10px);border-bottom:1px solid var(--line-2);}
   .nav-in{max-width:var(--maxw);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:14px;}
-  .brand{font-weight:600;font-size:15px;letter-spacing:.02em;white-space:nowrap;}
+  .nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;
+    min-width:0;flex:0 1 auto;overflow:hidden;}
+  .brand{font-weight:600;font-size:15px;letter-spacing:.02em;white-space:nowrap;
+    min-width:0;overflow:hidden;text-overflow:ellipsis;}
   .brand .sep{color:var(--gold);}
   .brand .uzun{color:inherit;}
   .nav-links{margin-left:auto;display:flex;gap:26px;align-items:center;}
@@ -54,7 +57,7 @@
   .btn:hover{background:#9E721F;border-color:#9E721F;}
   .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);}
   .btn.ghost:hover{background:rgba(255,255,255,.1);border-color:#fff;}
-  .navtoggle{display:none;margin-left:auto;background:none;border:1px solid var(--line);
+  .navtoggle{display:none;margin-left:auto;flex:none;background:none;border:1px solid var(--line);
     border-radius:3px;padding:8px 12px;font-size:13px;cursor:pointer;color:var(--ink);font-family:inherit;}
 
   /* ---------- logolar (dosyalar yoksa gizlenir) ---------- */
@@ -220,10 +223,12 @@
 
   /* ---------- iletişim ---------- */
   .contact{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:34px;}
+  .contact > div{min-width:0;}
   .contact .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#9FB0C6;margin-bottom:10px;}
   .contact strong{display:block;font-size:18px;font-weight:600;color:#fff;}
   .contact .role{font-size:13px;color:#9FB0C6;margin:2px 0 6px;}
-  .contact a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);}
+  .contact a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);
+    overflow-wrap:anywhere;word-break:break-word;}
   .contact a:hover{border-bottom-color:var(--gold);}
   footer{background:var(--ink);color:#8C9BB0;font-size:12.5px;padding:22px 0;
     border-top:1px solid rgba(255,255,255,.1);}
@@ -393,3 +398,19 @@
     .team-grid{grid-template-columns:1fr;}
     .faq summary{font-size:15px;}
   }
+
+  /* ---------- aktif menü ögesi ---------- */
+  .nav-links a.aktif{color:var(--ink);font-weight:600;}
+  .nav-links a.aktif:not(.btn){border-bottom:2px solid var(--gold);padding-bottom:2px;}
+
+  /* ---------- sayfa başlığı (alt sayfalar) ---------- */
+  .pagehead{position:relative;background:var(--ink);color:#fff;overflow:hidden;
+    padding:clamp(52px,7vw,86px) 0 clamp(44px,6vw,70px);}
+  .pagehead .in{position:relative;}
+  .pagehead h1{font-size:clamp(30px,5vw,52px);line-height:1.08;font-weight:600;letter-spacing:-.015em;}
+  .pagehead .lede{color:#C6D0DE;max-width:640px;margin-top:18px;}
+  .pagehead .eyebrow{color:var(--gold-soft);}
+
+  /* ---------- iletişim sayfası yardımcı kutular ---------- */
+  .info2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px;}
+  @media (max-width:720px){ .info2{grid-template-columns:1fr;} }
