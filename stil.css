@@ -457,26 +457,44 @@
   }
 
   /* ================= KURUMSAL FOOTER ================= */
-  footer.site{background:var(--ink);color:#9FB0C6;border-top:1px solid rgba(255,255,255,.1);
-    font-size:13.5px;line-height:1.65;padding:0;}
-  .foot-main{max-width:var(--maxw);margin:0 auto;padding:52px 24px 40px;
-    display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:38px;}
-  .foot-brand img{height:76px;width:auto;display:block;margin-bottom:18px;}
-  .foot-brand .ad{font-size:15.5px;font-weight:600;color:#fff;line-height:1.4;}
-  .foot-brand p{margin-top:12px;max-width:330px;color:#9FB0C6;font-size:13px;}
-  .foot-col h4{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--gold-soft);font-weight:600;margin-bottom:14px;}
-  .foot-col a,.foot-col span{display:block;color:#C6D0DE;text-decoration:none;padding:5px 0;
-    overflow-wrap:anywhere;}
+  footer.site{background:var(--ink);color:#8C9BB0;
+    border-top:1px solid rgba(255,255,255,.1);font-size:13px;line-height:1.6;}
+  .foot-main{max-width:var(--maxw);margin:0 auto;padding:56px 24px 44px;
+    display:grid;grid-template-columns:1.65fr .95fr .95fr 1.45fr;gap:40px;}
+
+  /* marka kilidi: mühür + ad yan yana */
+  .foot-lock{display:flex;align-items:center;gap:15px;}
+  .foot-lock img{height:52px;width:auto;max-width:52px;flex:none;display:block;}
+  .foot-lock .ad{font-family:'Lora',serif;font-size:15.5px;line-height:1.32;
+    color:#fff;font-weight:600;letter-spacing:.005em;}
+  .foot-brand p{margin-top:18px;max-width:320px;font-size:12.8px;line-height:1.7;color:#7E8DA3;}
+  .foot-brand .kurulus{margin-top:16px;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;}
+
+  .foot-col h4{font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold-soft);font-weight:600;margin-bottom:16px;}
+  .foot-col a,.foot-col span{display:block;color:#C6D0DE;text-decoration:none;
+    padding:6px 0;font-size:12.8px;overflow-wrap:break-word;transition:color .15s;}
   .foot-col a:hover{color:var(--gold-soft);}
-  .foot-bot{border-top:1px solid rgba(255,255,255,.1);}
-  .foot-bot .in{max-width:var(--maxw);margin:0 auto;padding:18px 24px;display:flex;
-    justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:12.5px;}
-  .foot-bot a{color:#9FB0C6;text-decoration:none;}
+  .foot-col span{color:#7E8DA3;}
+
+  .foot-bot{border-top:1px solid rgba(255,255,255,.09);}
+  .foot-bot .in{max-width:var(--maxw);margin:0 auto;padding:20px 24px;display:flex;
+    justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+    font-size:12px;color:#6E7C92;letter-spacing:.01em;}
+  .foot-bot a{color:#8C9BB0;text-decoration:none;}
   .foot-bot a:hover{color:var(--gold-soft);}
-  @media (max-width:900px){ .foot-main{grid-template-columns:1fr 1fr;gap:30px;} }
-  @media (max-width:560px){ .foot-main{grid-template-columns:1fr;gap:26px;padding:40px 24px 30px;}
-    .foot-bot .in{flex-direction:column;align-items:flex-start;gap:8px;} }
+
+  @media (max-width:900px){
+    .foot-main{grid-template-columns:1fr 1fr;gap:34px 30px;}
+    .foot-brand{grid-column:1 / -1;}
+    .foot-brand p{max-width:none;}
+  }
+  @media (max-width:560px){
+    .foot-main{grid-template-columns:1fr;gap:28px;padding:42px 24px 32px;}
+    .foot-lock img{height:46px;max-width:46px;}
+    .foot-bot .in{flex-direction:column;align-items:flex-start;gap:6px;}
+  }
 
   /* ================= KONFERANS ARŞİVİ ================= */
   .arsiv{display:grid;gap:16px;margin-top:34px;}
