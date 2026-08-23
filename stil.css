@@ -455,3 +455,89 @@
     .menu-item.acik .submenu{display:block;}
     .submenu a{padding:10px 0;border-bottom:0;font-size:14px;}
   }
+
+  /* ================= KURUMSAL FOOTER ================= */
+  footer.site{background:var(--ink);color:#9FB0C6;border-top:1px solid rgba(255,255,255,.1);
+    font-size:13.5px;line-height:1.65;padding:0;}
+  .foot-main{max-width:var(--maxw);margin:0 auto;padding:52px 24px 40px;
+    display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:38px;}
+  .foot-brand img{height:76px;width:auto;display:block;margin-bottom:18px;}
+  .foot-brand .ad{font-size:15.5px;font-weight:600;color:#fff;line-height:1.4;}
+  .foot-brand p{margin-top:12px;max-width:330px;color:#9FB0C6;font-size:13px;}
+  .foot-col h4{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold-soft);font-weight:600;margin-bottom:14px;}
+  .foot-col a,.foot-col span{display:block;color:#C6D0DE;text-decoration:none;padding:5px 0;
+    overflow-wrap:anywhere;}
+  .foot-col a:hover{color:var(--gold-soft);}
+  .foot-bot{border-top:1px solid rgba(255,255,255,.1);}
+  .foot-bot .in{max-width:var(--maxw);margin:0 auto;padding:18px 24px;display:flex;
+    justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:12.5px;}
+  .foot-bot a{color:#9FB0C6;text-decoration:none;}
+  .foot-bot a:hover{color:var(--gold-soft);}
+  @media (max-width:900px){ .foot-main{grid-template-columns:1fr 1fr;gap:30px;} }
+  @media (max-width:560px){ .foot-main{grid-template-columns:1fr;gap:26px;padding:40px 24px 30px;}
+    .foot-bot .in{flex-direction:column;align-items:flex-start;gap:8px;} }
+
+  /* ================= KONFERANS ARŞİVİ ================= */
+  .arsiv{display:grid;gap:16px;margin-top:34px;}
+  .yil{display:grid;grid-template-columns:150px 1fr;gap:26px;background:#fff;
+    border:1px solid var(--line);border-radius:3px;padding:24px 26px;align-items:start;}
+  .yil .sol .y{font-family:'Lora',serif;font-size:34px;font-weight:600;color:var(--ink);line-height:1;}
+  .yil .sol .d{font-size:12.5px;color:var(--gold);letter-spacing:.08em;margin-top:6px;font-weight:600;}
+  .yil h3{font-size:17px;color:var(--ink);margin-bottom:8px;}
+  .yil p{font-size:14px;line-height:1.6;color:var(--ink-soft);}
+  .yil .rozet{display:inline-block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:600;padding:4px 10px;border-radius:2px;margin-top:12px;}
+  .yil .rozet.ge{background:var(--paper-2);color:var(--muted);}
+  .yil .rozet.ya{background:var(--gold);color:#fff;}
+  .yil.one{border-color:var(--gold);border-left-width:3px;}
+  @media (max-width:640px){ .yil{grid-template-columns:1fr;gap:12px;} }
+
+  /* ================= DUYURU / ETKİNLİK LİSTESİ ================= */
+  .liste{margin-top:30px;border-top:1px solid var(--line);}
+  .kayit{display:grid;grid-template-columns:170px 1fr;gap:26px;padding:24px 0;
+    border-bottom:1px solid var(--line);}
+  .kayit .tar{font-size:12.5px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;
+    font-weight:600;padding-top:3px;}
+  .kayit h3{font-size:18px;color:var(--ink);margin-bottom:8px;}
+  .kayit p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);}
+  .kayit .yer{font-size:13px;color:var(--muted);margin-top:8px;}
+  @media (max-width:640px){ .kayit{grid-template-columns:1fr;gap:8px;} }
+
+  .bos{background:var(--paper-2);border:1px dashed var(--line);border-radius:3px;
+    padding:36px 30px;text-align:center;margin-top:30px;}
+  .bos p{font-size:15px;color:var(--ink-soft);max-width:520px;margin:0 auto;}
+
+  /* ================= FOTOĞRAF BÜYÜTME ================= */
+  .gal figure{cursor:zoom-in;}
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(10,17,31,.94);
+    display:none;align-items:center;justify-content:center;padding:56px 24px;}
+  .lightbox.acik{display:flex;}
+  .lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:3px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);}
+  .lb-btn{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+    color:#fff;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:22px;line-height:1;
+    display:flex;align-items:center;justify-content:center;font-family:inherit;}
+  .lb-btn:hover{background:rgba(255,255,255,.2);}
+  .lb-kapat{top:20px;right:20px;}
+  .lb-onceki{left:20px;top:50%;transform:translateY(-50%);}
+  .lb-sonraki{right:20px;top:50%;transform:translateY(-50%);}
+  .lb-sayac{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+    color:#9FB0C6;font-size:13px;letter-spacing:.1em;}
+  @media (max-width:640px){
+    .lightbox{padding:70px 12px;}
+    .lb-onceki{left:10px;} .lb-sonraki{right:10px;}
+    .lb-btn{width:42px;height:42px;}
+  }
+
+  /* ================= 404 ================= */
+  .hata{min-height:64vh;display:flex;align-items:center;}
+  .hata .kod{font-family:'Lora',serif;font-size:clamp(70px,14vw,140px);line-height:1;
+    color:var(--gold);font-weight:600;}
+
+  /* ================= HUKUKİ METİN ================= */
+  .metin{max-width:760px;}
+  .metin h3{font-size:17px;color:var(--ink);margin:32px 0 10px;}
+  .metin p{font-size:14.5px;line-height:1.72;color:var(--ink-soft);margin-bottom:12px;}
+  .metin ul{margin:0 0 12px 18px;}
+  .metin li{font-size:14.5px;line-height:1.72;color:var(--ink-soft);margin-bottom:6px;}

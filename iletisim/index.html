@@ -45,6 +45,8 @@
           <a href="../#ekip">Ekip</a>
         </div>
       </div>
+      <a href="../konferanslar/">Konferanslar</a>
+      <a href="../duyurular/">Duyurular</a>
       <a href="../sss/">SSS</a>
       <a class="aktif" href="../iletisim/">İletişim</a>
       <a class="btn" href="../sponsorluk/">Sponsorluk</a>
@@ -112,10 +114,39 @@
   </div>
 </section>
 
-<footer>
-  <div class="wrap in">
-    <div>Ankara Hukuk Demokrasi Müzakereleri Topluluğu</div>
-    <div>Ankara Üniversitesi Hukuk Fakültesi · Cebeci Yerleşkesi</div>
+<footer class="site">
+  <div class="foot-main">
+    <div class="foot-brand">
+      <img src="../logo-topluluk.png" alt="" onerror="this.style.display='none'">
+      <div class="ad">Ankara Hukuk Demokrasi<br>Müzakereleri Topluluğu</div>
+      <p>Ankara Üniversitesi Hukuk Fakültesi bünyesinde 2022 yılında kurulan öğrenci topluluğu.
+      Yasama, yürütme ve yargı organlarının kurgusal toplantılarını düzenler.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Site</h4>
+      <a href="../">Ana Sayfa</a>
+      <a href="../konferanslar/">Konferanslar</a>
+      <a href="../duyurular/">Duyurular</a>
+      <a href="../sss/">Sık Sorulan Sorular</a>
+    </div>
+    <div class="foot-col">
+      <h4>Kurumsal</h4>
+      <a href="../sponsorluk/">Sponsorluk</a>
+      <a href="../iletisim/">İletişim</a>
+      <a href="../gizlilik/">Gizlilik ve KVKK</a>
+    </div>
+    <div class="foot-col">
+      <h4>İletişim</h4>
+      <a href="mailto:auhfdemokrasimuzakereleri@gmail.com">auhfdemokrasimuzakereleri@gmail.com</a>
+      <a href="https://instagram.com/demokrasimuzakereleri" target="_blank" rel="noopener">@demokrasimuzakereleri</a>
+      <span>Cebeci Yerleşkesi, Ankara</span>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <div class="in">
+      <div>© 2026 Ankara Hukuk Demokrasi Müzakereleri Topluluğu · Tüm hakları saklıdır.</div>
+      <div>Ankara Üniversitesi Hukuk Fakültesi bünyesinde faaliyet gösteren öğrenci topluluğudur.</div>
+    </div>
   </div>
 </footer>
 
@@ -126,8 +157,6 @@
     var open = l.classList.toggle('open');
     t.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-
-  // "Ana Sayfa" yanındaki üçgen: yalnızca kendi alanına basınca alt menüyü açar
   var mi = l.querySelector('.menu-item');
   if (mi) {
     var cr = mi.querySelector('.caret');
@@ -143,12 +172,9 @@
       if (e.key === 'Escape') { mi.classList.remove('acik'); cr.setAttribute('aria-expanded','false'); }
     });
   }
-
-  // bir bağlantıya basılınca mobil menüyü kapat
   l.addEventListener('click', function(e){
     if (e.target.tagName === 'A') {
-      l.classList.remove('open');
-      t.setAttribute('aria-expanded','false');
+      l.classList.remove('open'); t.setAttribute('aria-expanded','false');
       if (mi) { mi.classList.remove('acik'); mi.querySelector('.caret').setAttribute('aria-expanded','false'); }
     }
   });
