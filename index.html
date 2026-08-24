@@ -53,12 +53,36 @@
       }
     },
     {
+      "@type": "WebSite",
+      "url": "https://ahdem.online/",
+      "name": "Ankara Hukuk Demokrasi Müzakereleri",
+      "inLanguage": "tr-TR",
+      "publisher": { "@id": "https://ahdem.online/#topluluk" }
+    }
+  ]
+}
+</script>
+<!-- ##### DUYURU ONCESI GIZLENDI - Event yapilandirilmis verisi #####
+
+     Event nesnesi gecici olarak yukaridaki @graph listesinden CIKARILDI.
+     Sebep: schema.org Event tipinde "startDate" ZORUNLU. Tarih duyurulmadigi
+     icin alan bostu ve Search Console "Missing field startDate" hatasi veriyordu.
+     Tarihsiz bir Event zaten etkinlik kartina cikmaz; cikarinca hata da biter,
+     kayip da olmaz. Organization ve WebSite verileri yerinde duruyor.
+
+     DUYURUDAN SONRA: asagidaki blogu @graph listesinde WebSite nesnesinden
+     ONCE, virgulle ayirarak geri ekle ve tarihleri doldur
+     (kesin tarihler icin PROJE-DEVIR-NOTU.md, bolum 1):
+
+    {
       "@type": "Event",
       "name": "Ankara Hukuk Demokrasi Müzakereleri Konferansı 2027",
       "url": "https://ahdem.online/konferanslar/",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "description": "Dört günlük öğrenci konferansı. Tarih ve tema yakında duyurulacak.",
+      "startDate": "YYYY-MM-DD",
+      "endDate": "YYYY-MM-DD",
+      "description": "BURAYA TEMALI ACIKLAMA",
       "image": "https://ahdem.online/paylasim.png",
       "organizer": { "@id": "https://ahdem.online/#topluluk" },
       "location": {
@@ -71,16 +95,11 @@
         }
       }
     },
-    {
-      "@type": "WebSite",
-      "url": "https://ahdem.online/",
-      "name": "Ankara Hukuk Demokrasi Müzakereleri",
-      "inLanguage": "tr-TR",
-      "publisher": { "@id": "https://ahdem.online/#topluluk" }
-    }
-  ]
-}
-</script>
+
+     Basvurular acildiginda "offers" alani da eklenebilir (katilim ucreti,
+     kayit baglantisi) - etkinlik kartini zenginlestirir.
+
+     ##### GIZLEME BITIS ##### -->
 </head>
 <body>
 <header class="nav">

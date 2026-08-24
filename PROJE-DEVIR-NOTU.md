@@ -190,9 +190,22 @@ Depodaki `CNAME` dosyası bu ayarın karşılığıdır, silinirse alan adı ba�
 
 **Bilgi geldiğinde yapılacak:**
 - Duyurular sayfası boş; ilk gerçek duyuru geldiğinde doldurulacak.
-- `index.html` içindeki JSON-LD yapılandırılmış verisinde `offers` (katılım ücreti,
-  kayıt bağlantısı) ve `performer` (konuk konuşmacı) alanları eksik. Başvurular
-  açıldığında eklenirse Google arama sonucunda etkinlik kartı zenginleşir.
+- **Event yapılandırılmış verisi `sponsorluk/index.html`'e taşındı** (24 Ağustos 2026).
+  Sebep: schema.org Event tipinde `startDate` zorunlu; `index.html`'de tarih duyuru
+  öncesi gizlendiği için alan boştu ve Search Console "Missing field startDate" hatası
+  veriyordu. Google'ın kuralı, işaretlenen bilginin sayfa gövdesinde de görünmesini
+  şart koşuyor — tarih, yer ve tema sponsorluk sayfasında açıkça yazdığı için
+  işaretleme orada meşru. `index.html`'de yalnızca `Organization` ve `WebSite` kaldı.
+
+  **Sonucu:** konferans, arama sonuçlarında etkinlik kartıyla ama *sponsorluk sayfası
+  üzerinden* çıkar. Bu bilinçli bir tercihtir.
+
+  **Duyurudan sonra yapılacak:** bloğu `sponsorluk/index.html`'in `<head>` bölümünden
+  al, `index.html`'deki `@graph` listesine `WebSite` nesnesinden önce ekle, `url`
+  alanını `https://ahdem.online/` yap ve sponsorluk sayfasından sil. `index.html`
+  içinde `</script>` altındaki hatırlatma yorumu da o zaman kaldırılır.
+  `offers` (katılım ücreti, kayıt bağlantısı) ve `performer` (konuk konuşmacı)
+  alanları eklenirse kart zenginleşir — **ücret bilgisi teyit edilmeden yazılmaz.**
 - Ekip bölümüne akademik danışman bilgisi eklenebilir.
 
 **Ertelenen kararlar:**
@@ -270,9 +283,9 @@ Yorum işaretlerini sil, üstündeki geçici metni kaldır.
 
 **Yorum içinde olmayan, elle geri alınacaklar:**
 
-- `index.html` içindeki JSON-LD verisinden `"startDate": "2027-03-25"` ve
-  `"endDate": "2027-03-28"` satırları çıkarıldı, `description` alanı değiştirildi.
-  Duyuru sonrası geri eklenmeli — Google etkinlik kartı için gerekli.
+- `index.html` içindeki JSON-LD'den Event nesnesinin tamamı çıkarıldı (bkz. bölüm 7).
+  Duyuru sonrası `</script>` altındaki yorumda duran hazır blok, tarihleri doldurularak
+  `@graph` listesine WebSite nesnesinden önce geri eklenmeli.
 - Alt menüdeki "2027 Teması" etiketi yedi sayfada "AHDEM 2027" olarak değiştirildi.
 - `paylasim.png` tarihsiz sürümle değiştirildi. Tarihli orijinali
   `paylasim-tarihli.png` adıyla depoda duruyor; duyuru sonrası bu dosyayı
@@ -292,7 +305,8 @@ hiç kalmayacaktı. "Konferansın Yapısı" (`id="yapi"`) bölümünün sonuna t
 Tema bölümü geri açılırsa notun iki yerde tekrar etmemesine dikkat et.
 
 **Gizleme YAPILMAYAN yer:** `sponsorluk/index.html`. Kurumlara gönderilen sayfa olduğu
-için tarih ve tema orada bilerek bırakıldı.
+için tarih ve tema orada bilerek bırakıldı. Event yapılandırılmış verisi de bu yüzden
+bu sayfada duruyor (bkz. bölüm 7).
 
 **24 Ağustos 2026 düzeltmeleri:**
 - Kök dizindeki `sss.html`, `iletisim.html`, `sponsorluk.html` eski tam kopyalardı;
@@ -303,6 +317,8 @@ için tarih ve tema orada bilerek bırakıldı.
   sürüm silindi, tek doğru blok kaldı. Geri açma adımları bloğun başına yazıldı.
 - `sunum-kaynak.html` `noindex` ile işaretlendi ve `robots.txt`'te engellendi.
 - 0 baytlık `ahdem-tanitim.mp4` artığı depodan kaldırıldı.
+- Event yapılandırılmış verisi `index.html`'den `sponsorluk/index.html`'e taşındı
+  (Search Console `startDate` hatası için — bkz. bölüm 7).
 
 ---
 
