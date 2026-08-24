@@ -1,7 +1,7 @@
 # AHDEM — Proje Devir Notu
 
 Bu dosya, projeyi yeni bir sohbete veya yeni bir kişiye devretmek için hazırlanmıştır.
-Son güncelleme: **23 Ağustos 2026**
+Son güncelleme: **24 Ağustos 2026**
 
 ---
 
@@ -44,9 +44,11 @@ Site yayında ve çalışıyor.
 ├── gizlilik/index.html     KVKK aydınlatma metni
 ├── sponsorluk/index.html   Sponsorluk dosyası (kurumlara gönderilen sayfa)
 │
-├── sss.html                ┐
-├── iletisim.html           ├ Eski adreslerden yeni klasörlere yönlendirme.
-├── sponsorluk.html         ┘ Silme, eski linkler bunlara güveniyor.
+├── sss.html                ┐ Eski adreslerden yeni klasörlere YÖNLENDİRME.
+├── iletisim.html           ├ İçerik tutmazlar; canonical + meta refresh + JS ile
+├── sponsorluk.html         ┘ /sss/, /iletisim/, /sponsorluk/ adreslerine atarlar.
+│                             Silme, eski linkler bunlara güveniyor. İçerik
+│                             değişikliği DAİMA klasör sürümünde yapılır.
 │
 ├── foto/1..12.jpg          Sitede kullanılan, web için küçültülmüş fotoğraflar
 ├── fotoğraflar/*.jpeg      Orijinal fotoğraflar (sitede kullanılmıyor, arşiv)
@@ -61,8 +63,8 @@ Site yayında ve çalışıyor.
 ├── sitemap.xml, robots.txt
 ├── CNAME                   İçinde "ahdem.online" yazar. SİLME.
 │
-├── ahdem-tanitim.mp4       Tanıtım videosu (99 MB)
 ├── kapak.jpg               Videonun kapak karesi
+│                             (Video depoda DEĞİL, GitHub Releases'te barınıyor.)
 │
 ├── sunum-kaynak.html       PDF sunumun kaynağı — DONDURULDU, bkz. bölüm 8
 └── Ankara_..._Sponsorluk_Dosyasi.pdf   19 sayfalık sunum
@@ -261,6 +263,7 @@ Yorum işaretlerini sil, üstündeki geçici metni kaldır.
 | Dosya | Kaç yerde | Ne gizlendi |
 |---|---|---|
 | `index.html` | 3 | Hero şeridi, "2027 Teması" bölümünün tamamı (sayfadan çıkarıldı), zaman çizelgesi 2027 satırı |
+| `sunum-kaynak.html` | — | Gizleme yok; `noindex` + `robots.txt` ile aramaya kapatıldı |
 | `konferanslar/index.html` | 3 | 2027 kartının dönem etiketi, tarih cümlesi, özet |
 | `duyurular/index.html` | 2 | Etkinlik tarihi rozeti, etkinlik açıklaması |
 | `sss/index.html` | 1 | "Konferans nerede ve ne zaman?" cevabı |
@@ -290,6 +293,16 @@ Tema bölümü geri açılırsa notun iki yerde tekrar etmemesine dikkat et.
 
 **Gizleme YAPILMAYAN yer:** `sponsorluk/index.html`. Kurumlara gönderilen sayfa olduğu
 için tarih ve tema orada bilerek bırakıldı.
+
+**24 Ağustos 2026 düzeltmeleri:**
+- Kök dizindeki `sss.html`, `iletisim.html`, `sponsorluk.html` eski tam kopyalardı;
+  içlerinde gizlenmesi gereken tarih ve tema açıktaydı. Gerçek yönlendirmeye çevrildi.
+- `iletisim/index.html` menüsünde kalan "2027 Teması" bağlantısı kaldırıldı;
+  yedi sayfanın menüsü artık birebir aynı (15 bağlantı).
+- `index.html` içinde iki ayrı `id="tema"` bloğu yorumda duruyordu; ara metin olan
+  sürüm silindi, tek doğru blok kaldı. Geri açma adımları bloğun başına yazıldı.
+- `sunum-kaynak.html` `noindex` ile işaretlendi ve `robots.txt`'te engellendi.
+- 0 baytlık `ahdem-tanitim.mp4` artığı depodan kaldırıldı.
 
 ---
 

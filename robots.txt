@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /sunum-kaynak.html
 
 Sitemap: https://ahdem.online/sitemap.xml
