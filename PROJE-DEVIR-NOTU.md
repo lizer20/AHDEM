@@ -18,7 +18,7 @@ Site yayında ve çalışıyor.
 | **Yayın yöntemi** | GitHub Pages (`main` dalı, kök dizin) |
 | **Alan adı sağlayıcısı** | Name.com |
 | **Analiz** | Google Search Console — alan adı mülkü, topluluk hesabında |
-| **Sosyal medya** | @demokrasimuzakereleri (Instagram) |
+| **Sosyal medya** | Instagram: @demokrasimuzakereleri · LinkedIn: linkedin.com/company/ahdem |
 | **E-posta** | auhfdemokrasimuzakereleri@gmail.com |
 
 **Topluluk:** Ankara Üniversitesi Hukuk Fakültesi bünyesinde 2022'de kuruldu.
