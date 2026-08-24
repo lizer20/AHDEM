@@ -260,7 +260,7 @@ Yorum işaretlerini sil, üstündeki geçici metni kaldır.
 
 | Dosya | Kaç yerde | Ne gizlendi |
 |---|---|---|
-| `index.html` | 3 | Hero şeridi, "2027 Teması" bölümünün tamamı, zaman çizelgesi 2027 satırı |
+| `index.html` | 3 | Hero şeridi, "2027 Teması" bölümünün tamamı (sayfadan çıkarıldı), zaman çizelgesi 2027 satırı |
 | `konferanslar/index.html` | 3 | 2027 kartının dönem etiketi, tarih cümlesi, özet |
 | `duyurular/index.html` | 2 | Etkinlik tarihi rozeti, etkinlik açıklaması |
 | `sss/index.html` | 1 | "Konferans nerede ve ne zaman?" cevabı |
@@ -274,6 +274,19 @@ Yorum işaretlerini sil, üstündeki geçici metni kaldır.
 - `paylasim.png` tarihsiz sürümle değiştirildi. Tarihli orijinali
   `paylasim-tarihli.png` adıyla depoda duruyor; duyuru sonrası bu dosyayı
   `paylasim.png` olarak yeniden adlandırmak yeterli.
+
+
+**"2027 Teması" bölümü sayfadan tamamen çıkarıldı.** Bölüm `index.html` içinde yorum
+olarak duruyor (`id="tema"`), alt menüdeki bağlantısı yedi sayfadan kaldırıldı,
+`konferanslar/index.html` içindeki `../#tema` butonu da silindi. Geri açarken:
+
+1. `index.html`'de bölümün yorumunu kaldır,
+2. yedi sayfanın alt menüsüne `<a href="...#tema">2027 Teması</a>` satırını geri ekle,
+3. konferanslar sayfasındaki butonu istersen geri koy.
+
+**Tarafsızlık ilkesi notu taşındı.** O metin bu bölümün içindeydi; bölüm çıkınca sitede
+hiç kalmayacaktı. "Konferansın Yapısı" (`id="yapi"`) bölümünün sonuna taşındı.
+Tema bölümü geri açılırsa notun iki yerde tekrar etmemesine dikkat et.
 
 **Gizleme YAPILMAYAN yer:** `sponsorluk/index.html`. Kurumlara gönderilen sayfa olduğu
 için tarih ve tema orada bilerek bırakıldı.
