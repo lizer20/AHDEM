@@ -1,268 +1,296 @@
-# AHDEM 2027 Sponsorluk Dosyası — Proje Devir Notu
+# AHDEM — Proje Devir Notu
 
-Bu dosya, projeyi yeni bir sohbete taşımak için hazırlanmıştır. Yeni sohbette bu metni
-paylaşman yeterli: neyin istendiği, ne yapıldığı, nasıl yapıldığı ve sırada ne olduğu burada.
+Bu dosya, projeyi yeni bir sohbete veya yeni bir kişiye devretmek için hazırlanmıştır.
+Son güncelleme: **23 Ağustos 2026**
 
 ---
 
-## 1. Proje nedir
+## 1. Proje nedir, ne durumda
 
-**Ankara Hukuk Demokrasi Müzakereleri (AHDEM) Konferansı 2027** için hazırlanan sponsorluk
-ve iş birliği dosyası. Amaç, firmalara "Ana Sponsor" olmayı teklif etmek.
+**Ankara Hukuk Demokrasi Müzakereleri (AHDEM) Topluluğu**nun resmî internet sitesi.
+Site yayında ve çalışıyor.
 
 | | |
 |---|---|
-| **Etkinlik** | AHDEM Konferansı 2027 |
-| **Tarih** | 25–28 Mart 2027 |
-| **Yer** | Ankara Üniversitesi Cebeci Yerleşkesi |
-| **Ölçek** | 4 gün · 120+ üniversite öğrencisi · 40 kişilik ekip |
-| **Tema** | 1950–1960: Bir Dönemi Anlamak |
-| **Kaçıncı** | 5. konferans (2023'ten bu yana 4 konferans yapıldı) |
+| **Site adresi** | https://ahdem.online |
+| **Yedek adres** | https://lizer20.github.io/AHDEM/ |
+| **Depo (kaynak kod)** | https://github.com/lizer20/AHDEM |
+| **Yayın yöntemi** | GitHub Pages (`main` dalı, kök dizin) |
+| **Alan adı sağlayıcısı** | Name.com |
+| **Analiz** | Google Search Console — alan adı mülkü, topluluk hesabında |
+| **Sosyal medya** | @demokrasimuzakereleri (Instagram) |
+| **E-posta** | auhfdemokrasimuzakereleri@gmail.com |
 
-**İletişim:** Rüveyda Cam — Demokrasi Müzakereleri Topluluğu Başkanı — 0545 252 75 37 ·
-Pelin Yüksel — Başkan Yardımcısı — 0537 828 84 48 ·
-auhfdemokrasimuzakereleri@gmail.com · @demokrasimuzakereleri
+**Topluluk:** Ankara Üniversitesi Hukuk Fakültesi bünyesinde 2022'de kuruldu.
+2023'ten bu yana dört konferans düzenledi. Beşincisi **AHDEM 2027**,
+25–28 Mart 2027, Ankara Üniversitesi Cebeci Yerleşkesi, tema: *1950–1960, Bir Dönemi Anlamak.*
 
----
-
-## 2. Klasördeki dosyalar
-
-Konum: `C:\Users\emreb\Desktop\AHDEM`
-
-| Dosya | Ne işe yarar |
-|---|---|
-| `sunum-kaynak.html` | **Sunumun kaynağı.** 1280×720 sabit slaytlar. PDF bundan üretilir. |
-| `Ankara_Hukuk_Demokrasi_Muzakereleri_Konferansi_2027_Sponsorluk_Dosyasi.pdf` | 19 sayfalık sunum. Kuruma gönderilen dosya. |
-| `index.html` | **Web sayfası.** Tek dosya, mobil uyumlu, kaydırmalı. Sponsor adaylarına link olarak gönderilir. |
-| `logo-hazirla.py` | Logo arka planı temizleme betiği (henüz çalıştırılmadı, aşağıya bak). |
-| `PROJE-DEVIR-NOTU.md` | Bu dosya. |
-
-**Önemli:** `sunum-kaynak.html` ve `index.html` **iki ayrı hattır**, ortak dosya paylaşmazlar.
-Bir değişiklik ikisine de isteniyorsa iki dosyada ayrı ayrı yapılmalı.
+**İletişim:** Rüveyda Cam (Başkan) 0545 252 75 37 · Pelin Yüksel (Başkan Vekili) 0537 828 84 48
 
 ---
 
-## 3. PDF nasıl üretiliyor
+## 2. Dosya yapısı
 
-`sunum-kaynak.html` Chromium ile 13.333×7.5 inç sayfa boyutunda PDF'e basılır:
-
-```js
-// render.js
-const { chromium } = require('playwright');
-(async () => {
-  const b = await chromium.launch();
-  const p = await b.newPage();
-  await p.goto('file:///TAM/YOL/sunum-kaynak.html', {waitUntil:'networkidle'});
-  await p.waitForTimeout(2500);
-  await p.pdf({
-    path: 'Ankara_Hukuk_Demokrasi_Muzakereleri_Konferansi_2027_Sponsorluk_Dosyasi.pdf',
-    width: '13.333in', height: '7.5in',
-    printBackground: true,
-    margin: {top:0, bottom:0, left:0, right:0}
-  });
-  await b.close();
-})();
+```
+/
+├── index.html              Ana sayfa (topluluk + konferans anlatımı)
+├── stil.css                TÜM SAYFALARIN ORTAK STİLİ — en kritik dosya
+├── 404.html                Hatalı adres sayfası (kökte durmalı)
+│
+├── konferanslar/index.html 2023–2027 konferans arşivi
+├── duyurular/index.html    Duyurular + etkinlik takvimi
+├── sss/index.html          Sık sorulan sorular
+├── iletisim/index.html     İletişim
+├── gizlilik/index.html     KVKK aydınlatma metni
+├── sponsorluk/index.html   Sponsorluk dosyası (kurumlara gönderilen sayfa)
+│
+├── sss.html                ┐
+├── iletisim.html           ├ Eski adreslerden yeni klasörlere yönlendirme.
+├── sponsorluk.html         ┘ Silme, eski linkler bunlara güveniyor.
+│
+├── foto/1..12.jpg          Sitede kullanılan, web için küçültülmüş fotoğraflar
+├── fotoğraflar/*.jpeg      Orijinal fotoğraflar (sitede kullanılmıyor, arşiv)
+│
+├── logo-topluluk.png       Yuvarlak altın mühür — şeffaf zeminli
+├── logo-konferans-beyaz.png    Beyaz çizim, şeffaf — KOYU zeminlerde
+├── logo-konferans-lacivert.png Lacivert çizim, şeffaf — AÇIK zeminlerde
+├── logo-konferans.png      Eski lacivert kutulu sürüm — kullanılmıyor
+│
+├── favicon.ico, favicon-16/32/48/192.png, apple-touch-icon.png
+├── paylasim.png            1200x630 sosyal medya paylaşım kartı
+├── sitemap.xml, robots.txt
+├── CNAME                   İçinde "ahdem.online" yazar. SİLME.
+│
+├── ahdem-tanitim.mp4       Tanıtım videosu (99 MB)
+├── kapak.jpg               Videonun kapak karesi
+│
+├── sunum-kaynak.html       PDF sunumun kaynağı — DONDURULDU, bkz. bölüm 8
+└── Ankara_..._Sponsorluk_Dosyasi.pdf   19 sayfalık sunum
 ```
 
-CSS'te `@page { size: 13.333in 7.5in; margin: 0; }` ve her slayt
-`.slide { width:1280px; height:720px; page-break-after:always; }`.
-
-**Kural:** HTML'de bir slaytı değiştirdikten sonra PDF'i yeniden basmak gerekir; PDF elle
-düzenlenmez.
-
-**Sayfa numaraları** her slaytta `<div class="num">NN</div>` olarak gömülü. Slayt eklenip
-silindiğinde hepsini yeniden numaralamak gerekir (kapak hariç, 02'den başlar):
-
-```python
-import re
-c=[1]
-def nr(m):
-    c[0]+=1; return '<div class="num">%02d</div>'%c[0]
-s=re.sub(r'<div class="num">\d+</div>', nr, s)
-```
+> **UYARI — yedekte olması gereken dosya:** `ahdem-tanitim.mov` (407 MB), videonun
+> orijinal kalitedeki kaynağı. Boyutu nedeniyle depoda yok. Yalnızca harici yedekte
+> bulunur; kaybolursa geriye sadece sıkıştırılmış mp4 kalır.
 
 ---
 
-## 4. Tasarım sistemi (iki dosyada ortak)
+## 3. Çalışma kuralları
+
+1. **`stil.css` ortaktır.** Yedi sayfa da onu kullanır. Bir rengi veya boşluğu
+   değiştirdiğinde tüm site değişir — istenen budur, kopyalama yapma.
+2. **Menü ve footer yedi sayfada aynıdır.** Menüye bir bağlantı eklersen
+   yedi dosyada da elle eklemen gerekir. Atlanan sayfa tutarsızlık yaratır.
+3. **Alt klasördeki sayfalar `../` kullanır.** `sss/index.html` içinde CSS
+   `../stil.css`, logo `../logo-topluluk.png` şeklindedir. Kök dizindeki
+   `index.html` ve `404.html` böyle değildir (404 mutlak yol kullanır: `/stil.css`).
+4. **Ana sayfaya bağlantı `./` veya `../` ile verilir**, `index.html` yazılmaz.
+   Amaç adres çubuğunda `ahdem.online/index.html` görünmemesi.
+5. **Yayına almak:** dosyaları depoya yükle. GitHub Pages 1–2 dakika içinde
+   yayınlar. CSS değiştiyse tarayıcıda sert yenileme gerekir (Ctrl+F5).
+
+---
+
+## 4. Sık yapılan işler
+
+### Yeni duyuru veya etkinlik eklemek
+`duyurular/index.html` dosyasını aç. İçinde hazır kalıplar yorum satırı olarak
+duruyor (`<!-- YENİ ETKİNLİK EKLEMEK İÇİN ... -->`). Kalıbı kopyala, yorum
+işaretlerinden çıkar, doldur. Duyurular bölümündeki `<div class="bos">` bloğunu
+ilk gerçek duyuruyu eklerken sil.
+
+### Yeni ekip üyesi eklemek
+`index.html` içinde `id="ekip"` bölümünü bul. Orada da hazır kalıp var:
+
+```html
+<div class="member">
+  <div class="ph-av">AS</div>
+  <b>Ad Soyad</b>
+  <div class="role">Görevi</div>
+</div>
+```
+
+`ph-av` baş harflerdir. Kart sayısının 3'ün katı olması masaüstünde daha düzgün durur.
+
+### Yeni fotoğraf eklemek
+Fotoğrafı en fazla 1400 piksele küçült, JPEG kalite ~82 ile kaydet, `foto/13.jpg`
+gibi sıradaki numarayla klasöre koy. Sonra `index.html` içindeki `<div class="gal">`
+listesine ekle. **Dikkat:** galeri düzeni 12 fotoğrafa göre kurulu —
+2 geniş (`class="w"`) + 6 orta + 4 küçük (`class="q"`). Sayı değişirse bu dağılımı
+yeniden hesaplamak gerekir, yoksa telefonda veya masaüstünde boş hücre kalır.
+
+### Yeni sayfa eklemek
+Mevcut bir klasörü (`sss/` gibi) kopyala, adını değiştir, içeriğini değiştir.
+Sonra yedi sayfanın menüsüne ve footer'ına yeni bağlantıyı ekle.
+
+### Videoyu değiştirmek
+Video depoda **değil**, GitHub Releases'te barındırılıyor (dosya boyutu sınırını
+aşmamak için). Yeni videoyu Releases'e yükle, `index.html` içindeki
+`<source src="https://github.com/lizer20/AHDEM/releases/download/v1/ahdem-tanitim.mp4">`
+satırını yeni bağlantıyla değiştir.
+
+---
+
+## 5. Tasarım sistemi
 
 ```css
 --ink:#12203A       /* lacivert — koyu zeminler, başlıklar */
 --ink-soft:#2E4260  /* gövde metni */
 --paper:#FAF7F1     /* krem zemin */
---paper-2:#F1ECE3   /* ikinci krem (alternatif bantlar, notlar) */
---gold:#B8862F      /* altın vurgu */
+--paper-2:#F1ECE3   /* ikinci krem — menü, alternatif bantlar */
+--gold:#B8862F      /* altın vurgu, butonlar */
 --gold-soft:#E8D5AC /* koyu zeminde altın */
 --line:#D9D1C4      /* çerçeveler */
 --muted:#6B7A90     /* ikincil metin */
+--maxw:1160px       /* içerik genişliği */
 ```
 
-Yazı tipleri: **Poppins** (gövde/başlık) + **Lora** (serif vurgular, kurum adları).
-Sitede Google Fonts ile yükleniyor; sunumda sistem fontu olarak varsayılıyor.
+Yazı tipleri: **Poppins** (gövde) + **Lora** (serif vurgular). Google Fonts'tan yükleniyor.
 
-Tekrar eden bileşenler: `.eyebrow` (küçük altın üst etiket), `.goldbar` (56px altın çizgi),
-`.card`, `.note` (soldan altın çizgili gri kutu), `.step` (numaralı akış kartı),
-`.tier` (sponsorluk paketi kartı).
+Tekrar eden bileşenler: `.band` (bölüm), `.band.alt` (krem zemin), `.band.dark`
+(lacivert zemin), `.eyebrow` (küçük altın üst etiket), `.goldbar` (altın çizgi),
+`.card`, `.note`, `.btn`, `.btn.ghost`, `.member`, `.kayit`, `.yil`, `.faq`.
+
+Kırılma noktaları: 980px, 900px, 820px, **720px** (menü hamburgere döner), 640px, 560px.
 
 ---
 
-## 5. Sunumun içeriği (19 sayfa)
+## 6. Alan adı ve DNS
 
-| # | Sayfa | Not |
+Name.com → MY DOMAINS → ahdem.online → Manage DNS Records
+
+| Tür | Host | Değer |
 |---|---|---|
-| 01 | Kapak | Başlık, tarih/yer/ölçek, altta geçmiş sponsorlar bandı |
-| 02 | **Yönetici Özeti** | 5 satırlık teklif özeti + "Neden AHDEM" koyu kutusu |
-| 03 | Bir Bakışta | 4 / 120+ / 40 / 5. / 5 istatistikleri |
-| 04 | Biz Kimiz | AHDEM tanıtımı + 6 beceri |
-| 05 | **Geçmiş Sponsorlarımız** | 5 sponsor kartı + ev sahibi + boş "Ana Sponsor" alanı |
-| 06 | Dört Konferanslık Birikim | 2023–2027 zaman çizelgesi + Yüksel Yalova kutusu |
-| 07 | **Geçmiş Konferanslardan** | ⚠️ Fotoğraf yerleşimi boş — aşağıya bak |
-| 08 | 2027 Teması | 1950–1960 + tarafsızlık ilkesi |
-| 09 | **Konferansın Yapısı** | Yasama/Yürütme/Yargı + kriz komiteleri |
-| 10 | Konferans Modeli | 5 adım + akademik ekip / organizasyon ekibi kartları |
-| 11 | Katılımcı Profili | Fakülte dağılımı + temas süresi / dijital yansıma |
-| 12 | Ana fikir | Koyu geçiş sayfası |
-| 13 | Neden Bu İş Birliği | Sponsora 4 fayda |
-| 14 | Sponsorluk Modelleri | Ana / Destek / İkram |
-| 15 | Karşılaştırmalı Hak Tablosu | 14 satırlık hak matrisi |
-| 16 | Marka Temas Noktaları | 5 an + 4 alan |
-| 17 | **Logonuz Nerede Görünür** | 6 mockup: afiş, sahne fonu, roll-up, çanta, yaka kartı, sertifika |
-| 18 | Şeffaf Bütçe | "Desteğiniz nerelerde harcanacak?" — ikonlu kalem listesi, tutar yok |
-| 19 | İletişim | Kapanış + iletişim bilgileri |
+| A | (boş) | 185.199.108.153 |
+| A | (boş) | 185.199.109.153 |
+| A | (boş) | 185.199.110.153 |
+| A | (boş) | 185.199.111.153 |
+| AAAA | (boş) | 2606:50c0:8000::153 |
+| AAAA | (boş) | 2606:50c0:8001::153 |
+| AAAA | (boş) | 2606:50c0:8002::153 |
+| AAAA | (boş) | 2606:50c0:8003::153 |
+| CNAME | www | lizer20.github.io |
+| TXT | (boş) | google-site-verification=kW4VFvzFRQMP_gtjVc49-CliWNTqSGrqiA1ermIZcvo |
 
-Web sayfası aynı içeriği taşır, ek olarak en sonda **"Geçen sene AHDEM nasıldı?"** video
-bölümü vardır (video henüz eklenmedi).
+A ve AAAA kayıtları GitHub Pages'in sunucularıdır, değişmez. TXT kaydı Google
+Search Console doğrulaması içindir, **silinirse mülk doğrulaması düşer**.
+
+GitHub tarafında: Settings → Pages → Custom domain: `ahdem.online`, Enforce HTTPS açık.
+Depodaki `CNAME` dosyası bu ayarın karşılığıdır, silinirse alan adı bağlantısı kopar.
 
 ---
 
-## 6. Yapılan değişikliklerin tam listesi
+## 7. Açık işler
 
-Sırasıyla, istenen → yapılan:
+**Ekip onayı bekleyen (içerik uydurulmadı, doğrulanması gerekiyor):**
+- `sss/index.html` — yedi sorunun cevapları mevcut malzemeden türetildi, okunmalı.
+  Katılım ücreti ve başvuru takvimi bilinmediği için bilerek boş bırakıldı.
+- `gizlilik/index.html` — KVKK metni taslaktır, sayfanın başında bu uyarı duruyor.
 
-1. **Pelin'in telefonu** → 0537 828 84 48 eklendi (iletişim sayfası + e-posta imzası).
-2. **İsim düzeltmesi** → "Pelin Yükselin" → **"Pelin Yüksel"**.
-3. **"Devlet desteği" dili kaldırıldı** → Gençlik ve Spor Bakanlığı ile Mamak Belediyesi artık
-   "kamu kurumlarının desteğiyle" değil, **"Geçmiş Sponsorlarımız"** başlığı altında geçiyor.
-   İstatistik "2 kamu kurumundan resmî destek" → "geçmiş konferanslarda sponsor kurum".
-   AÜHF ayrı tutuldu: **"Ev Sahibi Kurum — sponsor değil"**.
-4. **E-posta taslağı sayfası silindi.**
-5. **Dosya ikiye ayrıldı** → `sunum-kaynak.html` (PDF) ve `index.html` (web sitesi).
-   Web sayfası sıfırdan yazıldı: yapışkan menü, mobil menü, hero + CTA butonları, yatay
-   kaydırılabilir hak tablosu, tıklanabilir telefonlar, konusu doldurulmuş `mailto:` bağlantısı.
-6. **"Komite" → "Komisyon"** (meclis komisyonu mantığı) — her iki dosyada.
-7. **Yıllar düzeltildi** → 2023'ten bu yana; 2023:1969–73, 2024:1923–27, 2025:1978–82,
-   2026:1993–97 (ekonomik kriz ve hükümet kurulamama krizi), 2027:1950–60. "5. kez düzenlenen".
-8. **Dosyayı sponsor gözünde güçlendirme** → 3 yeni sayfa: Yönetici Özeti, Geçmiş
-   Konferanslardan (fotoğraf ızgarası), Logonuz Nerede Görünür (6 mockup).
-9. **Geçmiş sponsorlar 5'e çıkarıldı** → Gençlik ve Spor Bakanlığı, Mamak Belediyesi,
-   Gün + Partners Avukatlık Bürosu, Maya Genç Düşünce Platformu, Ankara Hukuk Mezunu Avukatlar.
-   Sayfa düzeni 5 dar kart + 2 geniş kart olarak yeniden kuruldu.
-10. **Unvanlar** → "AHDEM Başkanı" yerine **"Demokrasi Müzakereleri Topluluğu Başkanı"**
-    (ve Başkan Yardımcısı).
-11. **"Altı ayrı komisyon" sayfası kaldırıldı** → yerine **"Yasama, yürütme ve yargı aynı
-    masada"**: üç erk kartı, erklerin birbirini etkilemesi, **kriz komiteleri**, kaynak dosyası.
-12. **Ekip vurguları eklendi** → akademik ekibin kuralları/işleyişi kurup yönettiği;
-    organizasyon ekibinin konferanstan 6 ay önce başladığı ve bugün iletişime geçen ekibin
-    o hazırlığın içinde olduğu.
-13. **Bütçe sayfası** → başlık **"Desteğiniz nerelerde harcanacak?"**; boş `____ TL` sütunu ve
-    TOPLAM satırı silindi, kalemler ikonlu kutucuklara dönüştü.
-14. **"İş birliğinin beş adımı" (süreç/takvim) sayfası silindi** — sunumdan ve siteden.
-15. **Yüksel Yalova eklendi** → zaman çizelgesi sayfasına vurgulu kutu olarak.
-    ⚠️ **Unvan düzeltmesi yapıldı:** "Meclis eski başkanı" değil — TBMM'nin başkanlığını
-    yapmamıştır. Doğrusu: **ANAP Aydın eski Milletvekili, TBMM eski Başkanvekili ve
-    Devlet eski Bakanı Dr. Yüksel Yalova.**
-16. **Logo yuvaları açıldı** — bkz. aşağıdaki bölüm.
-17. Yol boyunca sayfa altındaki çizgiye taşan kart/metin blokları düzeltildi (s.3, s.5, s.9, s.18).
+**Bilgi geldiğinde yapılacak:**
+- Duyurular sayfası boş; ilk gerçek duyuru geldiğinde doldurulacak.
+- `index.html` içindeki JSON-LD yapılandırılmış verisinde `offers` (katılım ücreti,
+  kayıt bağlantısı) ve `performer` (konuk konuşmacı) alanları eksik. Başvurular
+  açıldığında eklenirse Google arama sonucunda etkinlik kartı zenginleşir.
+- Ekip bölümüne akademik danışman bilgisi eklenebilir.
+
+**Ertelenen kararlar:**
+- **Kurumsal e-posta.** Gmail yerine info@ahdem.online. Üç yol vardı:
+  Cloudflare Email Routing + Gmail (ücretsiz, ana sunucuları Cloudflare'a taşımak
+  gerekir), Zoho Mail Free (bölgeye göre görünmeyebiliyor), ya da yıllık ~15 dolarlık
+  ücretli kutu. Şimdilik Gmail'de kalındı.
+- Kişisel hesaptaki eski Search Console mülkü henüz kaldırılmadı. Kaldırılırsa
+  `index.html` içindeki `google-site-verification` meta etiketi de silinebilir
+  (alan adı doğrulaması DNS üzerinden yürüdüğü için ona gerek kalmıyor).
+- Sponsorluk sayfasında bütçe rakamı/bandı yok. Firmaların teklifi değerlendirmesi
+  için en azından bir aralık vermek dönüş oranını artırır.
+
+**Google durumu:** Site 23 Ağustos 2026'da Search Console'a eklendi, sitemap
+başarıyla okundu (7 sayfa keşfedildi). Dizine ekleme birkaç gün–birkaç hafta sürer.
+Süreci hızlandıran şey bağlantıdır: Instagram biyografisi, fakülte/üniversite
+sayfalarından verilecek linkler.
 
 ---
 
-## 7. AÇIK İŞLER (yeni sohbette yapılacaklar)
+## 8. Sunum / PDF (dondurulmuş)
 
-### 7.1 ⚠️ Logolar — dosyalar gerekiyor
+`sunum-kaynak.html` → 19 sayfalık sponsorluk PDF'inin kaynağıdır. **Site ve sunum
+tamamen ayrıldı, sunum çalışması durduruldu.** Sponsorluk içeriği artık
+`sponsorluk/index.html` sayfasında yaşıyor.
 
-İki logo var:
-- **Konferans logosu:** lacivert kare, beyaz defne çelengi içinde bina, altında "AHDEM".
-- **Topluluk mührü:** yuvarlak, altın çerçeveli; "ANKARA HUKUK DEMOKRASİ MÜZAKERELERİ
-  TOPLULUĞU" yazılı, ortada terazi + sütun + açık kitap.
+PDF yeniden basılması gerekirse Chromium ile 13.333×7.5 inç sayfa boyutunda basılır:
 
-Kod tarafı **hazır**. Her iki dosyaya da şu isimlerle `<img>` yuvaları kondu:
-
-| Dosya adı | Nerede görünür |
-|---|---|
-| `logo-konferans.png` | Sunum kapağı (sol üst) · Site üst menüsü · Site hero |
-| `logo-topluluk.png` | Sunum "Biz Kimiz" (sağ üst) · Sunum kapanış · Site "Biz Kimiz" · Site iletişim |
-
-Yuvalar `onerror="this.style.display='none'"` ile korumalı: **dosya yoksa hiçbir şey
-görünmez, kırık resim ikonu çıkmaz.** Yani şu anki PDF ve site logosuz ama bozuk değil.
-
-**Yapılacak:** Bu iki logoyu (jpg/png/webp fark etmez) `AHDEM` klasörüne koy. Sonra:
-
-- Konferans logosu koyu lacivert zeminlerde kullanılıyor ve kendi arka planı da lacivert —
-  çoğu yerde arka plan silmeye gerek yok. Açık zeminde kullanılacaksa temizlenmeli.
-- Topluluk mührünün arka planı siyah, **mutlaka temizlenmeli**.
-- Klasörde hazır bekleyen `logo-hazirla.py` betiği bu işi yapar. Kaynakları
-  `kaynak-konferans.*` ve `kaynak-topluluk.*` adıyla koyup çalıştırmak yeterli
-  (`pip install pillow numpy` gerekir). Ya da yeni sohbette dosyaları verip
-  "arka planı temizle ve göm" demek yeterli — Claude aynı işi yapar ve PDF'i yeniden basar.
-- Ek olarak s.17'deki mockup'larda "AHDEM" yazan küçük altın kutucuklar gerçek logoyla
-  değiştirilebilir.
-
-### 7.2 ⚠️ Fotoğraflar (s.07)
-
-"Geçmiş Konferanslardan" sayfasında 5 boş fotoğraf alanı var: genel kurul/açılış (büyük,
-yatay), komisyon çalışması, katılımcı sunumu, fuaye, kapanış ve sertifika töreni.
-**Bu sayfa boş haliyle sponsora gönderilmemeli** — ya fotoğraflar eklenmeli ya da sayfa
-çıkarılmalı. Aynı ızgara sitede de var.
-
-### 7.3 ⚠️ Bütçe rakamları
-
-Bütçe sayfasında artık tutar yok (istenen buydu), yerine "kalem bazındaki güncel tutarlar
-görüşme sürecinde ayrıntılı bir bütçe tablosu olarak paylaşılır" notu var. Yine de firmaların
-teklifi değerlendirebilmesi için en azından bir **bant** vermek dönüşü ciddi biçimde artırır
-(ör. "Ana Sponsorluk: X–Y TL"). Karar sizde.
-
-### 7.4 Tanıtım videosu (sadece site)
-
-Sitenin en sonunda **"Geçen sene AHDEM nasıldı?"** bölümü hazır, 9:16 dikey çerçeve bekliyor.
-İki seçenek — HTML'de o noktada yorum satırı olarak da yazılı:
-
-```html
-<!-- mp4 için -->
-<video controls playsinline poster="kapak.jpg">
-  <source src="ahdem-tanitim.mp4" type="video/mp4">
-</video>
-
-<!-- Instagram reel için -->
-<iframe src="https://www.instagram.com/reel/KOD/embed" allowfullscreen></iframe>
+```js
+const { chromium } = require('playwright');
+(async () => {
+  const b = await chromium.launch();
+  const p = await b.newPage();
+  await p.goto('file:///TAM/YOL/sunum-kaynak.html', {waitUntil:'load'});
+  await p.waitForTimeout(2500);
+  await p.pdf({ path: 'cikti.pdf', width: '13.333in', height: '7.5in',
+                printBackground: true, margin: {top:0,bottom:0,left:0,right:0} });
+  await b.close();
+})();
 ```
 
-mp4 daha hızlı açılır ve Instagram'a bağımlı olmaz; tercih edilen budur.
+**Bilinen eksik:** PDF'in 19. sayfasında Pelin Yüksel'in unvanı hâlâ
+"Başkan Yardımcısı" yazıyor; doğrusu **"Başkan Vekili"**. Sitede düzeltildi,
+PDF'te düzeltilmedi. Sponsorlara göndermeden önce düzeltilmeli.
 
-### 7.5 Erişim/etki metrikleri (öneri, henüz yapılmadı)
-
-Dosyada "120+ öğrenci" var ama bu bir markaya tek başına bir şey ifade etmiyor. Sponsorlar
-erişim satın alır. Eklenmesi önerilen sayfa: kişi başı marka teması, toplam ürün/ikram teması,
-tahmini sosyal medya erişimi, fotoğraf/video çıktısı, ulaşılan üniversite sayısı. Gerçek
-rakamlar yoksa "hedeflenen" notuyla verilebilir.
-
-### 7.6 Sitenin yayına alınması
-
-`index.html` tek dosya ve dışa bağımlılığı yok (Google Fonts hariç). Herhangi bir statik
-barındırmaya (Netlify, GitHub Pages, Cloudflare Pages) sürükle-bırak ile yüklenebilir.
-Logo/video dosyaları eklenirse onların da aynı klasöre çıkılması gerekir.
+Slayt eklenip silinirse sayfa numaraları (`<div class="num">NN</div>`) yeniden
+üretilmelidir; kapak hariç 02'den başlar.
 
 ---
 
-## 8. Yeni sohbete başlarken
+## 10. GEÇİCİ GİZLEME — duyuru sonrası geri açılacak
 
-Bu metni yapıştırıp şunu demek yeterli:
+23 Ağustos 2026'da, konferans henüz duyurulmadığı için **2027 tarihleri (25–28 Mart 2027)
+ve teması (1950–1960: Bir Dönemi Anlamak)** siteden geçici olarak kaldırıldı.
 
-> AHDEM klasöründeki `sunum-kaynak.html` ve `index.html` üzerinde çalışıyoruz. Sunumda bir
-> değişiklik yaptıktan sonra PDF'i yeniden basman gerekiyor (Playwright + Chromium,
-> 13.333×7.5 inç, printBackground). Devir notundaki açık işlerden şununla başlayalım: …
+Metinler **silinmedi**, HTML yorumu içine alındı. Geri açmak için ilgili dosyada şu işareti ara:
+
+```
+<!-- ##### DUYURU ONCESI GIZLENDI - geri acmak icin bu yorum isaretlerini sil #####
+     ... orijinal metin ...
+     ##### GIZLEME BITIS ##### -->
+```
+
+Yorum işaretlerini sil, üstündeki geçici metni kaldır.
+
+**Nerelerde gizleme var:**
+
+| Dosya | Kaç yerde | Ne gizlendi |
+|---|---|---|
+| `index.html` | 3 | Hero şeridi, "2027 Teması" bölümünün tamamı, zaman çizelgesi 2027 satırı |
+| `konferanslar/index.html` | 3 | 2027 kartının dönem etiketi, tarih cümlesi, özet |
+| `duyurular/index.html` | 2 | Etkinlik tarihi rozeti, etkinlik açıklaması |
+| `sss/index.html` | 1 | "Konferans nerede ve ne zaman?" cevabı |
+
+**Yorum içinde olmayan, elle geri alınacaklar:**
+
+- `index.html` içindeki JSON-LD verisinden `"startDate": "2027-03-25"` ve
+  `"endDate": "2027-03-28"` satırları çıkarıldı, `description` alanı değiştirildi.
+  Duyuru sonrası geri eklenmeli — Google etkinlik kartı için gerekli.
+- Alt menüdeki "2027 Teması" etiketi yedi sayfada "AHDEM 2027" olarak değiştirildi.
+- `paylasim.png` tarihsiz sürümle değiştirildi. Tarihli orijinali
+  `paylasim-tarihli.png` adıyla depoda duruyor; duyuru sonrası bu dosyayı
+  `paylasim.png` olarak yeniden adlandırmak yeterli.
+
+**Gizleme YAPILMAYAN yer:** `sponsorluk/index.html`. Kurumlara gönderilen sayfa olduğu
+için tarih ve tema orada bilerek bırakıldı.
+
+---
+
+## 11. Yeni bir sohbete başlarken
+
+Bu dosyayı paylaşıp şunu demek yeterli:
+
+> AHDEM sitesi üzerinde çalışıyoruz. Kaynak https://github.com/lizer20/AHDEM
+> deposunda, yayın adresi https://ahdem.online. Devir notundaki açık işlerden
+> şununla başlayalım: …
 
 **Dikkat edilecekler:**
-- Sunum ve site ayrı dosyalar — "her ikisinde de" denmedikçe sadece birine dokun.
-- Slayt ekleyip silince sayfa numaralarını yeniden üret.
-- Slaytlarda içerik uzayınca alt çizgiye taşma olur; her değişiklikten sonra ilgili sayfayı
-  görsel olarak kontrol et.
-- Kuruma gidecek bir belge — unvan, kurum adı ve tarih gibi bilgilerde tahmin yürütme, teyit et.
+- `stil.css` ortak; bir sayfa için yapılan değişiklik hepsini etkiler.
+- Menü ve footer yedi sayfada aynı — birini değiştirirken hepsini değiştir.
+- Alt klasördeki sayfalar `../` ile kök dizine bağlanır.
+- Kuruma gidecek bir belge söz konusuysa unvan, kurum adı ve tarihlerde tahmin
+  yürütme; teyit et.
