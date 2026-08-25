@@ -253,14 +253,13 @@
   /* ---- foto arşiv ---- */
   .ph-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:1fr 1fr;
     gap:13px;margin-top:6px;height:268px;}
-  .ph{background:var(--paper-2);border:1px dashed var(--line);border-radius:3px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px;}
-  .ph .ic{width:34px;height:34px;border:2px solid var(--line);border-radius:50%;
-    display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;margin-bottom:9px;}
-  .ph .cap{font-size:11px;color:var(--muted);line-height:1.4;letter-spacing:.04em;}
+  .ph{position:relative;overflow:hidden;border-radius:3px;background:var(--ink);}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ph .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 11px 8px;text-align:left;
+    font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#fff;line-height:1.35;
+    background:linear-gradient(to top,rgba(18,32,58,.88) 0%,rgba(18,32,58,.55) 55%,rgba(18,32,58,0) 100%);}
   .ph.big{grid-row:span 2;}
-  .ph.big .ic{width:40px;height:40px;font-size:16px;}
-  .ph.big .cap{font-size:12.5px;}
+  .ph.big .cap{font-size:11.5px;padding:34px 14px 12px;}
 
   /* ---- logo mockup ---- */
   .mock{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:8px;align-items:end;}
@@ -440,7 +439,7 @@
     <div class="wc open">
       <div class="txt"><div class="role">2027 — Ayrılmış Alan</div>
         <div class="nm">Ana Sponsor</div>
-        <div class="ds">Bu alan, 2027 konferansının ana sponsoru ve stratejik marka iş ortağı için ayrılmıştır.</div></div>
+        <div class="ds">Bu alan, 2027 konferansının ana sponsoru ve stratejik marka iş ortağı için ayrıldı. Bir sonraki baskıda burada sizin markanız olabilir.</div></div>
       <div class="seal">+</div>
     </div>
   </div>
@@ -496,16 +495,20 @@
   genel kurul ve kapanış töreninden oluşan tam bir programla tamamlandı.</p>
 
   <div class="ph-grid">
-    <div class="ph big"><div class="ic">◻</div>
-      <div class="cap">GENEL KURUL / AÇILIŞ OTURUMU<br><span style="opacity:.7">yatay görsel</span></div></div>
-    <div class="ph"><div class="ic">◻</div><div class="cap">KOMİSYON ÇALIŞMASI</div></div>
-    <div class="ph"><div class="ic">◻</div><div class="cap">KATILIMCI SUNUMU</div></div>
-    <div class="ph"><div class="ic">◻</div><div class="cap">FUAYE / MOLA ALANI</div></div>
-    <div class="ph"><div class="ic">◻</div><div class="cap">KAPANIŞ VE SERTİFİKA TÖRENİ</div></div>
+    <div class="ph big"><img src="foto/1.jpg" alt="Genel kurul ve açılış oturumu">
+      <div class="cap">Genel Kurul / Açılış Oturumu</div></div>
+    <div class="ph"><img src="foto/7.jpg" alt="Komisyon çalışması" style="object-position:72% 45%;">
+      <div class="cap">Komisyon Çalışması</div></div>
+    <div class="ph"><img src="foto/10.jpg" alt="Katılımcı sunumu" style="object-position:60% 38%;">
+      <div class="cap">Katılımcı Sunumu</div></div>
+    <div class="ph"><img src="foto/5.jpg" alt="Fuaye ve mola alanı">
+      <div class="cap">Fuaye / Mola Alanı</div></div>
+    <div class="ph"><img src="foto/8.jpg" alt="Kapanış ve sertifika töreni" style="object-position:center 42%;">
+      <div class="cap">Kapanış ve Sertifika Töreni</div></div>
   </div>
 
   <div class="note" style="margin-top:auto;margin-bottom:26px;">
-    Bu alanlar geçmiş konferansların fotoğraflarıyla doldurulacaktır.
+    Görseller 2023–2026 konferans arşivinden alınmıştır.
   </div>
   <div class="rule"></div>
   <div class="foot">Ankara Hukuk Demokrasi Müzakereleri · Konferans 2027</div>
@@ -981,7 +984,7 @@
         <span style="display:block;font-size:14px;color:#fff;margin-top:7px;">0545 252 75 37</span>
 
         <strong style="font-size:19px;font-weight:600;color:#fff;display:block;margin-top:20px;">Pelin Yüksel</strong>
-        <span style="display:block;font-size:12.5px;color:#AFBDD0;margin-top:3px;">Demokrasi Müzakereleri Topluluğu Başkan Yardımcısı</span>
+        <span style="display:block;font-size:12.5px;color:#AFBDD0;margin-top:3px;">Demokrasi Müzakereleri Topluluğu Başkan Vekili</span>
         <span style="display:block;font-size:14px;color:#fff;margin-top:7px;">0537 828 84 48</span>
       </div>
       <div><span style="display:block;font-size:10px;letter-spacing:.22em;color:#9FB0C6;text-transform:uppercase;margin-bottom:9px;">E-posta</span>
