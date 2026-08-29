@@ -423,7 +423,17 @@
     color:var(--ink-soft);border-radius:3px;display:flex;align-items:center;justify-content:center;}
   .caret svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:1.8;
     stroke-linecap:round;stroke-linejoin:round;transition:transform .18s;}
-  .caret:hover{color:var(--gold);}
+  /* Masaustunde alt menu zaten :hover ile aciliyor. Ucgene fareyle tiklamak
+     gorunur hicbir sey yapmiyordu (hover menuyu acik tuttugu icin .acik
+     sinifinin etkisi gorunmez kaliyor) - olu dugme hissi veriyordu.
+     Bu yuzden masaustunde ucgen tiklanmaz, yalnizca gostergedir; menu
+     acikken doner. Klavyede Enter calismaya devam eder, cunku o sirada
+     hover yoktur ve menu gercekten acilip kapanir.
+     720px altinda ucgen yeniden gercek bir dugmedir - asagidaki medya blogu. */
+  .caret{pointer-events:none;}
+  .menu-item:hover > .caret{color:var(--gold);}
+  .menu-item:hover > .caret svg,
+  .menu-item:focus-within > .caret svg,
   .menu-item.acik > .caret svg{transform:rotate(180deg);}
 
   .submenu{position:absolute;top:100%;left:-14px;min-width:236px;z-index:60;
@@ -444,7 +454,7 @@
     .menu-item > a{flex:1 1 auto;border-bottom:0;padding:11px 0;}
     /* üçgenin hitbox'ı yalnızca sağ tarafı kaplar */
     .caret{flex:0 0 58px;align-self:stretch;justify-content:center;padding:0;
-      border-left:1px solid var(--line-2);color:var(--ink);}
+      border-left:1px solid var(--line-2);color:var(--ink);pointer-events:auto;}
     .caret svg{width:13px;height:13px;}
     .submenu{position:static;flex:1 0 100%;order:3;min-width:0;margin:0 0 10px;
       background:var(--paper-2);border:0;border-left:2px solid var(--gold);border-radius:0;
