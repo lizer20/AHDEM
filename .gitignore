@@ -1,0 +1,28 @@
+# ── Depoya ASLA gitmeyecek dosyalar ────────────────────────────────
+# Bunlar yalnızca bilgisayarda durur. Depoya girerlerse
+# ahdem.online/<dosya-adi> adresinden herkes erişir.
+
+# Proje belgeleri (duyurulmamış tarih, telefon, DNS, Supabase bilgisi içerir)
+CLAUDE.md
+CIKARILAN-HTML-NOTLARI.md
+PROJE-DEVIR-NOTU.md
+
+# Duyuru öncesi gizlenen içeriği barındıranlar
+paylasim-tarihli.png
+sunum-kaynak.html
+
+# Büyük ve/veya sitede kullanılmayan dosyalar
+ahdem-tanitim.mov
+ahdem-tanitim.mp4
+fotoğraflar/
+logo-hazirla.py
+
+# Sitede referanssız, ölü favicon boyutları
+favicon-48.png
+favicon-192.png
+
+# İşletim sistemi artıkları
+Thumbs.db
+desktop.ini
+.DS_Store
+"logo-konferans.png" 
