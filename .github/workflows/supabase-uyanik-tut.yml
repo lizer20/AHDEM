@@ -1,0 +1,21 @@
+# Supabase'in ucretsiz plani, 7 gun boyunca dusuk aktivite goren projeyi duraklatir.
+# Bu gorev her gun bir kez haber tablosunu okuyarak projeyi uyanik tutar.
+# Yalnizca herkese acik (publishable) anahtar kullanilir; gizli anahtar gerekmez.
+name: Supabase uyanik tut
+
+on:
+  schedule:
+    - cron: "17 6 * * *"   # her gun 06:17 UTC (09:17 Turkiye)
+  workflow_dispatch:        # Actions sekmesinden elle de calistirilabilir
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Haber tablosunu oku
+        run: |
+          curl -fsS --retry 3 --retry-delay 20 \
+            "https://fzfvmpxhtvzzfxzooycf.supabase.co/rest/v1/haberler?select=slug&limit=1" \
+            -H "apikey: sb_publishable_PVboV0XhJ4gbIxnL9QF-1Q_gHEnfD8y" \
+            -o /dev/null -w "HTTP %{http_code}\n"

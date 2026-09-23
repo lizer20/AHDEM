@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /sunum-kaynak.html
+Disallow: /yonetim/
 # Sponsorluk PDF'i bilerek yayinda tutuluyor ama siteden baglanti verilmiyor;
 # adresi yalnizca kurumlara e-postayla iletilir.
 Disallow: /Ankara_Hukuk_Demokrasi_Muzakereleri_Konferansi_2027_Sponsorluk_Dosyasi.pdf

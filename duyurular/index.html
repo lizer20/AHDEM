@@ -75,7 +75,7 @@
     <h2>Takvimde ne var?</h2>
     <div class="goldbar"></div>
 
-    <div class="liste">
+    <div class="liste" id="etkinlikListe">
       <div class="kayit">
         <div class="tar">Tarih yakında</div>
 
@@ -96,15 +96,14 @@
 
 <section class="band alt">
   <div class="wrap">
-    <div class="eyebrow">Duyurular</div>
-    <h2>Son duyurular.</h2>
+    <div class="eyebrow">Geçmiş Etkinlikler</div>
+    <h2>Neler yaptık?</h2>
     <div class="goldbar"></div>
 
-    <div class="bos">
-      <p>Şu anda yayında bir duyuru bulunmuyor. Başvuru takvimi ve konferans duyuruları
-      açıklandığında burada ve
-      <a href="https://instagram.com/demokrasimuzakereleri" target="_blank" rel="noopener" style="color:var(--gold);">@demokrasimuzakereleri</a>
-      hesabında paylaşılacaktır.</p>
+    <div id="haberListe">
+      <div class="bos">
+        <p>Haberler yükleniyor…</p>
+      </div>
     </div>
 
   </div>
@@ -191,6 +190,29 @@
       if (mi) { mi.classList.remove('acik'); mi.querySelector('.caret').setAttribute('aria-expanded','false'); }
     }
   });
+</script>
+<script type="module">
+import { haberleriGetir, etkinlikleriGetir, haberKarti, etkinlikKaydi, bosKutu, instagramBaglantisi, el }
+  from '../haberler.js';
+
+// Yaklaşan etkinlikler panelden gelir. Panelde yayında etkinlik yoksa ya da
+// Supabase'e ulaşılamazsa HTML'deki yedek kayıt (AHDEM 2027) yerinde kalır.
+etkinlikleriGetir().then(liste => {
+  if (liste.length) document.getElementById('etkinlikListe').replaceChildren(...liste.map(etkinlikKaydi));
+}).catch(() => {});
+
+haberleriGetir().then(liste => {
+  const kutu = document.getElementById('haberListe');
+  if (liste.length) {
+    kutu.replaceChildren(el('div', { class: 'haberler' }, ...liste.map(h => haberKarti(h, 'haber/', true))));
+  } else {
+    kutu.replaceChildren(bosKutu('Şu anda yayında bir haber bulunmuyor. Etkinlik haberleri ve duyurular burada ve ',
+      instagramBaglantisi(), ' hesabında paylaşılacaktır.'));
+  }
+}).catch(() => {
+  document.getElementById('haberListe').replaceChildren(bosKutu('Haberler şu anda yüklenemedi. Güncel paylaşımlar için ',
+    instagramBaglantisi(), ' hesabımıza göz atabilirsiniz.'));
+});
 </script>
 </body>
 </html>

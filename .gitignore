@@ -4,6 +4,7 @@
 
 # Proje belgeleri (duyurulmamış tarih, telefon, DNS, Supabase bilgisi içerir)
 CLAUDE.md
+AGENTS.md
 CIKARILAN-HTML-NOTLARI.md
 PROJE-DEVIR-NOTU.md
 
@@ -25,4 +26,7 @@ favicon-192.png
 Thumbs.db
 desktop.ini
 .DS_Store
-"logo-konferans.png" 
+logo-konferans.png
+
+# Supabase kurulum betigi (yerel arac, siteye yuklenmez)
+supabase-kurulum.sql

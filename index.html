@@ -341,6 +341,19 @@
   </div>
 </section>
 
+<!-- ================= SON HABERLER (Supabase'den dolar; haber yoksa gizli kalır) ================= -->
+<section class="band alt" id="haberler" hidden>
+  <div class="wrap">
+    <div class="eyebrow">Topluluktan</div>
+    <h2>Son haberler.</h2>
+    <div class="goldbar"></div>
+    <div class="haberler" id="sonHaberler"></div>
+    <div style="margin-top:30px;">
+      <a class="btn ghost" href="duyurular/">Tüm Duyurular ve Etkinlikler</a>
+    </div>
+  </div>
+</section>
+
 <!-- ================= VİDEO ================= -->
 <section class="band dark" id="video">
   <div class="wrap" style="text-align:center;">
@@ -549,6 +562,14 @@
     x0=null;
   },{passive:true});
 })();
+</script>
+<script type="module">
+import { haberleriGetir, haberKarti } from './haberler.js';
+haberleriGetir(2).then(liste => {
+  if (!liste.length) return;
+  document.getElementById('sonHaberler').replaceChildren(...liste.map(h => haberKarti(h, 'duyurular/haber/', false)));
+  document.getElementById('haberler').hidden = false;
+}).catch(() => {});
 </script>
 </body>
 </html>

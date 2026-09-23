@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Yönetim — AHDEM</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<meta name="theme-color" content="#12203A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,400;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../stil.css">
+<style>
+  body.panel{background:var(--paper);min-height:100vh;}
+  .p-ust{background:var(--ink);color:#fff;}
+  .p-in{max-width:980px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;
+    justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .p-marka{display:flex;align-items:center;gap:12px;font-weight:600;font-size:15px;letter-spacing:.02em;}
+  .p-marka img{height:34px;width:auto;}
+  .p-marka span span{color:var(--gold-soft);font-weight:500;}
+  .p-kullanici{display:flex;align-items:center;gap:12px;font-size:13px;color:#C6D0DE;min-width:0;}
+  .p-kullanici #kEposta{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px;}
+  .p-link{background:none;border:1px solid rgba(255,255,255,.3);color:#fff;font:inherit;font-size:12.5px;
+    padding:6px 12px;border-radius:3px;cursor:pointer;}
+  .p-link:hover{background:rgba(255,255,255,.1);}
+
+  .p-wrap{max-width:980px;margin:0 auto;padding:30px 20px 80px;}
+  .p-kart{background:#fff;border:1px solid var(--line);border-radius:3px;padding:26px 26px;}
+  .p-kart + .p-kart{margin-top:18px;}
+  .p-dar{max-width:420px;margin:40px auto 0;}
+  .p-kart h2{font-size:22px;margin-bottom:6px;}
+  .p-kart .ac{font-size:13.5px;color:var(--muted);margin-bottom:6px;}
+
+  .p-sekmeler{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:22px;flex-wrap:wrap;align-items:flex-end;}
+  .p-sekme{background:none;border:none;border-bottom:2px solid transparent;font:inherit;font-size:14px;
+    font-weight:500;color:var(--muted);padding:10px 14px;cursor:pointer;margin-bottom:-1px;}
+  .p-sekme[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold);font-weight:600;}
+  .p-sekmeler .bosluk{flex:1;}
+  .p-sekmeler a{font-size:13px;color:var(--gold);padding:10px 4px;text-decoration:none;}
+  .p-sekmeler a:hover{text-decoration:underline;}
+
+  .p-baslik-satir{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+  .p-baslik-satir h2{font-size:24px;}
+
+  .p-liste{display:grid;gap:10px;}
+  .p-satir{display:grid;grid-template-columns:72px 1fr auto;gap:16px;align-items:center;background:#fff;
+    border:1px solid var(--line);border-radius:3px;padding:12px 14px;}
+  .p-satir.fotosuz{grid-template-columns:1fr auto;}
+  .p-satir img,.p-satir .p-yok{width:72px;height:54px;object-fit:cover;border-radius:2px;background:var(--paper-2);}
+  .p-satir-ic{min-width:0;}
+  .p-satir-ic strong{display:block;font-weight:600;font-size:15px;color:var(--ink);overflow:hidden;
+    text-overflow:ellipsis;white-space:nowrap;}
+  .p-satir-ic small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .rozet{display:inline-block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+    padding:3px 8px;border-radius:2px;margin-left:8px;vertical-align:1px;}
+  .rozet.acik{background:#E3F1E8;color:#1F6B43;}
+  .rozet.taslak{background:var(--paper-2);color:var(--muted);}
+  .p-eylem{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
+  .p-kucuk{background:#fff;border:1px solid var(--line);color:var(--ink-soft);font:inherit;font-size:12.5px;
+    padding:6px 11px;border-radius:3px;cursor:pointer;text-decoration:none;white-space:nowrap;}
+  .p-kucuk:hover{border-color:var(--gold);color:var(--ink);}
+  .p-kucuk.tehlike:hover{border-color:#B3261E;color:#B3261E;}
+  .p-bosliste{background:var(--paper-2);border:1px dashed var(--line);border-radius:3px;padding:28px;
+    text-align:center;font-size:14px;color:var(--ink-soft);}
+  @media (max-width:640px){
+    .p-satir{grid-template-columns:56px 1fr;}
+    .p-satir.fotosuz{grid-template-columns:1fr;}
+    .p-satir img,.p-satir .p-yok{width:56px;height:42px;}
+    .p-eylem{grid-column:1 / -1;justify-content:flex-start;}
+  }
+
+  .p-form label{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+    color:var(--ink-soft);margin:18px 0 6px;}
+  .p-form label .ops{text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted);}
+  .p-form input[type=text],.p-form input[type=email],.p-form input[type=password],.p-form input[type=date],
+  .p-form input[type=number],.p-form textarea,.p-form select{width:100%;font:inherit;font-size:14.5px;
+    padding:10px 12px;border:1px solid var(--line);border-radius:3px;background:var(--paper);color:var(--ink);}
+  .p-form input:focus,.p-form textarea:focus,.p-form select:focus{outline:2px solid var(--gold-soft);border-color:var(--gold);}
+  .p-form textarea{resize:vertical;line-height:1.7;}
+  .p-ipucu{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.5;overflow-wrap:anywhere;}
+  .p-iki{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;}
+  @media (max-width:640px){ .p-iki{grid-template-columns:1fr;} }
+  .p-bolum{border-top:1px solid var(--line-2);margin-top:26px;padding-top:6px;}
+  .p-bolum > h3{font-size:16px;margin-top:14px;}
+  .p-onay{display:flex;align-items:center;gap:10px;margin-top:22px;font-size:14.5px;color:var(--ink);cursor:pointer;}
+  .p-onay input{width:18px;height:18px;accent-color:var(--gold);}
+  .p-dugmeler{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:26px;}
+  .p-dugmeler .btn{border:none;cursor:pointer;font:inherit;font-size:14px;font-weight:600;}
+  .p-dugmeler .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold);}
+  .btn:disabled{opacity:.5;cursor:wait;}
+  .p-durum{font-size:13px;color:var(--muted);}
+  .p-hata{color:#B3261E;font-size:13.5px;margin-top:12px;font-weight:500;}
+  .p-hata:empty{display:none;}
+
+  .p-kapak{display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:start;margin-top:10px;}
+  @media (max-width:640px){ .p-kapak{grid-template-columns:1fr;} }
+  .p-kapak-kutu{aspect-ratio:4/3;background:var(--paper-2);border:1px dashed var(--line);border-radius:3px;
+    overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:var(--muted);text-align:center;padding:8px;}
+  .p-kapak-kutu img{width:100%;height:100%;object-fit:cover;}
+  .p-kapak-kutu:has(img){padding:0;border-style:solid;}
+  .p-galeri{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:12px;}
+  .p-galeri figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:3px;overflow:hidden;}
+  .p-galeri img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;}
+  .p-galeri figcaption{padding:8px;display:grid;gap:6px;}
+  .p-galeri figcaption input{font-size:12.5px !important;padding:6px 8px !important;}
+  .p-dosya{font-size:13px;margin-top:4px;max-width:100%;}
+
+  .p-bildirim{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;
+    padding:12px 20px;border-radius:3px;font-size:14px;box-shadow:0 10px 30px rgba(18,32,58,.25);z-index:50;
+    max-width:calc(100% - 32px);}
+  .p-bildirim.hata{background:#B3261E;}
+  .p-alt{font-size:12.5px;color:var(--muted);text-align:center;margin-top:34px;}
+</style>
+</head>
+<body class="panel">
+
+<header class="p-ust">
+  <div class="p-in">
+    <div class="p-marka">
+      <img src="../logo-konferans-beyaz.png" alt="" onerror="this.style.display='none'">
+      <span>AHDEM <span>· Yönetim</span></span>
+    </div>
+    <div class="p-kullanici" id="kullanici" hidden>
+      <span id="kEposta"></span>
+      <button class="p-link" id="cikis" type="button">Çıkış</button>
+    </div>
+  </div>
+</header>
+
+<main class="p-wrap">
+
+  <p class="p-durum" id="gYukleniyor">Yükleniyor…</p>
+
+  <!-- ============ GİRİŞ ============ -->
+  <section id="gGiris" hidden>
+    <form class="p-kart p-dar p-form" id="girisForm">
+      <h2>Giriş</h2>
+      <div class="ac">Sitenin haber ve etkinliklerini yönetmek için giriş yap.</div>
+      <label for="gEposta">E-posta</label>
+      <input type="email" id="gEposta" autocomplete="username" required>
+      <label for="gSifre">Şifre</label>
+      <input type="password" id="gSifre" autocomplete="current-password" required>
+      <div class="p-dugmeler"><button class="btn" id="girisDugme" type="submit">Giriş Yap</button></div>
+      <p class="p-hata" id="girisHata"></p>
+    </form>
+  </section>
+
+  <!-- ============ YETKİSİZ ============ -->
+  <section id="gYetkisiz" hidden>
+    <div class="p-kart p-dar">
+      <h2>Yetkin yok</h2>
+      <p style="margin-top:10px;font-size:14.5px;">Bu hesapla giriş yapıldı ama hesabın haber ekleme yetkisi yok.
+      Yetki, Supabase'de <b style="font-weight:600;">editors</b> tablosuna eklenerek verilir.</p>
+    </div>
+  </section>
+
+  <!-- ============ ANA PANEL ============ -->
+  <section id="gAna" hidden>
+    <div class="p-sekmeler" role="tablist">
+      <button class="p-sekme" role="tab" data-sekme="sHaber" aria-selected="true" type="button">Haberler</button>
+      <button class="p-sekme" role="tab" data-sekme="sEtkinlik" aria-selected="false" type="button">Yaklaşan Etkinlikler</button>
+      <span class="bosluk"></span>
+      <a href="../duyurular/" target="_blank" rel="noopener">Siteyi aç ↗</a>
+    </div>
+
+    <!-- ---------- Haberler ---------- -->
+    <div id="sHaber" role="tabpanel">
+      <div id="haberListeBolum">
+        <div class="p-baslik-satir">
+          <h2>Haberler</h2>
+          <button class="btn" id="yeniHaber" type="button" style="border:none;cursor:pointer;font:inherit;font-weight:600;">+ Yeni Haber</button>
+        </div>
+        <div class="p-liste" id="haberListesi"></div>
+      </div>
+
+      <form class="p-kart p-form" id="haberForm" hidden novalidate>
+        <h2 id="hfBaslik">Yeni haber</h2>
+        <div class="ac">Yıldızlı alanlar zorunlu. "Sitede yayınla" işaretlenmeden kaydedilen haber taslak olarak kalır, sitede görünmez.</div>
+
+        <label for="hBaslik">Başlık *</label>
+        <input type="text" id="hBaslik" maxlength="140" placeholder="Cebeci'de tanıtım standımızı açtık">
+
+        <div class="p-iki">
+          <div>
+            <label for="hEtiket">Etiket</label>
+            <select id="hEtiket">
+              <option>Topluluk Haberi</option>
+              <option>Etkinlik</option>
+              <option>Duyuru</option>
+              <option>Başvuru</option>
+            </select>
+          </div>
+          <div>
+            <label for="hSlug">Adres * <span class="ops">(başlıktan otomatik)</span></label>
+            <input type="text" id="hSlug" maxlength="80" placeholder="cebecide-tanitim-standimizi-actik">
+          </div>
+        </div>
+        <div class="p-ipucu" id="hSlugIpucu"></div>
+
+        <div class="p-iki">
+          <div>
+            <label for="hTarih">Tarih * <span class="ops">(sıralama ve Google için)</span></label>
+            <input type="date" id="hTarih">
+            <div class="p-ipucu">Birkaç gün sürdüyse son günü seç.</div>
+          </div>
+          <div>
+            <label for="hTarihMetin">Sayfada görünecek tarih *</label>
+            <input type="text" id="hTarihMetin" maxlength="60" placeholder="16–18 Eylül 2026">
+            <div class="p-ipucu">Tarihten otomatik dolar, istersen değiştir.</div>
+          </div>
+        </div>
+
+        <label for="hYer">Yer</label>
+        <input type="text" id="hYer" maxlength="140" placeholder="Ankara Üniversitesi Hukuk Fakültesi, Cebeci Yerleşkesi">
+
+        <label for="hOzet">Özet * <span class="ops">— kartta ve Google sonucunda görünen cümle</span></label>
+        <textarea id="hOzet" rows="2" maxlength="300"></textarea>
+        <div class="p-ipucu">Tek cümle yeterli, 160 karakteri geçmemesi iyi olur. Şu an: <b id="hOzetSay" style="font-weight:600;">0</b></div>
+
+        <label for="hGovde">Haber metni *</label>
+        <textarea id="hGovde" rows="10"></textarea>
+        <div class="p-ipucu">Paragrafları <b style="font-weight:600;">boş satırla</b> ayır. Bir ifadeyi kalın yazmak için iki yıldız arasına al: **böyle**.</div>
+
+        <div class="p-bolum">
+          <h3>Kapak fotoğrafı</h3>
+          <div class="p-kapak">
+            <div class="p-kapak-kutu" id="hKapakKutu">Kapak seçilmedi</div>
+            <div>
+              <input type="file" id="hKapakDosya" class="p-dosya" accept="image/jpeg,image/png,image/webp">
+              <div class="p-ipucu">Kartta ve haberin başında görünür. Otomatik olarak 1000 piksele küçültülür.</div>
+              <label for="hKapakAlt">Fotoğrafın açıklaması <span class="ops">— görme engelliler ve Google için</span></label>
+              <input type="text" id="hKapakAlt" maxlength="200" placeholder="AHDEM tanıtım standı, Cebeci Yerleşkesi">
+              <label for="hKapakYazi">Alt yazı <span class="ops">— isteğe bağlı, fotoğrafın altında görünür</span></label>
+              <input type="text" id="hKapakYazi" maxlength="200">
+              <div class="p-dugmeler" style="margin-top:12px;">
+                <button class="p-kucuk tehlike" id="hKapakKaldir" type="button" hidden>Kapağı kaldır</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-bolum">
+          <h3>Galeri <span style="font-weight:400;font-size:13px;color:var(--muted);">— isteğe bağlı</span></h3>
+          <input type="file" id="hGaleriDosya" class="p-dosya" accept="image/jpeg,image/png,image/webp" multiple style="margin-top:12px;">
+          <div class="p-ipucu">Birden fazla fotoğraf seçebilirsin; her seçim listeye eklenir.</div>
+          <div class="p-galeri" id="hGaleri"></div>
+        </div>
+
+        <label class="p-onay"><input type="checkbox" id="hYayinda"> Sitede yayınla</label>
+
+        <div class="p-dugmeler">
+          <button class="btn" id="hKaydet" type="submit">Kaydet</button>
+          <button class="btn ghost" id="hVazgec" type="button">Vazgeç</button>
+          <span class="p-durum" id="hDurum"></span>
+        </div>
+        <p class="p-hata" id="hHata"></p>
+      </form>
+    </div>
+
+    <!-- ---------- Yaklaşan etkinlikler ---------- -->
+    <div id="sEtkinlik" role="tabpanel" hidden>
+      <div id="etkinlikListeBolum">
+        <div class="p-baslik-satir">
+          <h2>Yaklaşan Etkinlikler</h2>
+          <button class="btn" id="yeniEtkinlik" type="button" style="border:none;cursor:pointer;font:inherit;font-weight:600;">+ Yeni Etkinlik</button>
+        </div>
+        <div class="p-ipucu" style="margin:-6px 0 14px;">Duyurular sayfasındaki "Takvimde ne var?" listesi. Tarihi geçen etkinlik sitede kendiliğinden gizlenir.</div>
+        <div class="p-liste" id="etkinlikListesi"></div>
+      </div>
+
+      <form class="p-kart p-form" id="etkinlikForm" hidden novalidate>
+        <h2 id="efBaslik">Yeni etkinlik</h2>
+        <label for="eBaslik">Etkinliğin adı *</label>
+        <input type="text" id="eBaslik" maxlength="140" placeholder="AHDEM 2027 Konferansı">
+
+        <div class="p-iki">
+          <div>
+            <label for="eTarih">Tarih <span class="ops">(boş bırakılabilir)</span></label>
+            <input type="date" id="eTarih">
+            <div class="p-ipucu">Birkaç gün sürecekse son günü seç. Tarih henüz belli değilse boş bırak.</div>
+          </div>
+          <div>
+            <label for="eTarihMetin">Sayfada görünecek tarih *</label>
+            <input type="text" id="eTarihMetin" maxlength="60" placeholder="Tarih yakında">
+          </div>
+        </div>
+
+        <label for="eAciklama">Açıklama</label>
+        <textarea id="eAciklama" rows="4"></textarea>
+        <div class="p-ipucu">Paragrafları boş satırla ayır; **iki yıldız** kalın yazar.</div>
+
+        <div class="p-iki">
+          <div>
+            <label for="eYer">Yer</label>
+            <input type="text" id="eYer" maxlength="140" placeholder="Ankara Üniversitesi Cebeci Yerleşkesi, Ankara">
+          </div>
+          <div>
+            <label for="eSira">Sıra <span class="ops">(aynı tarihlilerde küçük olan önce)</span></label>
+            <input type="number" id="eSira" value="0" step="1">
+          </div>
+        </div>
+
+        <label class="p-onay"><input type="checkbox" id="eYayinda"> Sitede yayınla</label>
+
+        <div class="p-dugmeler">
+          <button class="btn" id="eKaydet" type="submit">Kaydet</button>
+          <button class="btn ghost" id="eVazgec" type="button">Vazgeç</button>
+          <span class="p-durum" id="eDurum"></span>
+        </div>
+        <p class="p-hata" id="eHata"></p>
+      </form>
+    </div>
+
+    <p class="p-alt">Ortak bir bilgisayardaysan işin bitince sağ üstten çıkış yapmayı unutma.</p>
+  </section>
+
+  <div class="p-bildirim" id="bildirim" role="status" hidden></div>
+</main>
+
+<script type="module" src="panel.js"></script>
+</body>
+</html>
