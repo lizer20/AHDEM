@@ -58,6 +58,43 @@ export function etkinlikleriGetir() {
              '&order=tarih.asc.nullslast,sira.asc');
 }
 
+// ---------- blog ----------
+
+const YAZI_KART = 'slug,etiket,baslik,yazar,tarih,ozet,kapak,kapak_alt';
+
+export function yazilariGetir(adet) {
+  return oku('yazilar?select=' + YAZI_KART +
+             '&yayinda=eq.true&order=tarih.desc,olusturuldu.desc' +
+             (adet ? '&limit=' + adet : ''));
+}
+
+export async function yaziGetir(slug) {
+  const r = await oku('yazilar?select=*&yayinda=eq.true&slug=eq.' +
+                      encodeURIComponent(slug) + '&limit=1');
+  return r[0] || null;
+}
+
+// Ana sayfadaki öne çıkan blok. Kapalıysa RLS satırı hiç vermez → null.
+export async function oneCikanGetir() {
+  const r = await oku('one_cikan?select=etiket,baslik,metin,dugme,baglanti&id=eq.1&limit=1');
+  return r[0] || null;
+}
+
+// Yalnızca site içi yol ("/blog/") ya da https:// kabul edilir.
+export function guvenliBaglanti(adres) {
+  const a = String(adres || '').trim();
+  if (/^\/(?![\/\\])/.test(a) || /^https:\/\/[^\s]+$/.test(a)) return a;
+  return null;
+}
+
+const AYLAR = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz',
+               'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+export function tarihYaz(iso) {
+  if (!iso) return '';
+  const [y, a, g] = String(iso).split('-').map(Number);
+  return g + ' ' + AYLAR[a - 1] + ' ' + y;
+}
+
 export function fotoAdresi(yol) {
   return AYAR.url + '/storage/v1/object/public/' + AYAR.depo + '/' +
          String(yol).split('/').map(encodeURIComponent).join('/');
@@ -106,6 +143,27 @@ export function haberKarti(h, linkOnek, yerGoster) {
       el('p', { text: h.ozet }),
       yerGoster && h.yer ? el('div', { class: 'yer', text: h.yer }) : null,
       el('div', { class: 'devam' }, 'Haberi oku ', el('i', { text: '›' }))
+    )
+  );
+}
+
+// linkOnek: yazı sayfasına giden yolun başı ('yazi/' ya da 'blog/yazi/')
+export function yaziKarti(y, linkOnek) {
+  const adres = linkOnek + '?s=' + encodeURIComponent(y.slug);
+  const foto = y.kapak
+    ? el('div', { class: 'haber-foto' },
+        el('img', { src: fotoAdresi(y.kapak), alt: y.kapak_alt || y.baslik,
+                    loading: 'lazy', decoding: 'async' }))
+    : null;
+  const ust = [y.etiket, tarihYaz(y.tarih)].filter(Boolean).join(' · ');
+  return el('article', { class: 'haber yazi' + (foto ? '' : ' fotosuz') },
+    foto,
+    el('div', { class: 'haber-ic' },
+      el('div', { class: 'tar', text: ust }),
+      el('h3', {}, el('a', { href: adres, text: y.baslik })),
+      el('p', { text: y.ozet }),
+      y.yazar ? el('div', { class: 'yer', text: y.yazar }) : null,
+      el('div', { class: 'devam' }, 'Yazıyı oku ', el('i', { text: '›' }))
     )
   );
 }

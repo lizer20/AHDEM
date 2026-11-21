@@ -30,3 +30,6 @@ logo-konferans.png
 
 # Supabase kurulum betigi (yerel arac, siteye yuklenmez)
 supabase-kurulum.sql
+
+supabase-blog.sql
+.claude/

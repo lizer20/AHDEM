@@ -7,7 +7,7 @@
 // =====================================================================
 
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.1/+esm';
-import { AYAR, fotoAdresi, el } from '../haberler.js';
+import { AYAR, fotoAdresi, el, guvenliBaglanti } from '../haberler.js';
 
 const sb = createClient(AYAR.url, AYAR.anahtar);
 const $ = id => document.getElementById(id);
@@ -47,7 +47,10 @@ function slugla(s) {
 
 function hataMetni(err) {
   const m = (err && (err.message || err.error_description || err.error)) || String(err);
-  if (err && err.code === '23505') return 'Bu adres başka bir haberde kullanılıyor. Adresi değiştir.';
+  if (err && err.code === '23505') return 'Bu adres başka bir kayıtta kullanılıyor. Adresi değiştir.';
+  if (err && err.code === '23514') return 'Bir alan kurallara uymuyor (ör. bağlantı / ya da https:// ile başlamalı).';
+  if (err && (err.code === '42P01' || err.code === 'PGRST205'))
+    return 'Tablo bulunamadı. supabase-blog.sql henüz çalıştırılmamış olabilir.';
   if ((err && err.code === '42501') || /row-level security|Unauthorized/i.test(m))
     return 'Yetkin yok. Oturumun kapanmış olabilir ya da hesabın editors tablosunda kayıtlı değil.';
   if (/JWT|session|token/i.test(m)) return 'Oturumun süresi dolmuş. Sayfayı yenileyip tekrar giriş yap.';
@@ -118,6 +121,8 @@ async function oturumKontrol() {
   goster('gAna');
   haberleriYukle();
   etkinlikleriYukle();
+  yazilariYukle();
+  oneCikanYukle();
 }
 
 $('girisForm').addEventListener('submit', async e => {
@@ -143,7 +148,7 @@ $('cikis').addEventListener('click', async () => {
   if (formKirli && !confirm('Kaydedilmemiş değişiklikler var. Yine de çıkış yapılsın mı?')) return;
   formKirli = false;
   await sb.auth.signOut();
-  haberFormKapat(); etkinlikFormKapat();
+  haberFormKapat(); etkinlikFormKapat(); yaziFormKapat();
   await oturumKontrol();
 });
 
@@ -554,6 +559,273 @@ $('etkinlikForm').addEventListener('submit', async e => {
   } finally {
     dugmeK.disabled = false;
     $('eDurum').textContent = '';
+  }
+});
+
+// =====================================================================
+//  BLOG
+// =====================================================================
+
+let yazilar = [];
+let yDuzenlenen = null;
+let yKapak = null;             // { yol, url } kayıtlı | { blob, url } yeni | null
+let yEskiKapak = null;
+let ySlugElle = false;
+
+async function yazilariYukle() {
+  const { data, error } = await sb.from('yazilar').select('*')
+    .order('tarih', { ascending: false }).order('olusturuldu', { ascending: false });
+  if (error) {
+    $('yaziListesi').replaceChildren(el('div', { class: 'p-bosliste', text: 'Yazılar yüklenemedi: ' + hataMetni(error) }));
+    return;
+  }
+  yazilar = data;
+  const kutu = $('yaziListesi');
+  if (!yazilar.length) {
+    kutu.replaceChildren(el('div', { class: 'p-bosliste', text: 'Henüz yazı yok. "Yeni Yazı" düğmesiyle ilkini ekle.' }));
+  } else {
+    kutu.replaceChildren(...yazilar.map(y => el('div', { class: 'p-satir' },
+      y.kapak ? el('img', { src: fotoAdresi(y.kapak), alt: '', loading: 'lazy' }) : el('div', { class: 'p-yok' }),
+      el('div', { class: 'p-satir-ic' },
+        el('strong', { text: y.baslik, title: y.baslik }),
+        el('small', {}, tarihMetni(y.tarih) + ' · ' + y.etiket + (y.yazar ? ' · ' + y.yazar : ''),
+          el('span', { class: 'rozet ' + (y.yayinda ? 'acik' : 'taslak'), text: y.yayinda ? 'Yayında' : 'Taslak' }))),
+      el('div', { class: 'p-eylem' },
+        y.yayinda ? el('a', { class: 'p-kucuk', href: '../blog/yazi/?s=' + encodeURIComponent(y.slug),
+                              target: '_blank', rel: 'noopener', text: 'Sitede gör' }) : null,
+        dugme(y.yayinda ? 'Yayından kaldır' : 'Yayınla', () => yaziYayinDegistir(y)),
+        dugme('Düzenle', () => yaziFormAc(y)),
+        dugme('Sil', () => yaziSil(y), true))
+    )));
+  }
+  ocHizliCiz();
+}
+
+async function yaziYayinDegistir(y) {
+  const { data, error } = await sb.from('yazilar').update({ yayinda: !y.yayinda }).eq('id', y.id).select('id');
+  if (error || !data.length) { bildir(error ? hataMetni(error) : 'Değişiklik kaydedilemedi.', true); return; }
+  bildir(y.yayinda ? 'Yazı yayından kaldırıldı.' : 'Yazı yayında.');
+  yazilariYukle();
+}
+
+async function yaziSil(y) {
+  if (!confirm('"' + y.baslik + '" silinsin mi?\n\nKapak fotoğrafıyla birlikte kalıcı olarak silinir, geri alınamaz.')) return;
+  const { data, error } = await sb.from('yazilar').delete().eq('id', y.id).select('id');
+  if (error || !data.length) { bildir(error ? hataMetni(error) : 'Yazı silinemedi.', true); return; }
+  await fotoSil([y.kapak]);
+  bildir('Yazı silindi.');
+  yazilariYukle();
+}
+
+function yaziFormAc(y) {
+  if (formKirli && !confirm('Açık formda kaydedilmemiş değişiklikler var. Vazgeçilsin mi?')) return;
+  const f = y || {};
+  yDuzenlenen = f.id || null;
+  $('yfBaslik').textContent = y ? 'Yazıyı düzenle' : 'Yeni yazı';
+  $('yBaslik').value = f.baslik || '';
+  $('yYazar').value = f.yazar || '';
+  const tur = f.etiket || 'Yazı';
+  if (![...$('yEtiket').options].some(o => o.value === tur)) $('yEtiket').append(el('option', { text: tur }));
+  $('yEtiket').value = tur;
+  const d = new Date();
+  $('yTarih').value = f.tarih || (d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' +
+                                  String(d.getDate()).padStart(2, '0'));
+  $('ySlug').value = f.slug || '';
+  $('yOzet').value = f.ozet || '';
+  $('yGovde').value = f.govde || '';
+  $('yKapakAlt').value = f.kapak_alt || '';
+  $('yKapakYazi').value = f.kapak_yazi || '';
+  $('yYayinda').checked = !!f.yayinda;
+  yKapak = f.kapak ? { yol: f.kapak, url: fotoAdresi(f.kapak) } : null;
+  yEskiKapak = f.kapak || null;
+  ySlugElle = !!y;             // yayındaki yazının adresi kendiliğinden değişmesin
+  $('yKapakDosya').value = '';
+  $('yHata').textContent = ''; $('yDurum').textContent = '';
+  ySlugIpucu(); yOzetSay(); yKapakCiz();
+
+  $('yaziListeBolum').hidden = true;
+  $('yaziForm').hidden = false;
+  formKirli = false;
+  $('yaziForm').scrollIntoView({ block: 'start' });
+  $('yBaslik').focus();
+}
+
+function yaziFormKapat() {
+  $('yaziForm').hidden = true;
+  $('yaziListeBolum').hidden = false;
+  if (yKapak && yKapak.blob) URL.revokeObjectURL(yKapak.url);
+  yKapak = null; yDuzenlenen = null; yEskiKapak = null;
+  formKirli = false;
+}
+
+function ySlugIpucu() {
+  const s = $('ySlug').value;
+  const uyari = yDuzenlenen ? ' Yayındaki bir yazının adresini değiştirirsen paylaşılmış eski bağlantılar çalışmaz.' : '';
+  $('ySlugIpucu').textContent = (s ? 'Yazının adresi: ahdem.online/blog/yazi/?s=' + s + '.'
+                                   : 'Yalnızca küçük harf, rakam ve tire.') + uyari;
+}
+function yOzetSay() { $('yOzetSay').textContent = $('yOzet').value.length; }
+
+function yKapakCiz() {
+  const k = $('yKapakKutu');
+  if (yKapak) k.replaceChildren(el('img', { src: yKapak.url, alt: '' }));
+  else k.replaceChildren('Kapak seçilmedi');
+  $('yKapakKaldir').hidden = !yKapak;
+}
+
+$('yaziForm').addEventListener('input', () => { formKirli = true; });
+$('yBaslik').addEventListener('input', () => {
+  if (!ySlugElle) { $('ySlug').value = slugla($('yBaslik').value); ySlugIpucu(); }
+});
+$('ySlug').addEventListener('input', () => { ySlugElle = true; ySlugIpucu(); });
+$('yOzet').addEventListener('input', yOzetSay);
+$('yeniYazi').addEventListener('click', () => yaziFormAc(null));
+$('yVazgec').addEventListener('click', () => {
+  if (formKirli && !confirm('Kaydedilmemiş değişiklikler silinsin mi?')) return;
+  yaziFormKapat();
+});
+
+$('yKapakDosya').addEventListener('change', async e => {
+  const d = e.target.files[0];
+  if (!d) return;
+  try {
+    const r = await kucult(d);
+    if (yKapak && yKapak.blob) URL.revokeObjectURL(yKapak.url);
+    yKapak = r; formKirli = true; yKapakCiz();
+  } catch (err) { bildir(err.message, true); }
+  e.target.value = '';
+});
+$('yKapakKaldir').addEventListener('click', () => {
+  if (yKapak && yKapak.blob) URL.revokeObjectURL(yKapak.url);
+  yKapak = null; formKirli = true; yKapakCiz();
+});
+
+$('yaziForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  $('yHata').textContent = '';
+  const v = {
+    baslik: $('yBaslik').value.trim(),
+    yazar: $('yYazar').value.trim(),
+    etiket: $('yEtiket').value,
+    tarih: $('yTarih').value,
+    slug: $('ySlug').value.trim(),
+    ozet: $('yOzet').value.trim().replace(/\s+/g, ' '),
+    govde: $('yGovde').value.trim(),
+    kapak_alt: $('yKapakAlt').value.trim(),
+    kapak_yazi: $('yKapakYazi').value.trim(),
+    yayinda: $('yYayinda').checked
+  };
+  const eksik = [];
+  if (v.baslik.length < 3) eksik.push('başlık');
+  if (!SLUG_KALIP.test(v.slug)) eksik.push('adres (küçük harf, rakam ve tire)');
+  if (!v.tarih) eksik.push('tarih');
+  if (!v.ozet) eksik.push('özet');
+  if (!v.govde) eksik.push('yazı metni');
+  if (eksik.length) { $('yHata').textContent = 'Eksik ya da hatalı: ' + eksik.join(', ') + '.'; return; }
+
+  const dugmeK = $('yKaydet');
+  dugmeK.disabled = true;
+  let yeniYol = null;
+  try {
+    let kapakYol = yKapak && !yKapak.blob ? yKapak.yol : null;
+    if (yKapak && yKapak.blob) {
+      $('yDurum').textContent = 'Fotoğraf yükleniyor…';
+      yeniYol = await fotoYukle('blog/' + v.slug, yKapak.blob);
+      kapakYol = yeniYol;
+    }
+    $('yDurum').textContent = 'Kaydediliyor…';
+    const satir = { ...v, kapak: kapakYol };
+    const sorgu = yDuzenlenen
+      ? sb.from('yazilar').update(satir).eq('id', yDuzenlenen).select('id')
+      : sb.from('yazilar').insert(satir).select('id');
+    const { data, error } = await sorgu;
+    if (error) throw error;
+    if (!data || !data.length) throw new Error('Kayıt yazılamadı. Yetkini kontrol et.');
+    if (yEskiKapak && yEskiKapak !== kapakYol) await fotoSil([yEskiKapak]);
+    bildir(v.yayinda ? 'Kaydedildi, yazı sitede.' : 'Taslak olarak kaydedildi.');
+    yaziFormKapat();
+    yazilariYukle();
+  } catch (err) {
+    if (yeniYol) await fotoSil([yeniYol]);
+    $('yHata').textContent = 'Kaydedilemedi: ' + hataMetni(err);
+  } finally {
+    dugmeK.disabled = false;
+    $('yDurum').textContent = '';
+  }
+});
+
+// =====================================================================
+//  ÖNE ÇIKAN BLOK
+// =====================================================================
+
+const OC = { etiket: 'ocEtiketG', baslik: 'ocBaslikG', metin: 'ocMetinG',
+             dugme: 'ocDugmeG', baglanti: 'ocBaglantiG' };
+
+function ocOnizle() {
+  const etiket = $('ocEtiketG').value.trim();
+  $('ocOEtiket').textContent = etiket;
+  $('ocOEtiket').hidden = !etiket;
+  $('ocOBaslik').textContent = $('ocBaslikG').value.trim() || 'Başlık';
+  $('ocOMetin').textContent = $('ocMetinG').value.trim();
+  $('ocODugme').textContent = $('ocDugmeG').value.trim() || 'Devamı';
+  $('ocOnizleme').style.opacity = $('ocAktif').checked ? '1' : '.45';
+}
+
+async function oneCikanYukle() {
+  const { data, error } = await sb.from('one_cikan').select('*').eq('id', 1).maybeSingle();
+  if (error || !data) {
+    $('ocHata').textContent = 'Blok ayarları yüklenemedi: ' +
+      (error ? hataMetni(error) : 'kayıt yok. supabase-blog.sql çalıştırılmış mı?');
+    $('ocKaydet').disabled = true;
+    return;
+  }
+  $('ocKaydet').disabled = false;
+  $('ocHata').textContent = '';
+  $('ocAktif').checked = !!data.aktif;
+  for (const [alan, id] of Object.entries(OC)) $(id).value = data[alan] || '';
+  ocOnizle();
+  ocHizliCiz();
+}
+
+function ocHizliCiz() {
+  const secenek = [['Blog ana sayfası', '/blog/'], ['Duyurular', '/duyurular/']].concat(
+    yazilar.filter(y => y.yayinda).slice(0, 4).map(y =>
+      [y.baslik.length > 34 ? y.baslik.slice(0, 33) + '…' : y.baslik, '/blog/yazi/?s=' + y.slug]));
+  $('ocHizli').replaceChildren('Hızlı seç: ', ...secenek.map(([ad, adres]) => {
+    const b = dugme(ad, () => { $('ocBaglantiG').value = adres; formKirli = true; ocOnizle(); });
+    b.style.margin = '4px 6px 0 0';
+    return b;
+  }));
+}
+
+$('ocForm').addEventListener('input', () => { formKirli = true; ocOnizle(); });
+
+$('ocForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  $('ocHata').textContent = '';
+  const v = { aktif: $('ocAktif').checked };
+  for (const [alan, id] of Object.entries(OC)) v[alan] = $(id).value.trim();
+  v.metin = v.metin.replace(/\s+/g, ' ');
+  if (!v.dugme) v.dugme = 'Devamı';
+  const eksik = [];
+  if (!v.baslik) eksik.push('başlık');
+  if (!guvenliBaglanti(v.baglanti)) eksik.push('bağlantı (/ ya da https:// ile başlamalı, boşluk içermemeli)');
+  if (eksik.length) { $('ocHata').textContent = 'Eksik ya da hatalı: ' + eksik.join(', ') + '.'; return; }
+
+  const dugmeK = $('ocKaydet');
+  dugmeK.disabled = true;
+  $('ocDurum').textContent = 'Kaydediliyor…';
+  try {
+    const { data, error } = await sb.from('one_cikan').update(v).eq('id', 1).select('id');
+    if (error) throw error;
+    if (!data || !data.length) throw new Error('Kayıt yazılamadı. Yetkini kontrol et.');
+    formKirli = false;
+    bildir(v.aktif ? 'Kaydedildi, blok ana sayfada.' : 'Kaydedildi. Blok kapalı, sitede görünmüyor.');
+  } catch (err) {
+    $('ocHata').textContent = 'Kaydedilemedi: ' + hataMetni(err);
+  } finally {
+    dugmeK.disabled = false;
+    $('ocDurum').textContent = '';
   }
 });
 

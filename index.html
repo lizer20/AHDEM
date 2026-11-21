@@ -91,6 +91,7 @@
       </div>
       <a href="konferanslar/">Konferanslar</a>
       <a href="duyurular/">Duyurular</a>
+      <a href="blog/">Blog</a>
       <a href="sss/">SSS</a>
       <a href="iletisim/">İletişim</a>
       <a class="btn" href="sponsorluk/">Sponsorluk</a>
@@ -128,6 +129,20 @@
     </div>
   </div>
 </div>
+
+<!-- ================= ÖNE ÇIKAN (yönetim panelinden; kapalıysa gizli kalır) ================= -->
+<section class="one-cikan-bant" id="oneCikan" hidden>
+  <div class="wrap">
+    <a class="one-cikan" id="ocBaglanti" href="blog/">
+      <span class="oc-etiket" id="ocEtiket"></span>
+      <span class="oc-ic">
+        <strong class="oc-baslik" id="ocBaslik"></strong>
+        <span class="oc-metin" id="ocMetin"></span>
+      </span>
+      <span class="oc-dugme"><span id="ocDugme"></span> <i>&rsaquo;</i></span>
+    </a>
+  </div>
+</section>
 
 <!-- ================= BİZ KİMİZ ================= -->
 <section class="band alt" id="hakkimizda">
@@ -463,6 +478,7 @@
       <a href="./">Ana Sayfa</a>
       <a href="konferanslar/">Konferanslar</a>
       <a href="duyurular/">Duyurular</a>
+      <a href="blog/">Blog</a>
       <a href="sss/">Sık Sorulan Sorular</a>
     </div>
     <div class="foot-col">
@@ -564,7 +580,24 @@
 })();
 </script>
 <script type="module">
-import { haberleriGetir, haberKarti } from './haberler.js';
+import { haberleriGetir, haberKarti, oneCikanGetir, guvenliBaglanti } from './haberler.js';
+oneCikanGetir().then(b => {
+  if (!b || !b.baslik) return;
+  const adres = guvenliBaglanti(b.baglanti);
+  if (!adres) return;
+  const a = document.getElementById('ocBaglanti');
+  // site içi yol ("/blog/") ana sayfadan göreli olsun: yerelde de çalışır
+  a.href = adres.startsWith('/') ? '.' + adres : adres;
+  if (/^https:/.test(adres) && !adres.startsWith('https://ahdem.online')) {
+    a.target = '_blank'; a.rel = 'noopener';
+  }
+  document.getElementById('ocEtiket').textContent = b.etiket;
+  document.getElementById('ocEtiket').hidden = !b.etiket;
+  document.getElementById('ocBaslik').textContent = b.baslik;
+  document.getElementById('ocMetin').textContent = b.metin;
+  document.getElementById('ocDugme').textContent = b.dugme || 'Devamı';
+  document.getElementById('oneCikan').hidden = false;
+}).catch(() => {});
 haberleriGetir(2).then(liste => {
   if (!liste.length) return;
   document.getElementById('sonHaberler').replaceChildren(...liste.map(h => haberKarti(h, 'duyurular/haber/', false)));

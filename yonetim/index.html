@@ -161,8 +161,10 @@
     <div class="p-sekmeler" role="tablist">
       <button class="p-sekme" role="tab" data-sekme="sHaber" aria-selected="true" type="button">Haberler</button>
       <button class="p-sekme" role="tab" data-sekme="sEtkinlik" aria-selected="false" type="button">Yaklaşan Etkinlikler</button>
+      <button class="p-sekme" role="tab" data-sekme="sBlog" aria-selected="false" type="button">Blog</button>
+      <button class="p-sekme" role="tab" data-sekme="sOneCikan" aria-selected="false" type="button">Öne Çıkan Blok</button>
       <span class="bosluk"></span>
-      <a href="../duyurular/" target="_blank" rel="noopener">Siteyi aç ↗</a>
+      <a href="../" target="_blank" rel="noopener">Siteyi aç ↗</a>
     </div>
 
     <!-- ---------- Haberler ---------- -->
@@ -310,6 +312,143 @@
           <span class="p-durum" id="eDurum"></span>
         </div>
         <p class="p-hata" id="eHata"></p>
+      </form>
+    </div>
+
+    <!-- ---------- Blog ---------- -->
+    <div id="sBlog" role="tabpanel" hidden>
+      <div id="yaziListeBolum">
+        <div class="p-baslik-satir">
+          <h2>Blog Yazıları</h2>
+          <button class="btn" id="yeniYazi" type="button" style="border:none;cursor:pointer;font:inherit;font-weight:600;">+ Yeni Yazı</button>
+        </div>
+        <div class="p-ipucu" style="margin:-6px 0 14px;">ahdem.online/blog sayfasında en yeni tarihli yazı en üstte görünür.</div>
+        <div class="p-liste" id="yaziListesi"></div>
+      </div>
+
+      <form class="p-kart p-form" id="yaziForm" hidden novalidate>
+        <h2 id="yfBaslik">Yeni yazı</h2>
+        <div class="ac">Yıldızlı alanlar zorunlu. "Sitede yayınla" işaretlenmeden kaydedilen yazı taslak kalır, sitede görünmez.</div>
+
+        <label for="yBaslik">Başlık *</label>
+        <input type="text" id="yBaslik" maxlength="140" placeholder="Anayasa yargısında bireysel başvuru üzerine">
+
+        <div class="p-iki">
+          <div>
+            <label for="yYazar">Yazar <span class="ops">(boş bırakılırsa gösterilmez)</span></label>
+            <input type="text" id="yYazar" maxlength="80" placeholder="Ad Soyad">
+          </div>
+          <div>
+            <label for="yEtiket">Tür</label>
+            <select id="yEtiket">
+              <option>Yazı</option>
+              <option>Makale</option>
+              <option>Görüş</option>
+              <option>Röportaj</option>
+              <option>Değerlendirme</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="p-iki">
+          <div>
+            <label for="yTarih">Tarih *</label>
+            <input type="date" id="yTarih">
+          </div>
+          <div>
+            <label for="ySlug">Adres * <span class="ops">(başlıktan otomatik)</span></label>
+            <input type="text" id="ySlug" maxlength="80">
+          </div>
+        </div>
+        <div class="p-ipucu" id="ySlugIpucu"></div>
+
+        <label for="yOzet">Özet * <span class="ops">— kartta ve Google sonucunda görünen cümle</span></label>
+        <textarea id="yOzet" rows="2" maxlength="300"></textarea>
+        <div class="p-ipucu">Bir iki cümle yeterli. Şu an: <b id="yOzetSay" style="font-weight:600;">0</b> / 300</div>
+
+        <label for="yGovde">Yazı metni *</label>
+        <textarea id="yGovde" rows="16"></textarea>
+        <div class="p-ipucu">Paragrafları <b style="font-weight:600;">boş satırla</b> ayır. Bir ifadeyi kalın yazmak için iki yıldız arasına al: **böyle**.</div>
+
+        <div class="p-bolum">
+          <h3>Kapak fotoğrafı <span style="font-weight:400;font-size:13px;color:var(--muted);">— isteğe bağlı</span></h3>
+          <div class="p-kapak">
+            <div class="p-kapak-kutu" id="yKapakKutu">Kapak seçilmedi</div>
+            <div>
+              <input type="file" id="yKapakDosya" class="p-dosya" accept="image/jpeg,image/png,image/webp">
+              <div class="p-ipucu">Kartta ve yazının başında görünür. Otomatik olarak 1000 piksele küçültülür.</div>
+              <label for="yKapakAlt">Fotoğrafın açıklaması</label>
+              <input type="text" id="yKapakAlt" maxlength="200">
+              <label for="yKapakYazi">Alt yazı <span class="ops">— isteğe bağlı</span></label>
+              <input type="text" id="yKapakYazi" maxlength="200">
+              <div class="p-dugmeler" style="margin-top:12px;">
+                <button class="p-kucuk tehlike" id="yKapakKaldir" type="button" hidden>Kapağı kaldır</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <label class="p-onay"><input type="checkbox" id="yYayinda"> Sitede yayınla</label>
+
+        <div class="p-dugmeler">
+          <button class="btn" id="yKaydet" type="submit">Kaydet</button>
+          <button class="btn ghost" id="yVazgec" type="button">Vazgeç</button>
+          <span class="p-durum" id="yDurum"></span>
+        </div>
+        <p class="p-hata" id="yHata"></p>
+      </form>
+    </div>
+
+    <!-- ---------- Öne çıkan blok ---------- -->
+    <div id="sOneCikan" role="tabpanel" hidden>
+      <form class="p-kart p-form" id="ocForm" novalidate>
+        <h2>Öne Çıkan Blok</h2>
+        <div class="ac">Ana sayfada, en üstteki büyük görselin hemen altında görünen dikkat çekici kutu.
+        Tıklayan kişi aşağıdaki bağlantıya gider. Kapalıyken sitede hiç görünmez.</div>
+
+        <label class="p-onay"><input type="checkbox" id="ocAktif"> Blok ana sayfada görünsün</label>
+
+        <div class="p-iki">
+          <div>
+            <label for="ocEtiketG">Küçük etiket <span class="ops">(ör. Yeni)</span></label>
+            <input type="text" id="ocEtiketG" maxlength="40" placeholder="Yeni">
+          </div>
+          <div>
+            <label for="ocDugmeG">Düğme yazısı</label>
+            <input type="text" id="ocDugmeG" maxlength="40" placeholder="Yazıları oku">
+          </div>
+        </div>
+
+        <label for="ocBaslikG">Başlık *</label>
+        <input type="text" id="ocBaslikG" maxlength="120" placeholder="AHDEM Blog yayında">
+
+        <label for="ocMetinG">Kısa metin</label>
+        <textarea id="ocMetinG" rows="2" maxlength="300"></textarea>
+
+        <label for="ocBaglantiG">Bağlantı *</label>
+        <input type="text" id="ocBaglantiG" maxlength="300" placeholder="/blog/">
+        <div class="p-ipucu">Site içi bir sayfa için <b style="font-weight:600;">/</b> ile başlat: <b style="font-weight:600;">/blog/</b>, <b style="font-weight:600;">/duyurular/</b> ya da tek bir yazı için <b style="font-weight:600;">/blog/yazi/?s=yazinin-adresi</b>. Dış site için <b style="font-weight:600;">https://</b> ile başlayan tam adres (ör. başvuru formu).</div>
+        <div class="p-ipucu" id="ocHizli" style="margin-top:8px;"></div>
+
+        <div class="p-bolum">
+          <h3>Önizleme</h3>
+          <div style="background:var(--paper-2);padding:18px;margin-top:12px;border-radius:3px;">
+            <div class="one-cikan" id="ocOnizleme" style="cursor:default;">
+              <span class="oc-etiket" id="ocOEtiket"></span>
+              <span class="oc-ic">
+                <strong class="oc-baslik" id="ocOBaslik"></strong>
+                <span class="oc-metin" id="ocOMetin"></span>
+              </span>
+              <span class="oc-dugme"><span id="ocODugme"></span> <i>&rsaquo;</i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-dugmeler">
+          <button class="btn" id="ocKaydet" type="submit">Kaydet</button>
+          <span class="p-durum" id="ocDurum"></span>
+        </div>
+        <p class="p-hata" id="ocHata"></p>
       </form>
     </div>
 
