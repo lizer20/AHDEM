@@ -128,6 +128,39 @@ async function oturumKontrol() {
 
 // ---------- kayıt ----------------------------------------------------
 
+// Doğrulama e-postasını yeniden gönderen küçük düğme.
+function tekrarGonderDugmesi(epostaAl, kutu) {
+  const b = el('button', { type: 'button', class: 'p-metin-dugme', text: 'doğrulama e-postasını tekrar gönder' });
+  b.addEventListener('click', async () => {
+    const eposta = epostaAl();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(eposta)) { kutu.textContent = 'Önce e-posta adresini yaz.'; return; }
+    b.disabled = true;
+    const { error } = await sb.auth.resend({
+      type: 'signup', email: eposta, options: { emailRedirectTo: location.origin + location.pathname }
+    });
+    if (error) {
+      kutu.textContent = /rate limit|seconds/i.test(error.message)
+        ? 'Çok sık deneme yapıldı. Birkaç dakika sonra tekrar dene.' : 'Gönderilemedi: ' + hataMetni(error);
+      return;
+    }
+    kutu.textContent = eposta + ' adresine yeni bir doğrulama bağlantısı gönderildi. Yalnızca en son gelen e-postadaki bağlantıyı kullan.';
+  });
+  return b;
+}
+
+// Doğrulama bağlantısı hatalıysa Supabase panele #error=... ile döner.
+(() => {
+  const h = new URLSearchParams(location.hash.slice(1));
+  if (!h.get('error')) return;
+  history.replaceState(null, '', location.pathname);
+  const kod = h.get('error_code');
+  $('girisHata').replaceChildren(
+    kod === 'otp_expired'
+      ? 'Doğrulama bağlantısının süresi dolmuş ya da daha önce kullanılmış. E-posta adresini yukarıya yazıp '
+      : 'Doğrulama tamamlanamadı. E-posta adresini yukarıya yazıp ',
+    tekrarGonderDugmesi(() => $('gEposta').value.trim(), $('girisHata')), '.');
+})();
+
 function girisKayitGoster(kayit) {
   $('girisForm').hidden = kayit;
   $('kayitForm').hidden = !kayit;
@@ -169,6 +202,7 @@ $('kayitForm').addEventListener('submit', async e => {
   if (data.session) { await oturumKontrol(); return; }     // doğrulama kapalıysa doğrudan girer
   $('kayitTamam').textContent = eposta + ' adresine bir doğrulama bağlantısı gönderdik. Bağlantıya tıkla, ' +
     'sonra bir editörün seni onaylamasını bekle. E-posta birkaç dakikada gelmezse gereksiz (spam) klasörüne bak.';
+  $('kayitTamam').append(' E-posta gelmediyse ', tekrarGonderDugmesi(() => eposta, $('kayitTamam')), '.');
   $('kayitTamam').hidden = false;
 });
 
@@ -183,6 +217,11 @@ $('girisForm').addEventListener('submit', async e => {
   });
   dugme.disabled = false;
   if (error) {
+    if (/email not confirmed/i.test(error.message)) {
+      $('girisHata').replaceChildren('E-posta adresin henüz doğrulanmamış. Gelen kutundaki bağlantıya tıkla ya da ',
+        tekrarGonderDugmesi(() => $('gEposta').value.trim(), $('girisHata')), '.');
+      return;
+    }
     $('girisHata').textContent = /invalid login credentials/i.test(error.message)
       ? 'E-posta ya da şifre hatalı.' : 'Giriş yapılamadı: ' + hataMetni(error);
     return;
