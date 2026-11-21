@@ -21,6 +21,7 @@
   .p-marka img{height:34px;width:auto;}
   .p-marka span span{color:var(--gold-soft);font-weight:500;}
   .p-kullanici{display:flex;align-items:center;gap:12px;font-size:13px;color:#C6D0DE;min-width:0;}
+  .p-kullanici[hidden]{display:none;}
   .p-kullanici #kEposta{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px;}
   .p-link{background:none;border:1px solid rgba(255,255,255,.3);color:#fff;font:inherit;font-size:12.5px;
     padding:6px 12px;border-radius:3px;cursor:pointer;}
@@ -111,6 +112,13 @@
     padding:12px 20px;border-radius:3px;font-size:14px;box-shadow:0 10px 30px rgba(18,32,58,.25);z-index:50;
     max-width:calc(100% - 32px);}
   .p-bildirim.hata{background:#B3261E;}
+  .p-gecis{font-size:13.5px;color:var(--muted);margin-top:18px;}
+  .p-metin-dugme{background:none;border:none;padding:0;font:inherit;color:var(--gold);font-weight:600;cursor:pointer;}
+  .p-metin-dugme:hover{text-decoration:underline;}
+  .p-tamam{color:#1F6B43;background:#E3F1E8;font-size:13.5px;margin-top:12px;padding:10px 12px;border-radius:3px;line-height:1.55;}
+  .p-sayac{display:inline-block;min-width:18px;padding:1px 6px;border-radius:9px;background:var(--gold);color:#fff;
+    font-size:11px;font-weight:600;line-height:16px;text-align:center;margin-left:4px;}
+  .p-sayac[hidden]{display:none;}
   .p-alt{font-size:12.5px;color:var(--muted);text-align:center;margin-top:34px;}
 </style>
 </head>
@@ -144,15 +152,36 @@
       <input type="password" id="gSifre" autocomplete="current-password" required>
       <div class="p-dugmeler"><button class="btn" id="girisDugme" type="submit">Giriş Yap</button></div>
       <p class="p-hata" id="girisHata"></p>
+      <p class="p-gecis">Hesabın yok mu? <button type="button" class="p-metin-dugme" id="kayitAc">Kayıt ol</button></p>
+    </form>
+
+    <form class="p-kart p-dar p-form" id="kayitForm" hidden novalidate>
+      <h2>Kayıt ol</h2>
+      <div class="ac">Hesap açtıktan sonra e-postana gelen bağlantıyla adresini doğrula.
+      Panele erişimin, mevcut bir editör seni onayladığında açılır.</div>
+      <label for="kAd">Ad Soyad</label>
+      <input type="text" id="kAd" maxlength="80" autocomplete="name" required>
+      <label for="kEpostaG">E-posta</label>
+      <input type="email" id="kEpostaG" autocomplete="email" required>
+      <label for="kSifre">Şifre <span class="ops">(en az 8 karakter)</span></label>
+      <input type="password" id="kSifre" autocomplete="new-password" minlength="8" required>
+      <label for="kSifre2">Şifre (tekrar)</label>
+      <input type="password" id="kSifre2" autocomplete="new-password" minlength="8" required>
+      <div class="p-dugmeler"><button class="btn" id="kayitDugme" type="submit">Hesap Oluştur</button></div>
+      <p class="p-hata" id="kayitHata"></p>
+      <p class="p-tamam" id="kayitTamam" hidden></p>
+      <p class="p-gecis">Zaten hesabın var mı? <button type="button" class="p-metin-dugme" id="girisAc">Giriş yap</button></p>
     </form>
   </section>
 
   <!-- ============ YETKİSİZ ============ -->
   <section id="gYetkisiz" hidden>
     <div class="p-kart p-dar">
-      <h2>Yetkin yok</h2>
-      <p style="margin-top:10px;font-size:14.5px;">Bu hesapla giriş yapıldı ama hesabın haber ekleme yetkisi yok.
-      Yetki, Supabase'de <b style="font-weight:600;">editors</b> tablosuna eklenerek verilir.</p>
+      <h2>Onay bekleniyor</h2>
+      <p style="margin-top:10px;font-size:14.5px;">Hesabın açık ama henüz panel yetkin yok.
+      Mevcut bir editör seni panelin <b style="font-weight:600;">Editörler</b> sekmesinden onayladığında
+      bu sayfayı yenilemen yeterli.</p>
+      <div class="p-dugmeler"><button class="btn ghost" id="yenidenDene" type="button">Yenile</button></div>
     </div>
   </section>
 
@@ -163,6 +192,7 @@
       <button class="p-sekme" role="tab" data-sekme="sEtkinlik" aria-selected="false" type="button">Yaklaşan Etkinlikler</button>
       <button class="p-sekme" role="tab" data-sekme="sBlog" aria-selected="false" type="button">Blog</button>
       <button class="p-sekme" role="tab" data-sekme="sOneCikan" aria-selected="false" type="button">Öne Çıkan Blok</button>
+      <button class="p-sekme" role="tab" data-sekme="sEditor" aria-selected="false" type="button">Editörler <span class="p-sayac" id="bekleyenSayac" hidden></span></button>
       <span class="bosluk"></span>
       <a href="../" target="_blank" rel="noopener">Siteyi aç ↗</a>
     </div>
@@ -450,6 +480,17 @@
         </div>
         <p class="p-hata" id="ocHata"></p>
       </form>
+    </div>
+
+    <!-- ---------- Editörler ---------- -->
+    <div id="sEditor" role="tabpanel" hidden>
+      <div class="p-baslik-satir"><h2>Onay bekleyenler</h2></div>
+      <div class="p-ipucu" style="margin:-6px 0 14px;">Panelden kayıt olan kişiler burada görünür. Yalnızca tanıdığın kişileri onayla;
+      onaylanan kişi haber, yazı ve etkinlik ekleyip silebilir, başka editörleri de onaylayabilir.</div>
+      <div class="p-liste" id="bekleyenListesi"></div>
+
+      <div class="p-baslik-satir" style="margin-top:34px;"><h2>Editörler</h2></div>
+      <div class="p-liste" id="editorListesi"></div>
     </div>
 
     <p class="p-alt">Ortak bir bilgisayardaysan işin bitince sağ üstten çıkış yapmayı unutma.</p>

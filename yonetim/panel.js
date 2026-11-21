@@ -123,7 +123,54 @@ async function oturumKontrol() {
   etkinlikleriYukle();
   yazilariYukle();
   oneCikanYukle();
+  editorleriYukle();
 }
+
+// ---------- kayıt ----------------------------------------------------
+
+function girisKayitGoster(kayit) {
+  $('girisForm').hidden = kayit;
+  $('kayitForm').hidden = !kayit;
+  $('girisHata').textContent = ''; $('kayitHata').textContent = '';
+  (kayit ? $('kAd') : $('gEposta')).focus();
+}
+$('kayitAc').addEventListener('click', () => girisKayitGoster(true));
+$('girisAc').addEventListener('click', () => girisKayitGoster(false));
+$('yenidenDene').addEventListener('click', () => oturumKontrol());
+
+$('kayitForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  $('kayitHata').textContent = '';
+  $('kayitTamam').hidden = true;
+  const ad = $('kAd').value.trim(), eposta = $('kEpostaG').value.trim();
+  const sifre = $('kSifre').value, sifre2 = $('kSifre2').value;
+  if (ad.length < 3) { $('kayitHata').textContent = 'Ad soyadını yaz; onaylayan kişi seni bununla tanıyacak.'; return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(eposta)) { $('kayitHata').textContent = 'Geçerli bir e-posta adresi yaz.'; return; }
+  if (sifre.length < 8) { $('kayitHata').textContent = 'Şifre en az 8 karakter olmalı.'; return; }
+  if (sifre !== sifre2) { $('kayitHata').textContent = 'İki şifre aynı değil.'; return; }
+
+  const dugmeK = $('kayitDugme');
+  dugmeK.disabled = true;
+  const { data, error } = await sb.auth.signUp({
+    email: eposta, password: sifre,
+    options: { data: { ad }, emailRedirectTo: location.origin + location.pathname }
+  });
+  dugmeK.disabled = false;
+  if (error) {
+    const m = error.message || '';
+    $('kayitHata').textContent =
+      /rate limit/i.test(m) ? 'Çok fazla deneme yapıldı. Bir saat kadar sonra tekrar dene.' :
+      /already registered|already exists/i.test(m) ? 'Bu e-postayla zaten bir hesap var. Giriş yapmayı dene.' :
+      /password/i.test(m) ? 'Şifre kabul edilmedi. Daha uzun ve tahmin edilmesi zor bir şifre seç.' :
+      'Kayıt olunamadı: ' + hataMetni(error);
+    return;
+  }
+  $('kSifre').value = ''; $('kSifre2').value = '';
+  if (data.session) { await oturumKontrol(); return; }     // doğrulama kapalıysa doğrudan girer
+  $('kayitTamam').textContent = eposta + ' adresine bir doğrulama bağlantısı gönderdik. Bağlantıya tıkla, ' +
+    'sonra bir editörün seni onaylamasını bekle. E-posta birkaç dakikada gelmezse gereksiz (spam) klasörüne bak.';
+  $('kayitTamam').hidden = false;
+});
 
 $('girisForm').addEventListener('submit', async e => {
   e.preventDefault();
@@ -828,6 +875,81 @@ $('ocForm').addEventListener('submit', async e => {
     $('ocDurum').textContent = '';
   }
 });
+
+// =====================================================================
+//  EDİTÖRLER
+//  Yetki kontrolü veritabanındaki fonksiyonlarda; buradaki düğmeler
+//  yalnızca onları çağırır.
+// =====================================================================
+
+function kisiAdi(k) { return k.ad || k.eposta; }
+function kisaTarih(t) { return t ? tarihMetni(String(t).slice(0, 10)) : ''; }
+
+async function editorleriYukle() {
+  const [b, e] = await Promise.all([sb.rpc('editor_bekleyenler'), sb.rpc('editor_listesi')]);
+  const kurulmamis = err => err && (err.code === 'PGRST202' || err.code === '42883');
+
+  if (b.error) {
+    $('bekleyenListesi').replaceChildren(el('div', { class: 'p-bosliste', text: kurulmamis(b.error)
+      ? 'Bu bölüm için supabase-editor.sql henüz çalıştırılmamış.' : 'Yüklenemedi: ' + hataMetni(b.error) }));
+    $('bekleyenSayac').hidden = true;
+  } else {
+    const liste = b.data || [];
+    $('bekleyenSayac').textContent = liste.length;
+    $('bekleyenSayac').hidden = !liste.length;
+    $('bekleyenListesi').replaceChildren(...(liste.length ? liste.map(k => el('div', { class: 'p-satir fotosuz' },
+      el('div', { class: 'p-satir-ic' },
+        el('strong', { text: kisiAdi(k), title: kisiAdi(k) }),
+        el('small', {}, k.eposta + ' · ' + kisaTarih(k.kayit),
+          el('span', { class: 'rozet ' + (k.dogrulandi ? 'acik' : 'taslak'),
+                       text: k.dogrulandi ? 'E-posta doğrulandı' : 'E-posta doğrulanmadı' }))),
+      el('div', { class: 'p-eylem' },
+        k.dogrulandi ? dugme('Onayla', () => editorOnayla(k)) : null,
+        dugme('Reddet', () => editorReddet(k), true))))
+      : [el('div', { class: 'p-bosliste', text: 'Onay bekleyen kimse yok.' })]));
+  }
+
+  if (e.error) {
+    $('editorListesi').replaceChildren(el('div', { class: 'p-bosliste', text: kurulmamis(e.error)
+      ? 'Bu bölüm için supabase-editor.sql henüz çalıştırılmamış.' : 'Yüklenemedi: ' + hataMetni(e.error) }));
+  } else {
+    $('editorListesi').replaceChildren(...(e.data || []).map(k => el('div', { class: 'p-satir fotosuz' },
+      el('div', { class: 'p-satir-ic' },
+        el('strong', { text: kisiAdi(k), title: kisiAdi(k) }),
+        el('small', {}, k.eposta + (k.eklendi ? ' · ' + kisaTarih(k.eklendi) + ' tarihinden beri' : ''),
+          k.ben ? el('span', { class: 'rozet acik', text: 'Sen' }) : null)),
+      el('div', { class: 'p-eylem' },
+        k.ben ? null : dugme('Yetkiyi kaldır', () => editorKaldir(k), true)))));
+  }
+}
+
+function rpcHata(error) {
+  return error.code === 'P0001' ? error.message : hataMetni(error);
+}
+
+async function editorOnayla(k) {
+  if (!confirm(kisiAdi(k) + ' (' + k.eposta + ') onaylansın mı?\n\nBu kişi haber, yazı ve etkinlik ekleyip silebilecek, başka editörleri de onaylayabilecek.')) return;
+  const { error } = await sb.rpc('editor_onayla', { hedef: k.user_id });
+  if (error) { bildir(rpcHata(error), true); return; }
+  bildir(kisiAdi(k) + ' artık editör.');
+  editorleriYukle();
+}
+
+async function editorReddet(k) {
+  if (!confirm(kisiAdi(k) + ' (' + k.eposta + ') hesabı silinsin mi?\n\nHesap tamamen silinir, geri alınamaz. Kişi isterse yeniden kayıt olabilir.')) return;
+  const { error } = await sb.rpc('editor_reddet', { hedef: k.user_id });
+  if (error) { bildir(rpcHata(error), true); return; }
+  bildir('Hesap silindi.');
+  editorleriYukle();
+}
+
+async function editorKaldir(k) {
+  if (!confirm(kisiAdi(k) + ' kişisinin editör yetkisi kaldırılsın mı?\n\nHesabı silinmez; onay bekleyenler listesine döner.')) return;
+  const { error } = await sb.rpc('editor_kaldir', { hedef: k.user_id });
+  if (error) { bildir(rpcHata(error), true); return; }
+  bildir('Yetki kaldırıldı.');
+  editorleriYukle();
+}
 
 // ---------- başlat ----------------------------------------------------
 
