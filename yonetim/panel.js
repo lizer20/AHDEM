@@ -26,7 +26,7 @@ let bildirimZaman;
 function bildir(mesaj, hata) {
   const b = $('bildirim');
   b.textContent = mesaj;
-  b.className = 'p-bildirim' + (hata ? ' hata' : '');
+  b.className = 'p-bildirim' + (hata ? ' p-bildirim-hata' : '');
   b.hidden = false;
   clearTimeout(bildirimZaman);
   bildirimZaman = setTimeout(() => { b.hidden = true; }, hata ? 7000 : 3500);
