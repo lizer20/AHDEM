@@ -672,3 +672,16 @@
     .oc-baslik{font-size:20px;}
   }
   @media (prefers-reduced-motion:reduce){ .oc-etiket::before{animation:none;} }
+  /* ================= EKİP — KADEMELİ DÜZEN ================= */
+  .team-grid.kademeli{display:block;}
+  .kademe{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;}
+  .kademe + .kademe{margin-top:18px;}
+  .kademe .member{flex:0 1 calc((100% - 36px) / 3);text-align:center;}
+  .kademe .member .ph-av{margin-left:auto;margin-right:auto;}
+  .kademe .member.baskan{border-top:3px solid var(--gold);}
+  .kademe .member.baskan .ph-av{background:var(--gold-soft);color:var(--ink);}
+  .kademe-baslik{display:flex;align-items:center;gap:16px;margin:40px 0 18px;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gold);}
+  .kademe-baslik::before,.kademe-baslik::after{content:"";flex:1;height:1px;background:var(--line);}
+  @media (max-width:820px){ .kademe .member{flex-basis:calc((100% - 18px) / 2);} }
+  @media (max-width:560px){ .kademe .member{flex-basis:100%;} }
