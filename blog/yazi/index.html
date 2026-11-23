@@ -201,8 +201,24 @@ function ciz(y) {
       el('img', { src: fotoAdresi(y.kapak), alt: y.kapak_alt || y.baslik }),
       y.kapak_yazi ? el('figcaption', { text: y.kapak_yazi }) : null));
   }
-  govde.push(...paragraflar(y.govde));
   $('yMakale').replaceChildren(...govde);
+  if (/^\s*</.test(y.govde || '')) {
+    // Panelde biçimlendirilmiş metin: önce temizleyiciden geçer.
+    import('../../zengin.js').then(({ temizParca }) => {
+      const parca = temizParca(y.govde);
+      parca.querySelectorAll('table').forEach(t => {
+        const kap = el('div', { class: 'tablo-kap' });
+        t.replaceWith(kap); kap.append(t);
+      });
+      $('yMakale').append(parca);
+    }).catch(() => {
+      // Temizleyici yüklenemezse yalnızca düz metin göster (HTML hiç yorumlanmaz).
+      const belge = new DOMParser().parseFromString(y.govde, 'text/html');
+      $('yMakale').append(...[...belge.body.children].map(e => el('p', { text: e.textContent })));
+    });
+  } else {
+    $('yMakale').append(...paragraflar(y.govde));
+  }
 
   const yapisal = {
     '@context': 'https://schema.org', '@type': 'BlogPosting',

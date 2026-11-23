@@ -8,6 +8,8 @@
 
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.1/+esm';
 import { AYAR, fotoAdresi, el, guvenliBaglanti } from '../haberler.js';
+import { FOTO_ONEK } from '../zengin.js';
+import { editorKur, sonHtml } from './editor.js';
 
 const sb = createClient(AYAR.url, AYAR.anahtar);
 const $ = id => document.getElementById(id);
@@ -656,7 +658,31 @@ let yazilar = [];
 let yDuzenlenen = null;
 let yKapak = null;             // { yol, url } kayıtlı | { blob, url } yeni | null
 let yEskiKapak = null;
+let yEskiGovdeYollari = [];
 let ySlugElle = false;
+
+// Metin içindeki resimler: yüklenmeden önce data: adresi, sonra depodaki yol.
+function dataUrlYap(blob) {
+  return new Promise((coz, red) => {
+    const r = new FileReader();
+    r.onload = () => coz(r.result);
+    r.onerror = () => red(new Error('Resim okunamadı.'));
+    r.readAsDataURL(blob);
+  });
+}
+const editor = editorKur({
+  kap: $('yEditor'), alan: $('yGovde'), kelimeSay: $('yKelime'), durum: $('yEdDurum'),
+  resimHazirla: async dosya => { const r = await kucult(dosya); URL.revokeObjectURL(r.url); return dataUrlYap(r.blob); },
+  degisti: () => { formKirli = true; }
+});
+// Metindeki depo resimlerinin yolları (silme/temizlik için)
+function govdeYollari(html) {
+  const d = document.createElement('div');
+  d.append(new DOMParser().parseFromString(String(html || ''), 'text/html').body);
+  return [...d.querySelectorAll('img')].map(i => i.getAttribute('src') || '')
+    .filter(s => s.startsWith(FOTO_ONEK))
+    .map(s => decodeURIComponent(s.slice(FOTO_ONEK.length)));
+}
 
 async function yazilariYukle() {
   const { data, error } = await sb.from('yazilar').select('*')
@@ -695,10 +721,10 @@ async function yaziYayinDegistir(y) {
 }
 
 async function yaziSil(y) {
-  if (!confirm('"' + y.baslik + '" silinsin mi?\n\nKapak fotoğrafıyla birlikte kalıcı olarak silinir, geri alınamaz.')) return;
+  if (!confirm('"' + y.baslik + '" silinsin mi?\n\nKapak fotoğrafı ve metindeki resimlerle birlikte kalıcı olarak silinir, geri alınamaz.')) return;
   const { data, error } = await sb.from('yazilar').delete().eq('id', y.id).select('id');
   if (error || !data.length) { bildir(error ? hataMetni(error) : 'Yazı silinemedi.', true); return; }
-  await fotoSil([y.kapak]);
+  await fotoSil([y.kapak, ...govdeYollari(y.govde)]);
   bildir('Yazı silindi.');
   yazilariYukle();
 }
@@ -718,7 +744,8 @@ function yaziFormAc(y) {
                                   String(d.getDate()).padStart(2, '0'));
   $('ySlug').value = f.slug || '';
   $('yOzet').value = f.ozet || '';
-  $('yGovde').value = f.govde || '';
+  editor.yukle(f.govde || '');
+  yEskiGovdeYollari = govdeYollari(f.govde);
   $('yKapakAlt').value = f.kapak_alt || '';
   $('yKapakYazi').value = f.kapak_yazi || '';
   $('yYayinda').checked = !!f.yayinda;
@@ -738,6 +765,7 @@ function yaziFormAc(y) {
 
 function yaziFormKapat() {
   $('yaziForm').hidden = true;
+  $('yEditor').classList.remove('ed-tam'); document.body.classList.remove('ed-tam-acik');
   $('yaziListeBolum').hidden = false;
   if (yKapak && yKapak.blob) URL.revokeObjectURL(yKapak.url);
   yKapak = null; yDuzenlenen = null; yEskiKapak = null;
@@ -796,7 +824,6 @@ $('yaziForm').addEventListener('submit', async e => {
     tarih: $('yTarih').value,
     slug: $('ySlug').value.trim(),
     ozet: $('yOzet').value.trim().replace(/\s+/g, ' '),
-    govde: $('yGovde').value.trim(),
     kapak_alt: $('yKapakAlt').value.trim(),
     kapak_yazi: $('yKapakYazi').value.trim(),
     yayinda: $('yYayinda').checked
@@ -806,13 +833,28 @@ $('yaziForm').addEventListener('submit', async e => {
   if (!SLUG_KALIP.test(v.slug)) eksik.push('adres (küçük harf, rakam ve tire)');
   if (!v.tarih) eksik.push('tarih');
   if (!v.ozet) eksik.push('özet');
-  if (!v.govde) eksik.push('yazı metni');
+  if (editor.bos()) eksik.push('yazı metni');
   if (eksik.length) { $('yHata').textContent = 'Eksik ya da hatalı: ' + eksik.join(', ') + '.'; return; }
 
   const dugmeK = $('yKaydet');
   dugmeK.disabled = true;
   let yeniYol = null;
+  const metinYollari = [];
   try {
+    // Metindeki yeni resimleri depoya yükle
+    const kopya = editor.kopya();
+    const yeniResimler = [...kopya.querySelectorAll('img')].filter(i => /^data:/.test(i.getAttribute('src')));
+    for (const [n, img] of yeniResimler.entries()) {
+      $('yDurum').textContent = 'Metindeki resimler yükleniyor (' + (n + 1) + '/' + yeniResimler.length + ')…';
+      const blob = await (await fetch(img.getAttribute('src'))).blob();
+      const k = await kucult(blob);
+      URL.revokeObjectURL(k.url);
+      const yol = await fotoYukle('blog/' + v.slug, k.blob);
+      metinYollari.push(yol);
+      img.setAttribute('src', fotoAdresi(yol));
+    }
+    v.govde = sonHtml(kopya);
+    if (!v.govde) throw new Error('Yazı metni boş görünüyor.');
     let kapakYol = yKapak && !yKapak.blob ? yKapak.yol : null;
     if (yKapak && yKapak.blob) {
       $('yDurum').textContent = 'Fotoğraf yükleniyor…';
@@ -828,11 +870,13 @@ $('yaziForm').addEventListener('submit', async e => {
     if (error) throw error;
     if (!data || !data.length) throw new Error('Kayıt yazılamadı. Yetkini kontrol et.');
     if (yEskiKapak && yEskiKapak !== kapakYol) await fotoSil([yEskiKapak]);
+    const kalanlar = new Set(govdeYollari(v.govde));
+    await fotoSil(yEskiGovdeYollari.filter(y => !kalanlar.has(y)));
     bildir(v.yayinda ? 'Kaydedildi, yazı sitede.' : 'Taslak olarak kaydedildi.');
     yaziFormKapat();
     yazilariYukle();
   } catch (err) {
-    if (yeniYol) await fotoSil([yeniYol]);
+    await fotoSil([yeniYol, ...metinYollari]);
     $('yHata').textContent = 'Kaydedilemedi: ' + hataMetni(err);
   } finally {
     dugmeK.disabled = false;
