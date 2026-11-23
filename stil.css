@@ -225,6 +225,10 @@
   /* ---------- iletişim ---------- */
   .contact{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:34px;}
   .contact > div{min-width:0;}
+  /* üç kişi yan yana, e-posta ve sosyal medya alt satırda tam genişlik */
+  .contact.dortlu{grid-template-columns:repeat(3,1fr);}
+  .contact.dortlu > div:last-child{grid-column:1/-1;}
+  @media (max-width:640px){ .contact.dortlu{grid-template-columns:1fr;} }
   .contact .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#9FB0C6;margin-bottom:10px;}
   .contact strong{display:block;font-size:18px;font-weight:600;color:#fff;}
   .contact .role{font-size:13px;color:#9FB0C6;margin:2px 0 6px;}
